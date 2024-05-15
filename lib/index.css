@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@layer base {
+  html,
+  body {
+    @apply w-full h-screen;
+    @apply dark:bg-gray-900 dark:text-white;
+  }
+  input,
+  textarea {
+    @apply dark:bg-gray-900 dark:text-white;
+  }
+  #root {
+    @apply w-full h-full;
+  }
+}
+@layer components {
+  .form-group.error {
+    @apply border-red-500;
+  }
+  .form-group .btn-phone-prefix button {
+    @apply top-6;
+  }
+  .form-group input,
+  .form-group textarea {
+    @apply text-gray-700 w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal py-5 px-4 rounded;
+  }
+  .form-group input::-webkit-outer-spin-button,
+  .form-group textarea::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .form-group input[type="number"],
+  .form-group textarea[type="number"] {
+    -moz-appearance: textfield;
+  }
+  .form-group:has(input:focus),
+  .form-group:has(textarea:focus),
+  .form-group:has([data-headlessui-state="open"]) {
+    @apply border-blue-600 z-50;
+  }
+  .form-group:has(input:focus),
+  .form-group:has(input:autofill),
+  .form-group:has(input:not(:placeholder-shown)),
+  .form-group:has(textarea:focus),
+  .form-group:has(textarea:autofill),
+  .form-group:has(textarea:not(:placeholder-shown)),
+  .form-group:has(.form-control:not(.empty)) {
+    @apply py-5 px-4;
+  }
+  .form-group:has(input:focus) label,
+  .form-group:has(input:autofill) label,
+  .form-group:has(input:not(:placeholder-shown)) label,
+  .form-group:has(textarea:focus) label,
+  .form-group:has(textarea:autofill) label,
+  .form-group:has(textarea:not(:placeholder-shown)) label,
+  .form-group:has(.form-control:not(.empty)) label {
+    @apply text-black transform -translate-y-3 transition-all duration-500 opacity-100 block text-sm absolute font-semibold dark:text-white;
+  }
+  .form-group:has(input:focus) input,
+  .form-group:has(input:autofill) input,
+  .form-group:has(input:not(:placeholder-shown)) input,
+  .form-group:has(textarea:focus) input,
+  .form-group:has(textarea:autofill) input,
+  .form-group:has(textarea:not(:placeholder-shown)) input,
+  .form-group:has(.form-control:not(.empty)) input,
+  .form-group:has(input:focus) textarea,
+  .form-group:has(input:autofill) textarea,
+  .form-group:has(input:not(:placeholder-shown)) textarea,
+  .form-group:has(textarea:focus) textarea,
+  .form-group:has(textarea:autofill) textarea,
+  .form-group:has(textarea:not(:placeholder-shown)) textarea,
+  .form-group:has(.form-control:not(.empty)) textarea,
+  .form-group:has(input:focus) .form-control,
+  .form-group:has(input:autofill) .form-control,
+  .form-group:has(input:not(:placeholder-shown)) .form-control,
+  .form-group:has(textarea:focus) .form-control,
+  .form-group:has(textarea:autofill) .form-control,
+  .form-group:has(textarea:not(:placeholder-shown)) .form-control,
+  .form-group:has(.form-control:not(.empty)) .form-control {
+    @apply transform translate-y-3 p-0 dark:bg-transparent dark:text-white;
+  }
+  .form-group:has(input:focus) .btn-before,
+  .form-group:has(input:autofill) .btn-before,
+  .form-group:has(input:not(:placeholder-shown)) .btn-before,
+  .form-group:has(textarea:focus) .btn-before,
+  .form-group:has(textarea:autofill) .btn-before,
+  .form-group:has(textarea:not(:placeholder-shown)) .btn-before,
+  .form-group:has(.form-control:not(.empty)) .btn-before {
+    @apply absolute z-10;
+    bottom: theme("spacing[0.5]");
+    left: theme("spacing[0.5]");
+  }
+  .form-group:has(input:focus):has(.btn-before) input,
+  .form-group:has(input:autofill):has(.btn-before) input,
+  .form-group:has(input:not(:placeholder-shown)):has(.btn-before) input,
+  .form-group:has(textarea:focus):has(.btn-before) input,
+  .form-group:has(textarea:autofill):has(.btn-before) input,
+  .form-group:has(textarea:not(:placeholder-shown)):has(.btn-before) input,
+  .form-group:has(.form-control:not(.empty)):has(.btn-before) input,
+  .form-group:has(input:focus):has(.btn-before) .form-control,
+  .form-group:has(input:autofill):has(.btn-before) .form-control,
+  .form-group:has(input:not(:placeholder-shown)):has(.btn-before) .form-control,
+  .form-group:has(textarea:focus):has(.btn-before) .form-control,
+  .form-group:has(textarea:autofill):has(.btn-before) .form-control,
+  .form-group:has(textarea:not(:placeholder-shown)):has(.btn-before) .form-control,
+  .form-group:has(.form-control:not(.empty)):has(.btn-before) .form-control {
+    @apply pl-10;
+  }
+  .form-group:has(input:focus) .btn-after,
+  .form-group:has(input:autofill) .btn-after,
+  .form-group:has(input:not(:placeholder-shown)) .btn-after,
+  .form-group:has(textarea:focus) .btn-after,
+  .form-group:has(textarea:autofill) .btn-after,
+  .form-group:has(textarea:not(:placeholder-shown)) .btn-after,
+  .form-group:has(.form-control:not(.empty)) .btn-after {
+    @apply absolute;
+    right: theme("spacing[0.5]");
+  }
+  .form-group:has(input:focus) .btn-show-password,
+  .form-group:has(input:autofill) .btn-show-password,
+  .form-group:has(input:not(:placeholder-shown)) .btn-show-password,
+  .form-group:has(textarea:focus) .btn-show-password,
+  .form-group:has(textarea:autofill) .btn-show-password,
+  .form-group:has(textarea:not(:placeholder-shown)) .btn-show-password,
+  .form-group:has(.form-control:not(.empty)) .btn-show-password {
+    @apply absolute right-0 w-9 h-9;
+  }
+}

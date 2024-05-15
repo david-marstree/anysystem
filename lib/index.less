@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html,
+  body {
+    @apply w-full h-screen;
+    @apply dark:bg-gray-900 dark:text-white;
+  }
+  input,
+  textarea {
+    @apply dark:bg-gray-900 dark:text-white;
+  }
+  #root {
+    @apply w-full h-full;
+  }
+}
+
+@layer components {
+  .form-group {
+    &.error {
+      @apply border-red-500;
+    }
+    .btn-phone-prefix {
+      button {
+        @apply top-6;
+      }
+    }
+
+    input,
+    textarea {
+      @apply text-gray-700 w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal py-5 px-4 rounded;
+
+      &::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+
+      &[type="number"] {
+        -moz-appearance: textfield;
+      }
+    }
+
+    &:has(input:focus),
+    &:has(textarea:focus),
+    &:has([data-headlessui-state="open"]) {
+      @apply border-blue-600 z-50;
+    }
+
+    &:has(input:focus),
+    &:has(input:autofill),
+    &:has(input:not(:placeholder-shown)),
+    &:has(textarea:focus),
+    &:has(textarea:autofill),
+    &:has(textarea:not(:placeholder-shown)),
+    &:has(.form-control:not(.empty)) {
+      @apply py-5 px-4;
+
+      label {
+        @apply text-black transform -translate-y-3 transition-all duration-500 opacity-100 block text-sm absolute font-semibold dark:text-white;
+      }
+
+      input,
+      textarea,
+      .form-control {
+        @apply transform translate-y-3 p-0 dark:bg-transparent dark:text-white;
+      }
+
+      .btn-before {
+        @apply absolute z-10;
+        bottom: theme("spacing[0.5]");
+        left: theme("spacing[0.5]");
+      }
+
+      &:has(.btn-before) {
+        input,
+        .form-control {
+          @apply pl-10;
+        }
+      }
+
+      .btn-after {
+        @apply absolute;
+        right: theme("spacing[0.5]");
+      }
+
+      .btn-show-password {
+        @apply absolute right-0 w-9 h-9;
+      }
+    }
+  }
+}
