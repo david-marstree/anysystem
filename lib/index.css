@@ -14,6 +14,15 @@
   #root {
     @apply w-full h-full;
   }
+  h1 {
+    @apply text-4xl font-bold mb-3;
+  }
+  h2 {
+    @apply text-3xl font-bold mb-3;
+  }
+  h3 {
+    @apply text-2xl font-semibold mb-3;
+  }
 }
 @layer components {
   .form-group.error {
