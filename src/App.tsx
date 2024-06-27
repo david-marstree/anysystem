@@ -1,14 +1,16 @@
 import React from "react";
-import { AppProvider } from "./contexts/AppContext";
-import Container from "./components/Container/";
-import Button from "./components/Button/";
-import Label from "./components/Label/";
-import Input from "./components/Input/";
-import PasswordInput from "./components/PasswordInput/";
-import Checkbox from "./components/Checkbox";
-import Text from "./components/Text";
-import Row from "./components/Row";
-import "./index.css";
+import {
+  AppProvider,
+  Container,
+  Button,
+  Label,
+  Input,
+  PasswordInput,
+  Checkbox,
+  Text,
+  Row,
+} from "../lib/";
+import "../lib/index.css";
 
 function App() {
   const [username, setUsername] = React.useState("");
