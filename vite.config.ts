@@ -12,7 +12,7 @@ export default defineConfig({
   build: {
     chunkSizeWarningLimit: 800,
     lib: {
-      entry: resolve(__dirname, "lib/main.tsx"),
+      entry: resolve(__dirname, "lib/index.tsx"),
       formats: ["es"],
     },
     copyPublicDir: false,
@@ -27,7 +27,7 @@ export default defineConfig({
           ]),
       ),
       output: {
-        assetFileNames: "assets/[name][extname]",
+        assetFileNames: "[name][extname]",
         entryFileNames: "[name].js",
       },
     },

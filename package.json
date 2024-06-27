@@ -1,10 +1,9 @@
 {
-  "name": "anysystem",
-  "private": true,
+  "name": "anysystem-design",
   "version": "0.0.0",
   "type": "module",
   "main": "dist/index.js",
-  "types": "dist/main.d.ts",
+  "types": "dist/index.d.ts",
   "files": [
     "dist"
   ],
@@ -15,7 +14,8 @@
     "dev": "bunx --bun vite",
     "build": "tsc -p ./tsconfig-build.json && bunx --bun vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "bunx --bun vite preview"
+    "preview": "bunx --bun vite preview",
+    "deploy": "npm login && npm publish"
   },
   "peerDependencies": {
     "react": "^18.2.0",
