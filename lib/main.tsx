@@ -8,7 +8,6 @@ import PasswordInput from "./components/PasswordInput/";
 import Checkbox from "./components/Checkbox";
 import Text from "./components/Text";
 import Row from "./components/Row";
-import Column from "./components/Column";
 import "./index.css";
 
 function App() {
