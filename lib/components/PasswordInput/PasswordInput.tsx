@@ -6,15 +6,19 @@ export type PasswordInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   type?: "password" | "text";
 };
 
-const PasswordInput: React.FC<PasswordInputProps> = ({
-  type = "password",
-  ...props
-}) => {
+const PasswordInput: React.ForwardRefRenderFunction<
+  HTMLInputElement,
+  PasswordInputProps
+> = ({ type = "password", ...props }, innerRef) => {
   const [showPassword, setShowPassword] = React.useState(type !== "password");
 
   return (
     <div className="flex w-full items-center">
-      <input type={showPassword ? "text" : "password"} {...props} />
+      <input
+        ref={innerRef}
+        type={showPassword ? "text" : "password"}
+        {...props}
+      />
       <a
         className={twMerge(
           "mr-2 flex h-9 w-10 cursor-pointer items-center justify-center rounded-full text-gray-600",
@@ -29,4 +33,4 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   );
 };
 
-export default PasswordInput;
+export default React.forwardRef(PasswordInput);

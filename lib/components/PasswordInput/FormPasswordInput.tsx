@@ -6,17 +6,18 @@ export type FormPasswordInputProps = PasswordInputProps & {
   name: string;
 };
 
-export const FormPasswordInput: React.FC<FormPasswordInputProps> = ({
-  type = "password",
-  name,
-  ...props
-}) => {
+const FormPasswordInputRef: React.ForwardRefRenderFunction<
+  HTMLInputElement,
+  FormPasswordInputProps
+> = ({ type = "password", name, ...props }, innerRef) => {
   const [field] = useField(name);
 
   return (
     <PasswordInput
+      ref={innerRef}
       type={type}
       {...{ ...field, value: field?.value || "", ...props }}
     />
   );
 };
+export const FormPasswordInput = React.forwardRef(FormPasswordInputRef);

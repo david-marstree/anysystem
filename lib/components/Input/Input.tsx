@@ -13,14 +13,10 @@ export type InputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   decimal?: number;
 };
 
-const Input: React.FC<InputProps> = ({
-  name,
-  inputProps,
-  inputBefore,
-  inputAfter,
-  className,
-  ...props
-}) => {
+const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
+  { name, inputProps, inputBefore, inputAfter, className, ...props },
+  innerRef,
+) => {
   return (
     <div
       className={twMerge(
@@ -38,6 +34,7 @@ const Input: React.FC<InputProps> = ({
         </div>
       )}
       <input
+        ref={innerRef}
         {...{
           ...(inputProps && inputProps),
           ...props,
@@ -61,4 +58,4 @@ const Input: React.FC<InputProps> = ({
   );
 };
 
-export default Input;
+export default React.forwardRef(Input);

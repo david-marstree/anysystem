@@ -13,17 +13,16 @@ export type FormInputProps = React.InputHTMLAttributes<HTMLInputElement> & {
   decimal?: number;
 };
 
-export const FormInput: React.FC<FormInputProps> = ({
-  name,
-  inputBefore,
-  inputAfter,
-  className,
-  ...props
-}) => {
+const FormInputRef: React.ForwardRefRenderFunction<
+  HTMLInputElement,
+  FormInputProps
+> = ({ name, inputBefore, inputAfter, className, ...props }, innerRef) => {
   const [field] = useField(name);
 
   return (
     <Input
+      ref={innerRef}
+      className={className}
       name={name}
       inputProps={field}
       inputBefore={inputBefore}
@@ -32,3 +31,4 @@ export const FormInput: React.FC<FormInputProps> = ({
     />
   );
 };
+export const FormInput = React.forwardRef(FormInputRef);
