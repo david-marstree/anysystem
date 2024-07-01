@@ -17,6 +17,13 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
   { name, inputProps, inputBefore, inputAfter, className, ...props },
   innerRef,
 ) => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
+
+  React.useImperativeHandle(
+    innerRef,
+    () => inputRef.current as HTMLInputElement,
+  );
+
   return (
     <div
       className={twMerge(
@@ -34,7 +41,7 @@ const Input: React.ForwardRefRenderFunction<HTMLInputElement, InputProps> = (
         </div>
       )}
       <input
-        ref={innerRef}
+        ref={inputRef}
         {...{
           ...(inputProps && inputProps),
           ...props,

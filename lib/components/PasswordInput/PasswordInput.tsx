@@ -10,12 +10,18 @@ const PasswordInput: React.ForwardRefRenderFunction<
   HTMLInputElement,
   PasswordInputProps
 > = ({ type = "password", ...props }, innerRef) => {
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const [showPassword, setShowPassword] = React.useState(type !== "password");
+
+  React.useImperativeHandle(
+    innerRef,
+    () => inputRef.current as HTMLInputElement,
+  );
 
   return (
     <div className="flex w-full items-center">
       <input
-        ref={innerRef}
+        ref={inputRef}
         type={showPassword ? "text" : "password"}
         {...props}
       />

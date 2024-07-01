@@ -10,6 +10,8 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
   { children, className, variant = "default", size = "md", ...props },
   innerRef,
 ) => {
+  const buttonRef = React.useRef<HTMLButtonElement>(null);
+
   const getVariant = React.useMemo(() => {
     switch (variant) {
       case "default":
@@ -36,9 +38,14 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
     }
   }, [size]);
 
+  React.useImperativeHandle(
+    innerRef,
+    () => buttonRef.current as HTMLButtonElement,
+  );
+
   return (
     <button
-      ref={innerRef}
+      ref={buttonRef}
       className={twMerge(
         "relative overflow-hidden rounded",
         "after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:rounded-l after:bg-gray-400 after:opacity-0", //after:
