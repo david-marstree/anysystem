@@ -1,32 +1,35 @@
-import { jsxs as f, jsx as r } from "react/jsx-runtime";
-import e from "react";
-import { t as i } from "../../bundle-mjs-SHnj3fHy.js";
-import { F as d, a as w } from "../../index-AJeoxW6G.js";
-const p = ({ type: t = "password", ...o }, a) => {
-  const [s, n] = e.useState(t !== "password");
-  return /* @__PURE__ */ f("div", { className: "flex w-full items-center", children: [
-    /* @__PURE__ */ r(
+import { jsxs as i, jsx as e } from "react/jsx-runtime";
+import r from "react";
+import { t as d } from "../../bundle-mjs-SHnj3fHy.js";
+import { F as u, a as l } from "../../index-AJeoxW6G.js";
+const p = ({ type: o = "password", ...a }, n) => {
+  const t = r.useRef(null), [s, f] = r.useState(o !== "password");
+  return r.useImperativeHandle(
+    n,
+    () => t.current
+  ), /* @__PURE__ */ i("div", { className: "flex w-full items-center", children: [
+    /* @__PURE__ */ e(
       "input",
       {
-        ref: a,
+        ref: t,
         type: s ? "text" : "password",
-        ...o
+        ...a
       }
     ),
-    /* @__PURE__ */ r(
+    /* @__PURE__ */ e(
       "a",
       {
-        className: i(
+        className: d(
           "mr-2 flex h-9 w-10 cursor-pointer items-center justify-center rounded-full text-gray-600",
           "hover:bg-gray-100 hover:duration-200",
           "btn-show-password"
         ),
-        onClick: () => n(!s),
-        children: s ? /* @__PURE__ */ r(d, { fontSize: 14 }) : /* @__PURE__ */ r(w, { fontSize: 14 })
+        onClick: () => f(!s),
+        children: s ? /* @__PURE__ */ e(u, { fontSize: 14 }) : /* @__PURE__ */ e(l, { fontSize: 14 })
       }
     )
   ] });
-}, h = e.forwardRef(p);
+}, x = r.forwardRef(p);
 export {
-  h as default
+  x as default
 };

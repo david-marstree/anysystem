@@ -1,22 +1,25 @@
-import { jsx as u } from "react/jsx-runtime";
-import i from "react";
-import { u as n } from "../../formik.esm-CcTVNwxQ.js";
-import s from "./Input.js";
-const c = ({ name: r, inputBefore: o, inputAfter: t, className: f, ...p }, e) => {
-  const [m] = n(r);
-  return /* @__PURE__ */ u(
-    s,
+import { jsx as s } from "react/jsx-runtime";
+import r from "react";
+import { u as i } from "../../formik.esm-CcTVNwxQ.js";
+import c from "./Input.js";
+const l = ({ name: t, inputBefore: o, inputAfter: u, className: f, ...n }, p) => {
+  const [m] = i(t), e = r.useRef(null);
+  return r.useImperativeHandle(
+    p,
+    () => e.current
+  ), /* @__PURE__ */ s(
+    c,
     {
       ref: e,
       className: f,
-      name: r,
+      name: t,
       inputProps: m,
       inputBefore: o,
-      inputAfter: t,
-      ...p
+      inputAfter: u,
+      ...n
     }
   );
-}, I = i.forwardRef(c);
+}, F = r.forwardRef(l);
 export {
-  I as FormInput
+  F as FormInput
 };
