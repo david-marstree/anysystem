@@ -1,22 +1,20 @@
-import { jsx as m } from "react/jsx-runtime";
+import { jsx as e } from "react/jsx-runtime";
+import m from "react";
 import { u as p } from "../../formik.esm-CcTVNwxQ.js";
 import u from "./PasswordInput.js";
-const d = ({
-  type: r = "password",
-  name: s,
-  ...t
-}) => {
-  const [o] = p(s);
-  return /* @__PURE__ */ m(
+const f = ({ type: o = "password", name: s, ...t }, a) => {
+  const [r] = p(s);
+  return /* @__PURE__ */ e(
     u,
     {
-      type: r,
-      ...o,
-      value: (o == null ? void 0 : o.value) || "",
+      ref: a,
+      type: o,
+      ...r,
+      value: (r == null ? void 0 : r.value) || "",
       ...t
     }
   );
-};
+}, i = m.forwardRef(f);
 export {
-  d as FormPasswordInput
+  i as FormPasswordInput
 };
