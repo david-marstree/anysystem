@@ -19,16 +19,9 @@ const FormInputRef: React.ForwardRefRenderFunction<
 > = ({ name, inputBefore, inputAfter, className, ...props }, innerRef) => {
   const [field] = useField(name);
 
-  const inputRef = React.useRef<HTMLInputElement>(null);
-
-  React.useImperativeHandle(
-    innerRef,
-    () => inputRef.current as HTMLInputElement,
-  );
-
   return (
     <Input
-      ref={inputRef}
+      ref={innerRef}
       className={className}
       name={name}
       inputProps={field}

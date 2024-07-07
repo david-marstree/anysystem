@@ -10,17 +10,11 @@ const FormPasswordInputRef: React.ForwardRefRenderFunction<
   HTMLInputElement,
   FormPasswordInputProps
 > = ({ type = "password", name, ...props }, innerRef) => {
-  const inputRef = React.useRef<HTMLInputElement>(null);
   const [field] = useField(name);
-
-  React.useImperativeHandle(
-    innerRef,
-    () => inputRef.current as HTMLInputElement,
-  );
 
   return (
     <PasswordInput
-      ref={inputRef}
+      ref={innerRef}
       type={type}
       {...{ ...field, value: field?.value || "", ...props }}
     />

@@ -49,5 +49,5 @@
     "vite-plugin-dts": "^3.9.1",
     "vite-plugin-lib-inject-css": "^2.1.1"
   },
-  "dependencies": {}
+  "dependencies": { "@floating-ui/react": "^0.26.19", "@headlessui/react": "^2.1.2", "react-icons": "^5.2.1" }
 }
