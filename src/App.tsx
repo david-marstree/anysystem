@@ -8,6 +8,7 @@ import {
   PasswordInput,
   Checkbox,
   Selectbox,
+  SelectboxMultiple,
   Text,
   Row,
 } from "../lib/";
@@ -18,6 +19,7 @@ function App() {
   const [password, setPassword] = React.useState("");
   const [checked, setChecked] = React.useState(false);
   const [option, setOption] = React.useState("1");
+  const [option2, setOption2] = React.useState(["1"]);
   return (
     <AppProvider>
       <Container>
@@ -41,7 +43,7 @@ function App() {
             />
           </Label>
         </Row>
-        <Label label="Username">
+        <Label label="Selectbox">
           <Selectbox
             name="option"
             options={[
@@ -51,6 +53,18 @@ function App() {
             placeholder="Select an option"
             value={option}
             onChange={(v) => setOption(v + "")}
+          />
+        </Label>
+        <Label label="SelectboxMultiple">
+          <SelectboxMultiple
+            name="option2"
+            options={[
+              { id: 1, label: "Option 1", value: 1, enable: true },
+              { id: 2, label: "Option 2", value: 2, enable: true },
+            ]}
+            placeholder="Select an option"
+            value={option2}
+            onChange={(v) => setOption2(v as string[])}
           />
         </Label>
         <Checkbox
