@@ -8,7 +8,6 @@ import {
   PasswordInput,
   Checkbox,
   Selectbox,
-  SelectboxMultiple,
   Text,
   Row,
 } from "../lib/";
@@ -52,11 +51,11 @@ function App() {
             ]}
             placeholder="Select an option"
             value={option}
-            onChange={(v) => setOption(v + "")}
+            onChange={(v: number | string) => setOption(v + "")}
           />
         </Label>
         <Label label="SelectboxMultiple">
-          <SelectboxMultiple
+          <Selectbox
             name="option2"
             options={[
               { id: 1, label: "Option 1", value: 1, enable: true },
@@ -64,7 +63,8 @@ function App() {
             ]}
             placeholder="Select an option"
             value={option2}
-            onChange={(v) => setOption2(v as string[])}
+            onChange={(v: string[] | number[]) => setOption2(v as string[])}
+            multiple={true}
           />
         </Label>
         <Checkbox

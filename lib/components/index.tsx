@@ -19,7 +19,6 @@ export { default as Row } from "./Row/";
 export * from "./Text/";
 export { default as Text } from "./Text/";
 export * from "./Selectbox/";
-export { Selectbox as Selectbox } from "./Selectbox/";
-export { SelectboxMultiple as SelectboxMultiple } from "./Selectbox/";
+export { default as Selectbox } from "./Selectbox/";
 export * from "./Component";
 export { default as default } from "./Component";

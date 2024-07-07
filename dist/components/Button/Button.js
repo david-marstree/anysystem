@@ -1,8 +1,8 @@
-import { jsx as o } from "react/jsx-runtime";
+import { jsx as a } from "react/jsx-runtime";
 import e from "react";
-import { t as d } from "../../bundle-mjs-SHnj3fHy.js";
-const c = ({ children: f, className: s, variant: t = "default", size: r = "md", ...u }, n) => {
-  const a = e.useRef(null), l = e.useMemo(() => {
+import { t as i } from "../../bundle-mjs-SHnj3fHy.js";
+const d = ({ children: o, className: f, variant: t = "default", size: r = "md", ...s }, u) => {
+  const l = e.useMemo(() => {
     switch (t) {
       case "default":
         return "bg-gray-400 text-white after:bg-white";
@@ -11,7 +11,7 @@ const c = ({ children: f, className: s, variant: t = "default", size: r = "md", 
       default:
         return "bg-gray-400 text-white after:bg-white";
     }
-  }, [t]), i = e.useMemo(() => {
+  }, [t]), n = e.useMemo(() => {
     switch (r) {
       case "xs":
         return "px-4 py-2 text-xs";
@@ -25,14 +25,11 @@ const c = ({ children: f, className: s, variant: t = "default", size: r = "md", 
         return "px-4 py-2";
     }
   }, [r]);
-  return e.useImperativeHandle(
-    n,
-    () => a.current
-  ), /* @__PURE__ */ o(
+  return /* @__PURE__ */ a(
     "button",
     {
-      ref: a,
-      className: d(
+      ref: u,
+      className: i(
         "relative overflow-hidden rounded",
         "after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:rounded-l after:bg-gray-400 after:opacity-0",
         //after:
@@ -41,14 +38,14 @@ const c = ({ children: f, className: s, variant: t = "default", size: r = "md", 
         "hover:after:w-full hover:after:transform hover:after:opacity-20 hover:after:transition-all hover:after:duration-300",
         //hover:
         l,
-        i,
-        s
+        n,
+        f
       ),
-      ...u,
-      children: /* @__PURE__ */ o("span", { className: "relative z-10", children: f })
+      ...s,
+      children: /* @__PURE__ */ a("span", { className: "relative z-10", children: o })
     }
   );
-}, g = e.forwardRef(c);
+}, m = e.forwardRef(d);
 export {
-  g as default
+  m as default
 };

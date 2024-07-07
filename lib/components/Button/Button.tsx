@@ -10,8 +10,6 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
   { children, className, variant = "default", size = "md", ...props },
   innerRef,
 ) => {
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
-
   const getVariant = React.useMemo(() => {
     switch (variant) {
       case "default":

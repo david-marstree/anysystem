@@ -1,4 +1,4 @@
-import type { SelectOption, ValueField } from "./Selectbox";
+import type { SelectOption, ValueField } from "./SelectboxBase";
 
 export const getValue = (option: SelectOption, valueField: ValueField) => {
   if (valueField === "value" || valueField === "id" || valueField === "label") {

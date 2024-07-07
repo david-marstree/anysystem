@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import _ from "lodash";
 import {
   Listbox,
   ListboxButton,
@@ -22,36 +21,47 @@ import {
   useFloating,
 } from "@floating-ui/react";
 import { twMerge } from "tailwind-merge";
-import type { SelectOption, ValueField } from "./SelectboxBase";
+//helpers
 import { getValue } from "./helper";
 
-type State = {
-  list: SelectOption[];
-  value: string[];
-  valueField: ValueField;
-  selected: SelectOption[];
+export type ValueCallback = (option: SelectOption) => string;
+
+export type ValueField = ValueCallback | "id" | "value" | "label" | string;
+
+export type SelectOption = {
+  id: string | number;
+  label: string;
+  value: string | number;
+  enable: boolean;
 };
 
-type Action =
+export type Action =
   | {
       type: "SETVALUE";
-      value: string[];
+      value: string;
     }
   | {
       type: "SETSELECT";
-      selected: SelectOption[];
+      selected: SelectOption;
     };
 
-const reducer = (state: State, action: Action) => {
+type State = {
+  list: SelectOption[];
+  value: string | number;
+  valueField: ValueField;
+  selected: SelectOption | null;
+};
+
+const reducer = (state: State, action: Action): State => {
   if (action.type === "SETVALUE") {
     return {
       ...state,
       value: action.value,
       selected:
-        state.list.filter((opt: SelectOption) => {
+        state.list.find((opt: SelectOption) => {
           const v = getValue(opt, state.valueField);
-          return action?.value?.includes(v);
-        }) || [],
+          return v === action.value;
+        }) || null,
     };
   }
 
@@ -59,57 +69,55 @@ const reducer = (state: State, action: Action) => {
     return {
       ...state,
       selected: action.selected,
-      value: action.selected.map((opt: SelectOption) =>
-        getValue(opt, state.valueField),
-      ),
+      value: getValue(action.selected, state.valueField) + "",
     };
   }
 
   return state;
 };
 
-export type SelectboxMultipleHandler = {
-  setValue: (value: string[]) => void;
-};
-
-export interface SelectboxMultipleProps {
+export type SelectboxBaseProps = {
   id?: string;
-  options: SelectOption[];
   name: string;
-  value?: string[] | number[];
+  options: SelectOption[];
+  value: string | number;
   readOnly?: boolean;
   className?: string;
   placeholder?: string;
-  onChange?: (value: string[] | number[]) => void;
+  onChange: (value: string | number) => void;
   valueField?: ValueField;
-}
+  multiple?: boolean;
+};
 
-const SelectboxMultiple: React.ForwardRefRenderFunction<
-  SelectboxMultipleHandler,
-  SelectboxMultipleProps
+export type SelectboxBaseHandler = {
+  setValue: (value: string | number) => void;
+};
+
+const SelectboxBase: React.ForwardRefRenderFunction<
+  SelectboxBaseHandler,
+  SelectboxBaseProps
 > = (
   {
     id,
     name,
+    value,
     options,
     onChange,
     placeholder = "Select a option",
     valueField = "value",
-    value = [],
   },
   innerRef,
 ) => {
   const [state, dispatch] = React.useReducer(reducer, {
     list: options,
-    value: value || ([] as string[]),
+    value,
     valueField,
-    selected: value
-      ? options.filter((opt: SelectOption) => {
-          const v = getValue(opt, valueField);
-          return _.some(value, (val: string | number) => val + "" === v + "");
-        })
-      : ([] as SelectOption[]),
-  } as State);
+    selected:
+      options.find((opt: SelectOption) => {
+        const v = getValue(opt, valueField);
+        return v === value || "";
+      }) || null,
+  });
 
   //useFloating
   const { refs, x, y, strategy, floatingStyles, context } = useFloating({
@@ -133,8 +141,11 @@ const SelectboxMultiple: React.ForwardRefRenderFunction<
   ]);
 
   React.useImperativeHandle(innerRef, () => ({
-    setValue: (value: string[]) => {
-      dispatch({ type: "SETVALUE", value });
+    setValue: (value: string | number) => {
+      dispatch({
+        type: "SETVALUE",
+        value: value + "",
+      });
     },
   }));
 
@@ -149,27 +160,19 @@ const SelectboxMultiple: React.ForwardRefRenderFunction<
         as="div"
         value={state.selected}
         onChange={(option) => {
-          const valueArray = option.map((opt: SelectOption) => {
-            return getValue(opt, valueField);
+          const v = getValue(option as SelectOption, valueField);
+          dispatch({
+            type: "SETSELECT",
+            selected: option as SelectOption,
           });
-          dispatch({ type: "SETSELECT", selected: option });
-          if (onChange) onChange(valueArray);
+          if (onChange) onChange(v);
         }}
-        multiple
         ref={refs.setReference}
         {...getReferenceProps()}
       >
         <ListboxButton className="relative z-10 inline-flex w-full justify-between !p-0 focus:outline-none">
           <span>
-            {state.value && state.value.length > 0 ? (
-              <>
-                {state?.selected
-                  ?.map((opt: SelectOption) => opt.label)
-                  .join(", ") || ""}
-              </>
-            ) : (
-              placeholder
-            )}
+            {state.value ? <>{state.selected?.label || ""}</> : placeholder}
           </span>
           <ChevronUpDownIcon
             className="h-5 w-5 text-gray-400"
@@ -204,15 +207,14 @@ const SelectboxMultiple: React.ForwardRefRenderFunction<
                   className={twMerge(
                     "relative flex cursor-pointer select-none justify-between px-5 py-4 text-black hover:bg-indigo-100",
                     option.enable === false && "cursor-not-allowed opacity-50",
-                    state.value?.includes(getValue(option, valueField)) &&
-                      "bg-indigo-100",
+                    state.selected?.id === option.id && "bg-indigo-100",
                   )}
                   value={option}
                   disabled={option.enable === false}
                 >
                   <>
                     <span className="pl-5">{option.label}</span>
-                    {state.value?.includes(getValue(option, valueField)) ? (
+                    {state.selected?.id === option.id ? (
                       <span
                         className={twMerge(
                           "absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600",
@@ -234,12 +236,12 @@ const SelectboxMultiple: React.ForwardRefRenderFunction<
           id={id}
           name={name}
           style={{ display: "none" }}
-          readOnly
           value={state.value + ""}
+          readOnly
         />
       </Listbox>
     </div>
   );
 };
 
-export default React.forwardRef(SelectboxMultiple);
+export default React.forwardRef(SelectboxBase);
