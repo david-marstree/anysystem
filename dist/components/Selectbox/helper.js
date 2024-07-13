@@ -1,4 +1,4 @@
-const f = (t, r) => r === "value" || r === "id" || r === "label" ? t[r] + "" : typeof r == "function" ? r(t) + "" : t.value + "";
+const c = (f, r) => r === "value" || r === "id" || r === "label" ? (f == null ? void 0 : f[r]) + "" : typeof r == "function" ? r(f) + "" : f.value + "";
 export {
-  f as getValue
+  c as getValue
 };

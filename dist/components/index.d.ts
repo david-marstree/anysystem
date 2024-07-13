@@ -20,5 +20,7 @@ export * from './Text/';
 export { default as Text } from './Text/';
 export * from './Selectbox/';
 export { default as Selectbox } from './Selectbox/';
+export * from './AutoComplete/';
+export { default as AutoComplete } from './AutoComplete/';
 export * from './Component';
 export { default as default } from './Component';
