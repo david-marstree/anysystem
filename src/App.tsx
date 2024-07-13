@@ -4,6 +4,7 @@ import {
   Container,
   Button,
   Label,
+  Icon,
   Input,
   PasswordInput,
   Checkbox,
@@ -22,7 +23,10 @@ function App() {
   return (
     <AppProvider>
       <Container>
-        <Text tag="h1">Sign in</Text>
+        <Text tag="h1">
+          <Icon name="AiFillCheckCircle" />
+          Sign in
+        </Text>
         <Text tag="p">to continue to anysystem</Text>
         <Row column={{ md: 2 }}>
           <Label label="Username">
@@ -73,7 +77,6 @@ function App() {
           checked={checked}
           onChange={(e) => setChecked(e.target.checked)}
         />
-
         <Button variant="primary">Button</Button>
       </Container>
     </AppProvider>

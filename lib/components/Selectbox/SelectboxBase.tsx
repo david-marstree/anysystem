@@ -156,7 +156,32 @@ const SelectboxBase: React.ForwardRefRenderFunction<
         !state.value && "text-gray-300", //empty
       )}
     >
+      {/* mobile select START*/}
+      <select
+        className="w-full bg-transparent outline-0 md:hidden"
+        onChange={(e) => {
+          dispatch({
+            type: "SETVALUE",
+            value: e.target.value,
+          });
+          if (onChange) onChange(e.target.value);
+        }}
+      >
+        <option value="">{placeholder}</option>
+        {state.list.map((opt: SelectOption) => (
+          <option
+            key={opt.id}
+            value={getValue(opt, valueField)}
+            disabled={opt.enable === false}
+          >
+            {opt.label}
+          </option>
+        ))}
+      </select>
+      {/* mobile select END*/}
+      {/* desktop select START*/}
       <Listbox
+        className="hidden md:flex"
         as="div"
         value={state.selected}
         onChange={(option) => {
@@ -201,20 +226,20 @@ const SelectboxBase: React.ForwardRefRenderFunction<
             })}
           >
             <div className="flex flex-col px-1 py-1">
-              {state.list.map((option: SelectOption) => (
+              {state.list.map((opt: SelectOption) => (
                 <ListboxOption
-                  key={option.id}
+                  key={opt.id}
                   className={twMerge(
                     "relative flex cursor-pointer select-none justify-between px-5 py-4 text-black hover:bg-indigo-100",
-                    option.enable === false && "cursor-not-allowed opacity-50",
-                    state.selected?.id === option.id && "bg-indigo-100",
+                    opt.enable === false && "cursor-not-allowed opacity-50",
+                    state.selected?.id === opt.id && "bg-indigo-100",
                   )}
-                  value={option}
-                  disabled={option.enable === false}
+                  value={opt}
+                  disabled={opt.enable === false}
                 >
                   <>
-                    <span className="pl-5">{option.label}</span>
-                    {state.selected?.id === option.id ? (
+                    <span className="pl-5">{opt.label}</span>
+                    {state.selected?.id === opt.id ? (
                       <span
                         className={twMerge(
                           "absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600",
@@ -231,15 +256,16 @@ const SelectboxBase: React.ForwardRefRenderFunction<
             </div>
           </ListboxOptions>
         </Transition>
-        <input
-          type="text"
-          id={id}
-          name={name}
-          style={{ display: "none" }}
-          value={state.value + ""}
-          readOnly
-        />
       </Listbox>
+      {/* desktop select END*/}
+      <input
+        type="text"
+        id={id}
+        name={name}
+        style={{ display: "none" }}
+        value={state.value + ""}
+        readOnly
+      />
     </div>
   );
 };

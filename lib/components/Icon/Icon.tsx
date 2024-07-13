@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import * as Icons from "react-icons/ai";
 
 export type IconProps = {
@@ -9,12 +8,7 @@ export type IconProps = {
 
 const Icon = ({ name, ...props }: IconProps): JSX.Element => {
   const IconElement = Icons[name as keyof typeof Icons];
-
-  return (
-    <Suspense>
-      <IconElement {...(props as JSX.IntrinsicAttributes)} />
-    </Suspense>
-  );
+  return <IconElement {...(props as JSX.IntrinsicAttributes)} />;
 };
 
 export default Icon;

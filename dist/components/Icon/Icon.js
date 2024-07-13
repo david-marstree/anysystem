@@ -1,10 +1,9 @@
-import { jsx as o } from "react/jsx-runtime";
-import { Suspense as e } from "react";
+import { jsx as r } from "react/jsx-runtime";
 import { I as s } from "../../index-TmOGnUkt.js";
-const f = ({ name: r, ...n }) => {
-  const t = s[r];
-  return /* @__PURE__ */ o(e, { children: /* @__PURE__ */ o(t, { ...n }) });
+const m = ({ name: o, ...t }) => {
+  const n = s[o];
+  return /* @__PURE__ */ r(n, { ...t });
 };
 export {
-  f as default
+  m as default
 };

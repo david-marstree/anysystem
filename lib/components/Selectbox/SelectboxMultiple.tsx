@@ -145,8 +145,33 @@ const SelectboxMultiple: React.ForwardRefRenderFunction<
         !state.value && "text-gray-300", //empty
       )}
     >
+      {/* mobile select START*/}
+      <select
+        multiple
+        className="w-full bg-transparent outline-0 md:hidden"
+        onChange={(e) => {
+          const v = Array.from(
+            e.target.selectedOptions,
+            (option) => option.value,
+          );
+          dispatch({ type: "SETVALUE", value: v });
+          if (onChange) onChange(v);
+        }}
+      >
+        {state.list.map((opt: SelectOption) => (
+          <option
+            key={opt.id}
+            value={getValue(opt, valueField)}
+            disabled={opt.enable === false}
+          >
+            {opt.label}
+          </option>
+        ))}
+      </select>
+      {/* mobile select END*/}
       <Listbox
         as="div"
+        className="hidden md:flex"
         value={state.selected}
         onChange={(option) => {
           const valueArray = option.map((opt: SelectOption) => {
@@ -229,15 +254,15 @@ const SelectboxMultiple: React.ForwardRefRenderFunction<
             </div>
           </ListboxOptions>
         </Transition>
-        <input
-          type="text"
-          id={id}
-          name={name}
-          style={{ display: "none" }}
-          readOnly
-          value={state.value + ""}
-        />
       </Listbox>
+      <input
+        type="text"
+        id={id}
+        name={name}
+        style={{ display: "none" }}
+        readOnly
+        value={state.value.join(",")}
+      />
     </div>
   );
 };
