@@ -53,7 +53,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
             defaultType="day"
             className="xs:max-w-[320px] z-50 rounded-md border border-gray-300 bg-white p-2 md:p-4 shadow-2xl"
           >
-            {({ year, monthName, month, hour, minute }) => (
+            {({ year, monthName, hour, minute }) => (
               <div className="flex w-[320px] flex-col gap-2">
                 <div className="flex w-full justify-between">
                   <div className="flex gap-1 text-2xl font-bold text-black">
