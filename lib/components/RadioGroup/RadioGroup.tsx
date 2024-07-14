@@ -117,7 +117,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
                 ) : (
                   <CheckCircleOutlineIcon
                     className={twMerge(
-                      "size-6 transition text-gray-400 group-hover:text-blue-600",
+                      "size-6 transition text-gray-200 group-hover:text-blue-600",
                     )}
                   />
                 )}

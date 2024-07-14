@@ -153,7 +153,7 @@ const Qe = (e, r) => r.type === "SETVALUE" ? {
               Le,
               {
                 className: M(
-                  "size-6 transition text-gray-400 group-hover:text-blue-600"
+                  "size-6 transition text-gray-200 group-hover:text-blue-600"
                 )
               }
             )

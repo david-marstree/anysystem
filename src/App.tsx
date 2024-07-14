@@ -56,6 +56,12 @@ function App() {
                 value: "2",
                 enable: true,
               },
+              {
+                id: "3",
+                label: "Option 3",
+                value: "3",
+                enable: true,
+              },
             ]}
           />
         </Label>
