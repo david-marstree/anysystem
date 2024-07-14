@@ -1,7 +1,8 @@
-import { s as $e, o as g, n as q, Q as Ke, aa as Ue, M as Re, W as re, K as qe, f as Ge, l as Je, T as Ye, g as Qe, h as te, F as Ze, z as Xe, v as et, i as tt, j as ce, k as nt, m as le, q as ot, y as de, r as it, C as De, p as st, I as be, G as rt, $ as Fe, w as ke, D as ge, x as lt, A as at, B as ut, R as ct, P as dt, E as pt, V as ft, J as ht, L as mt, N as vt, S as ye, U as bt, O as Ce, Y as gt, ab as xt, Z as we, _ as St, a2 as _, a3 as F, a5 as It, ac as Ot, a8 as Me, a9 as Et } from "./index-vZEwQcSd.js";
+import { s as $e, o as g, n as q, f as Ke, x as Ue, M as Re, W as re, K as qe, a as Ge, l as Je, T as Ye, u as Qe, e as te, z as Xe, j as Ze, b as le, d as et, y as de, m as tt, I as be, G as nt, $ as De, c as Fe, D as ge, q as ye, g as F, r as ot, _ as it } from "./index-DsW4uhBe.js";
 import * as ie from "react";
-import $, { useEffect as xe, useRef as N, createContext as Se, useReducer as Tt, createRef as Rt, useCallback as _e, useMemo as G, useId as pe, useContext as Ie, useState as yt, Fragment as Ae } from "react";
-import { r as X } from "./index-DsprzSCj.js";
+import $, { useEffect as xe, useRef as N, createContext as Se, useReducer as st, createRef as rt, useCallback as Ce, useMemo as G, useId as pe, useContext as Ie, useState as lt, Fragment as ke } from "react";
+import { r as Z } from "./index-DsprzSCj.js";
+import { F as at, v as ut, f as ct, i as ce, y as dt, n as Ae, w as pt, T as ft, x as ht, R as mt, o as vt, h as bt, V as gt, m as xt, j as St, k as It, p as we, A as Ot, l as Me, t as Et, z as Tt, q as Rt, r as _, B as yt, s as _e } from "./transition-B0bHCOYe.js";
 function oe(e, s, t) {
   let n = t.initialDeps ?? [], o;
   return () => {
@@ -49,7 +50,7 @@ const Ct = (e, s) => Math.abs(e - s) < 1, wt = (e, s, t) => {
   for (let o = s; o <= t; o++)
     n.push(o);
   return n;
-}, Pt = (e, s) => {
+}, zt = (e, s) => {
   const t = e.scrollElement;
   if (!t)
     return;
@@ -77,9 +78,9 @@ const Ct = (e, s) => Math.abs(e - s) < 1, wt = (e, s, t) => {
   return l.observe(t, { box: "border-box" }), () => {
     l.unobserve(t);
   };
-}, Pe = {
+}, ze = {
   passive: !0
-}, zt = typeof window > "u" ? !0 : "onscrollend" in window, $t = (e, s) => {
+}, Pt = typeof window > "u" ? !0 : "onscrollend" in window, $t = (e, s) => {
   const t = e.scrollElement;
   if (!t)
     return;
@@ -87,7 +88,7 @@ const Ct = (e, s) => Math.abs(e - s) < 1, wt = (e, s, t) => {
   if (!n)
     return;
   let o = 0;
-  const l = zt ? () => {
+  const l = Pt ? () => {
   } : wt(
     n,
     () => {
@@ -97,7 +98,7 @@ const Ct = (e, s) => Math.abs(e - s) < 1, wt = (e, s, t) => {
   ), r = (p) => () => {
     o = t[e.options.horizontal ? "scrollLeft" : "scrollTop"], l(), s(o, p);
   }, i = r(!0), a = r(!1);
-  return a(), t.addEventListener("scroll", i, Pe), t.addEventListener("scrollend", a, Pe), () => {
+  return a(), t.addEventListener("scroll", i, ze), t.addEventListener("scrollend", a, ze), () => {
     t.removeEventListener("scroll", i), t.removeEventListener("scrollend", a);
   };
 }, Dt = (e, s, t) => {
@@ -459,7 +460,7 @@ function Nt(e) {
     ...e,
     onChange: (o, l) => {
       var r;
-      l ? X.flushSync(s) : s(), (r = e.onChange) == null || r.call(e, o, l);
+      l ? Z.flushSync(s) : s(), (r = e.onChange) == null || r.call(e, o, l);
     }
   }, [n] = ie.useState(
     () => new kt(t)
@@ -468,7 +469,7 @@ function Nt(e) {
 }
 function Vt(e) {
   return Nt({
-    observeElementRect: Pt,
+    observeElementRect: zt,
     observeElementOffset: $t,
     scrollToFn: Ft,
     ...e
@@ -513,7 +514,7 @@ function Wt(e, { container: s, accept: t, walk: n }) {
     for (; d.nextNode(); ) a(d.currentNode);
   }, [s, e, o, l]);
 }
-function ze(e, s) {
+function Pe(e, s) {
   let t = N([]), n = g(e);
   xe(() => {
     let o = [...t.current];
@@ -529,18 +530,18 @@ function jt(e) {
   }
   typeof window < "u" && typeof document < "u" && (document.addEventListener("DOMContentLoaded", s), s());
 }
-let Z = [];
+let X = [];
 jt(() => {
   function e(s) {
-    if (!(s.target instanceof HTMLElement) || s.target === document.body || Z[0] === s.target) return;
+    if (!(s.target instanceof HTMLElement) || s.target === document.body || X[0] === s.target) return;
     let t = s.target;
-    t = t.closest(Ue), Z.unshift(t ?? s.target), Z = Z.filter((n) => n != null && n.isConnected), Z.splice(10);
+    t = t.closest(Ue), X.unshift(t ?? s.target), X = X.filter((n) => n != null && n.isConnected), X.splice(10);
   }
   window.addEventListener("click", e, { capture: !0 }), window.addEventListener("mousedown", e, { capture: !0 }), window.addEventListener("focus", e, { capture: !0 }), document.body.addEventListener("click", e, { capture: !0 }), document.body.addEventListener("mousedown", e, { capture: !0 }), document.body.addEventListener("focus", e, { capture: !0 });
 });
 var Oe = ((e) => (e[e.Left = 0] = "Left", e[e.Right = 2] = "Right", e))(Oe || {}), Ht = ((e) => (e[e.Open = 0] = "Open", e[e.Closed = 1] = "Closed", e))(Ht || {}), Kt = ((e) => (e[e.Single = 0] = "Single", e[e.Multi = 1] = "Multi", e))(Kt || {}), Ut = ((e) => (e[e.Pointer = 0] = "Pointer", e[e.Focus = 1] = "Focus", e[e.Other = 2] = "Other", e))(Ut || {}), qt = ((e) => (e[e.OpenCombobox = 0] = "OpenCombobox", e[e.CloseCombobox = 1] = "CloseCombobox", e[e.GoToOption = 2] = "GoToOption", e[e.SetTyping = 3] = "SetTyping", e[e.RegisterOption = 4] = "RegisterOption", e[e.UnregisterOption = 5] = "UnregisterOption", e[e.SetActivationTrigger = 6] = "SetActivationTrigger", e[e.UpdateVirtualConfiguration = 7] = "UpdateVirtualConfiguration", e))(qt || {});
 function ve(e, s = (t) => t) {
-  let t = e.activeOptionIndex !== null ? e.options[e.activeOptionIndex] : null, n = s(e.options.slice()), o = n.length > 0 && n[0].dataRef.current.order !== null ? n.sort((r, i) => r.dataRef.current.order - i.dataRef.current.order) : Et(n, (r) => r.dataRef.current.domRef.current), l = t ? o.indexOf(t) : null;
+  let t = e.activeOptionIndex !== null ? e.options[e.activeOptionIndex] : null, n = s(e.options.slice()), o = n.length > 0 && n[0].dataRef.current.order !== null ? n.sort((r, i) => r.dataRef.current.order - i.dataRef.current.order) : it(n, (r) => r.dataRef.current.domRef.current), l = t ? o.indexOf(t) : null;
   return l === -1 && (l = null), { options: o, activeOptionIndex: l };
 }
 let Gt = { 1(e) {
@@ -560,7 +561,7 @@ let Gt = { 1(e) {
   var t, n, o, l, r;
   if ((t = e.dataRef.current) != null && t.disabled || (n = e.dataRef.current) != null && n.optionsRef.current && !((o = e.dataRef.current) != null && o.optionsPropsRef.current.static) && e.comboboxState === 1) return e;
   if (e.virtual) {
-    let { options: d, disabled: c } = e.virtual, I = s.focus === _.Specific ? s.idx : Me(s, { resolveItems: () => d, resolveActiveIndex: () => {
+    let { options: d, disabled: c } = e.virtual, I = s.focus === _.Specific ? s.idx : _e(s, { resolveItems: () => d, resolveActiveIndex: () => {
       var S, x;
       return (x = (S = e.activeOptionIndex) != null ? S : d.findIndex((h) => !c(h))) != null ? x : null;
     }, resolveDisabled: c, resolveId() {
@@ -573,7 +574,7 @@ let Gt = { 1(e) {
     let d = i.options.findIndex((c) => !c.dataRef.current.disabled);
     d !== -1 && (i.activeOptionIndex = d);
   }
-  let a = s.focus === _.Specific ? s.idx : Me(s, { resolveItems: () => i.options, resolveActiveIndex: () => i.activeOptionIndex, resolveId: (d) => d.id, resolveDisabled: (d) => d.dataRef.current.disabled }), p = (r = s.trigger) != null ? r : 2;
+  let a = s.focus === _.Specific ? s.idx : _e(s, { resolveItems: () => i.options, resolveActiveIndex: () => i.activeOptionIndex, resolveId: (d) => d.id, resolveDisabled: (d) => d.dataRef.current.disabled }), p = (r = s.trigger) != null ? r : 2;
   return e.activeOptionIndex === a && e.activationTrigger === p ? e : { ...e, ...i, isTyping: !1, activeOptionIndex: a, activationTrigger: p, __demoMode: !1 };
 }, 4: (e, s) => {
   var t, n, o;
@@ -622,7 +623,7 @@ function Jt(e) {
   }, getScrollElement() {
     var p;
     return (p = s.optionsRef.current) != null ? p : null;
-  }, overscan: 12 }), [r, i] = yt(0);
+  }, overscan: 12 }), [r, i] = lt(0);
   q(() => {
     i((p) => p + 1);
   }, [t]);
@@ -634,7 +635,7 @@ function Jt(e) {
     }
   } }, a.map((p) => {
     var d;
-    return $.createElement(Ae, { key: p.key }, $.cloneElement((d = e.children) == null ? void 0 : d.call(e, { ...e.slot, option: t[p.index] }), { key: `${r}-${p.key}`, "data-index": p.index, "aria-setsize": t.length, "aria-posinset": p.index + 1, style: { position: "absolute", top: 0, left: 0, transform: `translateY(${p.start}px)`, overflowAnchor: "none" } }));
+    return $.createElement(ke, { key: p.key }, $.cloneElement((d = e.children) == null ? void 0 : d.call(e, { ...e.slot, option: t[p.index] }), { key: `${r}-${p.key}`, "data-index": p.index, "aria-setsize": t.length, "aria-posinset": p.index + 1, style: { position: "absolute", top: 0, left: 0, transform: `translateY(${p.start}px)`, overflowAnchor: "none" } }));
   })));
 }
 let se = Se(null);
@@ -650,10 +651,10 @@ function ne(e) {
 function Yt(e, s) {
   return te(s.type, Gt, e, s);
 }
-let Qt = Ae;
-function Zt(e, s) {
+let Qt = ke;
+function Xt(e, s) {
   var t, n;
-  let o = Ge(), { value: l, defaultValue: r, onChange: i, form: a, name: p, by: d, disabled: c = o || !1, onClose: I, __demoMode: u = !1, multiple: S = !1, immediate: x = !1, virtual: h = null, nullable: R, ...D } = e, M = Je(r), [E = S ? [] : void 0, y] = Ye(l, i, M), [O, b] = Tt(Yt, { dataRef: Rt(), comboboxState: u ? 0 : 1, isTyping: !1, options: [], virtual: h ? { options: h.options, disabled: (t = h.disabled) != null ? t : () => !1 } : null, activeOptionIndex: null, activationTrigger: 2, __demoMode: u }), V = N(!1), U = N({ static: !1, hold: !1 }), J = N(null), j = N(null), Y = N(null), k = Qe(d), C = g((v) => h ? d === null ? h.options.indexOf(v) : h.options.findIndex((T) => k(T, v)) : O.options.findIndex((T) => k(T.dataRef.current.value, v))), A = _e((v) => te(m.mode, { 1: () => E.some((T) => k(T, v)), 0: () => k(E, v) }), [E]), Q = g((v) => O.activeOptionIndex === C(v)), m = G(() => ({ ...O, immediate: x, optionsPropsRef: U, inputRef: J, buttonRef: j, optionsRef: Y, value: E, defaultValue: M, disabled: c, mode: S ? 1 : 0, virtual: h ? O.virtual : null, get activeOptionIndex() {
+  let o = Ge(), { value: l, defaultValue: r, onChange: i, form: a, name: p, by: d, disabled: c = o || !1, onClose: I, __demoMode: u = !1, multiple: S = !1, immediate: x = !1, virtual: h = null, nullable: R, ...D } = e, M = Je(r), [E = S ? [] : void 0, y] = Ye(l, i, M), [O, b] = st(Yt, { dataRef: rt(), comboboxState: u ? 0 : 1, isTyping: !1, options: [], virtual: h ? { options: h.options, disabled: (t = h.disabled) != null ? t : () => !1 } : null, activeOptionIndex: null, activationTrigger: 2, __demoMode: u }), V = N(!1), U = N({ static: !1, hold: !1 }), J = N(null), j = N(null), Y = N(null), k = Qe(d), C = g((v) => h ? d === null ? h.options.indexOf(v) : h.options.findIndex((T) => k(T, v)) : O.options.findIndex((T) => k(T.dataRef.current.value, v))), A = Ce((v) => te(m.mode, { 1: () => E.some((T) => k(T, v)), 0: () => k(E, v) }), [E]), Q = g((v) => O.activeOptionIndex === C(v)), m = G(() => ({ ...O, immediate: x, optionsPropsRef: U, inputRef: J, buttonRef: j, optionsRef: Y, value: E, defaultValue: M, disabled: c, mode: S ? 1 : 0, virtual: h ? O.virtual : null, get activeOptionIndex() {
     if (V.current && O.activeOptionIndex === null && (h ? h.options.length > 0 : O.options.length > 0)) {
       if (h) {
         let T = h.options.findIndex((K) => {
@@ -674,8 +675,8 @@ function Zt(e, s) {
     O.dataRef.current = m;
   }, [m]);
   let ee = m.comboboxState === 0;
-  Ze(ee, [m.buttonRef, m.inputRef, m.optionsRef], () => H.closeCombobox());
-  let z = G(() => {
+  at(ee, [m.buttonRef, m.inputRef, m.optionsRef], () => H.closeCombobox());
+  let P = G(() => {
     var v, T, K;
     return { open: m.comboboxState === 0, disabled: c, activeIndex: m.activeOptionIndex, activeOption: m.activeOptionIndex === null ? null : m.virtual ? m.virtual.options[(v = m.activeOptionIndex) != null ? v : 0] : (K = (T = m.options[m.activeOptionIndex]) == null ? void 0 : T.dataRef.current.value) != null ? K : null, value: E };
   }, [m, c, E]), fe = g(() => {
@@ -693,7 +694,7 @@ function Zt(e, s) {
     b({ type: 1 }), V.current = !1, I == null || I();
   }), B = g((v) => {
     b({ type: 3, isTyping: v });
-  }), P = g((v, T, K) => (V.current = !1, v === _.Specific ? b({ type: 2, focus: _.Specific, idx: T, trigger: K }) : b({ type: 2, focus: v, trigger: K }))), W = g((v, T) => (b({ type: 4, payload: { id: v, dataRef: T } }), () => {
+  }), z = g((v, T, K) => (V.current = !1, v === _.Specific ? b({ type: 2, focus: _.Specific, idx: T, trigger: K }) : b({ type: 2, focus: v, trigger: K }))), W = g((v, T) => (b({ type: 4, payload: { id: v, dataRef: T } }), () => {
     m.isActive(T.current.value) && (V.current = !0), b({ type: 5, id: v });
   })), w = g((v) => te(m.mode, { 0() {
     return y == null ? void 0 : y(v);
@@ -702,35 +703,35 @@ function Zt(e, s) {
     return K === -1 ? T.push(v) : T.splice(K, 1), y == null ? void 0 : y(T);
   } })), L = g((v) => {
     b({ type: 6, trigger: v });
-  }), H = G(() => ({ onChange: w, registerOption: W, goToOption: P, setIsTyping: B, closeCombobox: f, openCombobox: he, setActivationTrigger: L, selectActiveOption: fe }), []), [Be, We] = Xe(), je = s === null ? {} : { ref: s }, He = _e(() => {
+  }), H = G(() => ({ onChange: w, registerOption: W, goToOption: z, setIsTyping: B, closeCombobox: f, openCombobox: he, setActivationTrigger: L, selectActiveOption: fe }), []), [Be, We] = Xe(), je = s === null ? {} : { ref: s }, He = Ce(() => {
     if (M !== void 0) return y == null ? void 0 : y(M);
   }, [y, M]);
-  return $.createElement(We, { value: Be, props: { htmlFor: (n = m.inputRef.current) == null ? void 0 : n.id }, slot: { open: m.comboboxState === 0, disabled: c } }, $.createElement(et, null, $.createElement(Ee.Provider, { value: H }, $.createElement(se.Provider, { value: m }, $.createElement(tt, { value: te(m.comboboxState, { 0: ce.Open, 1: ce.Closed }) }, p != null && $.createElement(nt, { disabled: c, data: E != null ? { [p]: E } : {}, form: a, onReset: He }), le({ ourProps: je, theirProps: D, slot: z, defaultTag: Qt, name: "Combobox" }))))));
+  return $.createElement(We, { value: Be, props: { htmlFor: (n = m.inputRef.current) == null ? void 0 : n.id }, slot: { open: m.comboboxState === 0, disabled: c } }, $.createElement(ut, null, $.createElement(Ee.Provider, { value: H }, $.createElement(se.Provider, { value: m }, $.createElement(ct, { value: te(m.comboboxState, { 0: ce.Open, 1: ce.Closed }) }, p != null && $.createElement(Ze, { disabled: c, data: E != null ? { [p]: E } : {}, form: a, onReset: He }), le({ ourProps: je, theirProps: D, slot: P, defaultTag: Qt, name: "Combobox" }))))));
 }
-let Xt = "input";
+let Zt = "input";
 function en(e, s) {
   var t, n, o, l, r;
-  let i = ne("Combobox.Input"), a = ae("Combobox.Input"), p = pe(), d = ot(), { id: c = d || `headlessui-combobox-input-${p}`, onChange: I, displayValue: u, disabled: S = i.disabled || !1, autoFocus: x = !1, type: h = "text", ...R } = e, D = de(i.inputRef, s, it()), M = De(i.inputRef), E = st(), y = g(() => {
+  let i = ne("Combobox.Input"), a = ae("Combobox.Input"), p = pe(), d = et(), { id: c = d || `headlessui-combobox-input-${p}`, onChange: I, displayValue: u, disabled: S = i.disabled || !1, autoFocus: x = !1, type: h = "text", ...R } = e, D = de(i.inputRef, s, dt()), M = Ae(i.inputRef), E = tt(), y = g(() => {
     a.onChange(null), i.optionsRef.current && (i.optionsRef.current.scrollTop = 0), a.goToOption(_.Nothing);
   }), O = G(() => {
     var f;
     return typeof u == "function" && i.value !== void 0 ? (f = u(i.value)) != null ? f : "" : typeof i.value == "string" ? i.value : "";
   }, [i.value, u]);
-  ze(([f, B], [P, W]) => {
+  Pe(([f, B], [z, W]) => {
     if (i.isTyping) return;
     let w = i.inputRef.current;
-    w && ((W === 0 && B === 1 || f !== P) && (w.value = f), requestAnimationFrame(() => {
+    w && ((W === 0 && B === 1 || f !== z) && (w.value = f), requestAnimationFrame(() => {
       if (i.isTyping || !w || (M == null ? void 0 : M.activeElement) !== w) return;
       let { selectionStart: L, selectionEnd: H } = w;
       Math.abs((H ?? 0) - (L ?? 0)) === 0 && L === 0 && w.setSelectionRange(w.value.length, w.value.length);
     }));
-  }, [O, i.comboboxState, M, i.isTyping]), ze(([f], [B]) => {
+  }, [O, i.comboboxState, M, i.isTyping]), Pe(([f], [B]) => {
     if (f === 0 && B === 1) {
       if (i.isTyping) return;
-      let P = i.inputRef.current;
-      if (!P) return;
-      let W = P.value, { selectionStart: w, selectionEnd: L, selectionDirection: H } = P;
-      P.value = "", P.value = W, H !== null ? P.setSelectionRange(w, L, H) : P.setSelectionRange(w, L);
+      let z = i.inputRef.current;
+      if (!z) return;
+      let W = z.value, { selectionStart: w, selectionEnd: L, selectionDirection: H } = z;
+      z.value = "", z.value = W, H !== null ? z.setSelectionRange(w, L, H) : z.setSelectionRange(w, L);
     }
   }, [i.comboboxState]);
   let b = N(!1), V = g(() => {
@@ -753,7 +754,7 @@ function en(e, s) {
         return f.preventDefault(), f.stopPropagation(), te(i.comboboxState, { 0: () => a.goToOption(_.Next), 1: () => a.openCombobox() });
       case F.ArrowUp:
         return f.preventDefault(), f.stopPropagation(), te(i.comboboxState, { 0: () => a.goToOption(_.Previous), 1: () => {
-          X.flushSync(() => a.openCombobox()), i.value || a.goToOption(_.Last);
+          Z.flushSync(() => a.openCombobox()), i.value || a.goToOption(_.Last);
         } });
       case F.Home:
         if (f.shiftKey) break;
@@ -775,17 +776,17 @@ function en(e, s) {
   }), j = g((f) => {
     I == null || I(f), i.mode === 0 && f.target.value === "" && y(), a.openCombobox();
   }), Y = g((f) => {
-    var B, P, W;
-    let w = (B = f.relatedTarget) != null ? B : Z.find((L) => L !== f.currentTarget);
-    if (!((P = i.optionsRef.current) != null && P.contains(w)) && !((W = i.buttonRef.current) != null && W.contains(w)) && i.comboboxState === 0) return f.preventDefault(), i.mode === 0 && i.value === null && y(), a.closeCombobox();
+    var B, z, W;
+    let w = (B = f.relatedTarget) != null ? B : X.find((L) => L !== f.currentTarget);
+    if (!((z = i.optionsRef.current) != null && z.contains(w)) && !((W = i.buttonRef.current) != null && W.contains(w)) && i.comboboxState === 0) return f.preventDefault(), i.mode === 0 && i.value === null && y(), a.closeCombobox();
   }), k = g((f) => {
-    var B, P, W;
-    let w = (B = f.relatedTarget) != null ? B : Z.find((L) => L !== f.currentTarget);
-    (P = i.buttonRef.current) != null && P.contains(w) || (W = i.optionsRef.current) != null && W.contains(w) || i.disabled || i.immediate && i.comboboxState !== 0 && E.microTask(() => {
-      X.flushSync(() => a.openCombobox()), a.setActivationTrigger(1);
+    var B, z, W;
+    let w = (B = f.relatedTarget) != null ? B : X.find((L) => L !== f.currentTarget);
+    (z = i.buttonRef.current) != null && z.contains(w) || (W = i.optionsRef.current) != null && W.contains(w) || i.disabled || i.immediate && i.comboboxState !== 0 && E.microTask(() => {
+      Z.flushSync(() => a.openCombobox()), a.setActivationTrigger(1);
     });
-  }), C = be(), A = rt(), { isFocused: Q, focusProps: m } = Fe({ autoFocus: x }), { isHovered: ee, hoverProps: z } = ke({ isDisabled: S }), fe = G(() => ({ open: i.comboboxState === 0, disabled: S, hover: ee, focus: Q, autofocus: x }), [i, ee, Q, x, S]), he = ge({ ref: D, id: c, role: "combobox", type: h, "aria-controls": (t = i.optionsRef.current) == null ? void 0 : t.id, "aria-expanded": i.comboboxState === 0, "aria-activedescendant": i.activeOptionIndex === null ? void 0 : i.virtual ? (n = i.options.find((f) => !f.dataRef.current.disabled && i.compare(f.dataRef.current.value, i.virtual.options[i.activeOptionIndex]))) == null ? void 0 : n.id : (o = i.options[i.activeOptionIndex]) == null ? void 0 : o.id, "aria-labelledby": C, "aria-describedby": A, "aria-autocomplete": "list", defaultValue: (r = (l = e.defaultValue) != null ? l : i.defaultValue !== void 0 ? u == null ? void 0 : u(i.defaultValue) : null) != null ? r : i.defaultValue, disabled: S || void 0, autoFocus: x, onCompositionStart: V, onCompositionEnd: U, onKeyDown: J, onChange: j, onFocus: k, onBlur: Y }, m, z);
-  return le({ ourProps: he, theirProps: R, slot: fe, defaultTag: Xt, name: "Combobox.Input" });
+  }), C = be(), A = nt(), { isFocused: Q, focusProps: m } = De({ autoFocus: x }), { isHovered: ee, hoverProps: P } = Fe({ isDisabled: S }), fe = G(() => ({ open: i.comboboxState === 0, disabled: S, hover: ee, focus: Q, autofocus: x }), [i, ee, Q, x, S]), he = ge({ ref: D, id: c, role: "combobox", type: h, "aria-controls": (t = i.optionsRef.current) == null ? void 0 : t.id, "aria-expanded": i.comboboxState === 0, "aria-activedescendant": i.activeOptionIndex === null ? void 0 : i.virtual ? (n = i.options.find((f) => !f.dataRef.current.disabled && i.compare(f.dataRef.current.value, i.virtual.options[i.activeOptionIndex]))) == null ? void 0 : n.id : (o = i.options[i.activeOptionIndex]) == null ? void 0 : o.id, "aria-labelledby": C, "aria-describedby": A, "aria-autocomplete": "list", defaultValue: (r = (l = e.defaultValue) != null ? l : i.defaultValue !== void 0 ? u == null ? void 0 : u(i.defaultValue) : null) != null ? r : i.defaultValue, disabled: S || void 0, autoFocus: x, onCompositionStart: V, onCompositionEnd: U, onKeyDown: J, onChange: j, onFocus: k, onBlur: Y }, m, P);
+  return le({ ourProps: he, theirProps: R, slot: fe, defaultTag: Zt, name: "Combobox.Input" });
 }
 let tn = "button";
 function nn(e, s) {
@@ -794,56 +795,56 @@ function nn(e, s) {
     switch (b.key) {
       case F.Space:
       case F.Enter:
-        b.preventDefault(), b.stopPropagation(), n.comboboxState === 1 && X.flushSync(() => o.openCombobox()), c();
+        b.preventDefault(), b.stopPropagation(), n.comboboxState === 1 && Z.flushSync(() => o.openCombobox()), c();
         return;
       case F.ArrowDown:
-        b.preventDefault(), b.stopPropagation(), n.comboboxState === 1 && (X.flushSync(() => o.openCombobox()), n.value || o.goToOption(_.First)), c();
+        b.preventDefault(), b.stopPropagation(), n.comboboxState === 1 && (Z.flushSync(() => o.openCombobox()), n.value || o.goToOption(_.First)), c();
         return;
       case F.ArrowUp:
-        b.preventDefault(), b.stopPropagation(), n.comboboxState === 1 && (X.flushSync(() => o.openCombobox()), n.value || o.goToOption(_.Last)), c();
+        b.preventDefault(), b.stopPropagation(), n.comboboxState === 1 && (Z.flushSync(() => o.openCombobox()), n.value || o.goToOption(_.Last)), c();
         return;
       case F.Escape:
         if (n.comboboxState !== 0) return;
-        b.preventDefault(), n.optionsRef.current && !n.optionsPropsRef.current.static && b.stopPropagation(), X.flushSync(() => o.closeCombobox()), c();
+        b.preventDefault(), n.optionsRef.current && !n.optionsPropsRef.current.static && b.stopPropagation(), Z.flushSync(() => o.closeCombobox()), c();
         return;
       default:
         return;
     }
   }), u = g((b) => {
-    b.preventDefault(), !It(b.currentTarget) && (b.button === Oe.Left && (n.comboboxState === 0 ? o.closeCombobox() : o.openCombobox()), c());
-  }), S = be([i]), { isFocusVisible: x, focusProps: h } = Fe({ autoFocus: p }), { isHovered: R, hoverProps: D } = ke({ isDisabled: a }), { pressed: M, pressProps: E } = lt({ disabled: a }), y = G(() => ({ open: n.comboboxState === 0, active: M || n.comboboxState === 0, disabled: a, value: n.value, hover: R, focus: x }), [n, R, x, M, a]), O = ge({ ref: l, id: i, type: at(e, n.buttonRef), tabIndex: -1, "aria-haspopup": "listbox", "aria-controls": (t = n.optionsRef.current) == null ? void 0 : t.id, "aria-expanded": n.comboboxState === 0, "aria-labelledby": S, disabled: a || void 0, autoFocus: p, onMouseDown: u, onKeyDown: I }, h, D, E);
+    b.preventDefault(), !ot(b.currentTarget) && (b.button === Oe.Left && (n.comboboxState === 0 ? o.closeCombobox() : o.openCombobox()), c());
+  }), S = be([i]), { isFocusVisible: x, focusProps: h } = De({ autoFocus: p }), { isHovered: R, hoverProps: D } = Fe({ isDisabled: a }), { pressed: M, pressProps: E } = pt({ disabled: a }), y = G(() => ({ open: n.comboboxState === 0, active: M || n.comboboxState === 0, disabled: a, value: n.value, hover: R, focus: x }), [n, R, x, M, a]), O = ge({ ref: l, id: i, type: ft(e, n.buttonRef), tabIndex: -1, "aria-haspopup": "listbox", "aria-controls": (t = n.optionsRef.current) == null ? void 0 : t.id, "aria-expanded": n.comboboxState === 0, "aria-labelledby": S, disabled: a || void 0, autoFocus: p, onMouseDown: u, onKeyDown: I }, h, D, E);
   return le({ ourProps: O, theirProps: d, slot: y, defaultTag: tn, name: "Combobox.Button" });
 }
 let on = "div", sn = Re.RenderStrategy | Re.Static;
 function rn(e, s) {
   var t, n, o;
-  let l = pe(), { id: r = `headlessui-combobox-options-${l}`, hold: i = !1, anchor: a, portal: p = !1, modal: d = !0, transition: c = !1, ...I } = e, u = ne("Combobox.Options"), S = ae("Combobox.Options"), x = ut(a);
+  let l = pe(), { id: r = `headlessui-combobox-options-${l}`, hold: i = !1, anchor: a, portal: p = !1, modal: d = !0, transition: c = !1, ...I } = e, u = ne("Combobox.Options"), S = ae("Combobox.Options"), x = ht(a);
   x && (p = !0);
-  let [h, R] = ct(x), D = dt(), M = de(u.optionsRef, s, x ? h : null), E = De(u.optionsRef), y = pt(), [O, b] = ft(c, u.optionsRef, y !== null ? (y & ce.Open) === ce.Open : u.comboboxState === 0);
-  ht(O, u.inputRef, S.closeCombobox);
+  let [h, R] = mt(x), D = vt(), M = de(u.optionsRef, s, x ? h : null), E = Ae(u.optionsRef), y = bt(), [O, b] = gt(c, u.optionsRef, y !== null ? (y & ce.Open) === ce.Open : u.comboboxState === 0);
+  xt(O, u.inputRef, S.closeCombobox);
   let V = u.__demoMode ? !1 : d && u.comboboxState === 0;
-  mt(V, E);
+  St(V, E);
   let U = u.__demoMode ? !1 : d && u.comboboxState === 0;
-  vt(U, { allowed: g(() => [u.inputRef.current, u.buttonRef.current, u.optionsRef.current]) }), q(() => {
-    var z;
-    u.optionsPropsRef.current.static = (z = e.static) != null ? z : !1;
+  It(U, { allowed: g(() => [u.inputRef.current, u.buttonRef.current, u.optionsRef.current]) }), q(() => {
+    var P;
+    u.optionsPropsRef.current.static = (P = e.static) != null ? P : !1;
   }, [u.optionsPropsRef, e.static]), q(() => {
     u.optionsPropsRef.current.hold = i;
-  }, [u.optionsPropsRef, i]), Wt(u.comboboxState === 0, { container: u.optionsRef.current, accept(z) {
-    return z.getAttribute("role") === "option" ? NodeFilter.FILTER_REJECT : z.hasAttribute("role") ? NodeFilter.FILTER_SKIP : NodeFilter.FILTER_ACCEPT;
-  }, walk(z) {
-    z.setAttribute("role", "none");
+  }, [u.optionsPropsRef, i]), Wt(u.comboboxState === 0, { container: u.optionsRef.current, accept(P) {
+    return P.getAttribute("role") === "option" ? NodeFilter.FILTER_REJECT : P.hasAttribute("role") ? NodeFilter.FILTER_SKIP : NodeFilter.FILTER_ACCEPT;
+  }, walk(P) {
+    P.setAttribute("role", "none");
   } });
   let J = be([(t = u.buttonRef.current) == null ? void 0 : t.id]), j = G(() => ({ open: u.comboboxState === 0, option: void 0 }), [u.comboboxState]), Y = g(() => {
     S.setActivationTrigger(0);
-  }), k = g((z) => {
-    z.preventDefault(), S.setActivationTrigger(0);
-  }), C = ge(x ? D() : {}, { "aria-labelledby": J, role: "listbox", "aria-multiselectable": u.mode === 1 ? !0 : void 0, id: r, ref: M, style: { ...I.style, ...R, "--input-width": ye(u.inputRef, !0).width, "--button-width": ye(u.buttonRef, !0).width }, onWheel: u.activationTrigger === 0 ? void 0 : Y, onMouseDown: k, ...bt(b) }), A = O && u.comboboxState === 1, Q = Ce(A, (n = u.virtual) == null ? void 0 : n.options), m = Ce(A, u.value), ee = g((z) => u.compare(m, z));
+  }), k = g((P) => {
+    P.preventDefault(), S.setActivationTrigger(0);
+  }), C = ge(x ? D() : {}, { "aria-labelledby": J, role: "listbox", "aria-multiselectable": u.mode === 1 ? !0 : void 0, id: r, ref: M, style: { ...I.style, ...R, "--input-width": we(u.inputRef, !0).width, "--button-width": we(u.buttonRef, !0).width }, onWheel: u.activationTrigger === 0 ? void 0 : Y, onMouseDown: k, ...Ot(b) }), A = O && u.comboboxState === 1, Q = Me(A, (n = u.virtual) == null ? void 0 : n.options), m = Me(A, u.value), ee = g((P) => u.compare(m, P));
   if (u.virtual) {
     if (Q === void 0) throw new Error("Missing `options` in virtual mode");
     Object.assign(I, { children: $.createElement(se.Provider, { value: Q !== u.virtual.options ? { ...u, virtual: { ...u.virtual, options: Q } } : u }, $.createElement(Jt, { slot: j }, I.children)) });
   }
-  return $.createElement(gt, { enabled: p ? e.static || O : !1 }, $.createElement(se.Provider, { value: u.mode === 1 ? u : { ...u, isSelected: ee } }, le({ ourProps: C, theirProps: { ...I, children: $.createElement(xt, { freeze: A }, typeof I.children == "function" ? (o = I.children) == null ? void 0 : o.call(I, j) : I.children) }, slot: j, defaultTag: on, features: sn, visible: O, name: "Combobox.Options" })));
+  return $.createElement(Et, { enabled: p ? e.static || O : !1 }, $.createElement(se.Provider, { value: u.mode === 1 ? u : { ...u, isSelected: ee } }, le({ ourProps: C, theirProps: { ...I, children: $.createElement(Tt, { freeze: A }, typeof I.children == "function" ? (o = I.children) == null ? void 0 : o.call(I, j) : I.children) }, slot: j, defaultTag: on, features: sn, visible: O, name: "Combobox.Options" })));
 }
 let ln = "div";
 function an(e, s) {
@@ -854,22 +855,22 @@ function an(e, s) {
   q(() => i.registerOption(p, D), [D, p]);
   let O = N(!(r.virtual || r.__demoMode));
   q(() => {
-    if (!r.virtual && !r.__demoMode) return we().requestAnimationFrame(() => {
+    if (!r.virtual && !r.__demoMode) return ye().requestAnimationFrame(() => {
       O.current = !0;
     });
   }, [r.virtual, r.__demoMode]), q(() => {
-    if (O.current && r.comboboxState === 0 && x && r.activationTrigger !== 0) return we().requestAnimationFrame(() => {
+    if (O.current && r.comboboxState === 0 && x && r.activationTrigger !== 0) return ye().requestAnimationFrame(() => {
       var C, A;
       (A = (C = R.current) == null ? void 0 : C.scrollIntoView) == null || A.call(C, { block: "nearest" });
     });
   }, [R, x, r.comboboxState, r.activationTrigger, r.activeOptionIndex]);
   let b = g((C) => {
-    C.preventDefault(), C.button === Oe.Left && (c || (y(), Ot() || requestAnimationFrame(() => S()), r.mode === 0 && i.closeCombobox()));
+    C.preventDefault(), C.button === Oe.Left && (c || (y(), yt() || requestAnimationFrame(() => S()), r.mode === 0 && i.closeCombobox()));
   }), V = g(() => {
     if (c) return i.goToOption(_.Nothing);
     let C = r.calculateIndex(d);
     i.goToOption(_.Specific, C);
-  }), U = St(), J = g((C) => U.update(C)), j = g((C) => {
+  }), U = Rt(), J = g((C) => U.update(C)), j = g((C) => {
     if (!U.wasMoved(C) || c || x) return;
     let A = r.calculateIndex(d);
     i.goToOption(_.Specific, A, 0);
@@ -878,11 +879,11 @@ function an(e, s) {
   }), k = G(() => ({ active: x, focus: x, selected: h, disabled: c }), [x, h, c]);
   return le({ ourProps: { id: p, ref: E, role: "option", tabIndex: c === !0 ? void 0 : -1, "aria-disabled": c === !0 ? !0 : void 0, "aria-selected": h, disabled: void 0, onMouseDown: b, onFocus: V, onPointerEnter: J, onMouseEnter: J, onPointerMove: j, onMouseMove: j, onPointerLeave: Y, onMouseLeave: Y }, theirProps: u, slot: k, defaultTag: ln, name: "Combobox.Option" });
 }
-let un = re(Zt), cn = re(nn), dn = re(en), pn = qe, fn = re(rn), hn = re(an), gn = Object.assign(un, { Input: dn, Button: cn, Label: pn, Options: fn, Option: hn });
+let un = re(Xt), cn = re(nn), dn = re(en), pn = qe, fn = re(rn), hn = re(an), xn = Object.assign(un, { Input: dn, Button: cn, Label: pn, Options: fn, Option: hn });
 export {
   dn as G,
   cn as H,
   hn as K,
-  gn as N,
+  xn as N,
   fn as z
 };

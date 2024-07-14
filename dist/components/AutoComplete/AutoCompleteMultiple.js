@@ -2,11 +2,12 @@ import { jsx as r, jsxs as m } from "react/jsx-runtime";
 import f, { Fragment as h } from "react";
 import { _ as x } from "../../lodash-XYp3qmxI.js";
 import { t as v } from "../../bundle-mjs-SHnj3fHy.js";
-import { H as C, X as b } from "../../index-vZEwQcSd.js";
-import { b as w } from "../../index-wvw0O1v3.js";
-import { a as N } from "../../index-C197ia6B.js";
-import { getValue as o } from "../Selectbox/helper.js";
-import { N as S, G as L, H as T, z as q, K as A } from "../../combobox-BFmS_epO.js";
+import { H as C } from "../../index-DsW4uhBe.js";
+import { b } from "../../index-wvw0O1v3.js";
+import { a as w } from "../../index-C197ia6B.js";
+import { getValue as c } from "../Selectbox/helper.js";
+import { N, G as S, H as L, z as T, K as q } from "../../combobox-CRHFa4aF.js";
+import { X as A } from "../../transition-B0bHCOYe.js";
 const R = (l, t) => {
   if (t.type === "SEARCH")
     return {
@@ -19,7 +20,7 @@ const R = (l, t) => {
       ...l,
       value: t.value,
       selected: l.list.filter((a) => {
-        const n = o(a, l.valueField);
+        const n = c(a, l.valueField);
         return t.value.includes(n);
       }) || [],
       query: ""
@@ -28,15 +29,15 @@ const R = (l, t) => {
     return {
       ...l,
       selected: t.selected,
-      value: t.selected.map((a) => o(a, l.valueField)),
+      value: t.selected.map((a) => c(a, l.valueField)),
       query: ""
     };
   if (t.type === "REMOVESELECT") {
-    const a = o(t.selected, l.valueField), n = l.value.filter((u) => u !== a);
+    const a = c(t.selected, l.valueField), n = l.value.filter((u) => u !== a);
     return {
       ...l,
       value: n,
-      selected: l.selected ? l.selected.filter((u) => o(u, l.valueField) !== a) : []
+      selected: l.selected ? l.selected.filter((u) => c(u, l.valueField) !== a) : []
     };
   }
   return l;
@@ -50,34 +51,34 @@ const R = (l, t) => {
   placeholder: E
 }, g) => {
   var y;
-  const [s, c] = f.useReducer(R, {
+  const [s, o] = f.useReducer(R, {
     query: "",
     list: n,
     filterList: n,
     value: a || [],
     valueField: u,
     selected: n.filter((e) => {
-      const i = o(e, u);
+      const i = c(e, u);
       return x.some(a, (d) => d + "" == i + "");
     }) || []
   });
   return f.useImperativeHandle(g, () => ({
     search: (e) => {
-      c({ type: "SEARCH", query: e });
+      o({ type: "SEARCH", query: e });
     },
     setValue: (e) => {
-      c({ type: "SETVALUE", value: e });
+      o({ type: "SETVALUE", value: e });
     }
   })), /* @__PURE__ */ r(
-    S,
+    N,
     {
       value: s.selected,
       onChange: (e) => {
-        c({
+        o({
           type: "SETSELECT",
           selected: e
         });
-        const i = (e == null ? void 0 : e.map((d) => o(d, u))) || [];
+        const i = (e == null ? void 0 : e.map((d) => c(d, u))) || [];
         p && p(i);
       },
       multiple: !0,
@@ -87,19 +88,19 @@ const R = (l, t) => {
           /* @__PURE__ */ r(
             "button",
             {
-              onClick: () => c({ type: "REMOVESELECT", selected: e }),
-              children: /* @__PURE__ */ r(N, { fontSize: 12, className: "font-bold" })
+              onClick: () => o({ type: "REMOVESELECT", selected: e }),
+              children: /* @__PURE__ */ r(w, { fontSize: 12, className: "font-bold" })
             }
           )
         ] }) }, i)) }),
         /* @__PURE__ */ r(
-          L,
+          S,
           {
             placeholder: E,
             value: s.query,
-            onChange: (e) => c({ type: "SEARCH", query: e.target.value }),
+            onChange: (e) => o({ type: "SEARCH", query: e.target.value }),
             onKeyDown: (e) => {
-              e.key === "Backspace" && s.query === "" && s.selected.length > 0 && c({
+              e.key === "Backspace" && s.query === "" && s.selected.length > 0 && o({
                 type: "REMOVESELECT",
                 selected: s.selected[s.selected.length - 1]
               });
@@ -107,7 +108,7 @@ const R = (l, t) => {
             autoComplete: "off"
           }
         ),
-        /* @__PURE__ */ r(T, { className: "absolute inset-y-0 right-0 flex items-center pr-2", children: /* @__PURE__ */ r(
+        /* @__PURE__ */ r(L, { className: "absolute inset-y-0 right-0 flex items-center pr-2", children: /* @__PURE__ */ r(
           C,
           {
             className: "h-5 w-5 text-gray-400",
@@ -126,7 +127,7 @@ const R = (l, t) => {
           }
         ),
         /* @__PURE__ */ r(
-          b,
+          A,
           {
             as: h,
             enter: "transition duration-100 ease-out",
@@ -135,8 +136,8 @@ const R = (l, t) => {
             leave: "transition duration-75 ease-in",
             leaveFrom: "scale-100 transform opacity-100",
             leaveTo: "scale-95 transform opacity-0",
-            afterLeave: () => c({ type: "SEARCH", query: "" }),
-            children: /* @__PURE__ */ r(q, { className: "absolute mt-10 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm", children: s.filterList.map((e) => /* @__PURE__ */ r(A, { as: h, value: e, children: ({ selected: i }) => /* @__PURE__ */ m(
+            afterLeave: () => o({ type: "SEARCH", query: "" }),
+            children: /* @__PURE__ */ r(T, { className: "absolute mt-10 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm", children: s.filterList.map((e) => /* @__PURE__ */ r(q, { as: h, value: e, children: ({ selected: i }) => /* @__PURE__ */ m(
               "li",
               {
                 className: v(
@@ -152,7 +153,7 @@ const R = (l, t) => {
                       className: v(
                         "absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600"
                       ),
-                      children: /* @__PURE__ */ r(w, { className: "h-5 w-5", "aria-hidden": "true" })
+                      children: /* @__PURE__ */ r(b, { className: "h-5 w-5", "aria-hidden": "true" })
                     }
                   ) : null
                 ]
@@ -163,7 +164,7 @@ const R = (l, t) => {
       ] })
     }
   );
-}, _ = f.forwardRef(H);
+}, D = f.forwardRef(H);
 export {
-  _ as default
+  D as default
 };

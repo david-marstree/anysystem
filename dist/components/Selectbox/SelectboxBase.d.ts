@@ -25,7 +25,6 @@ export type SelectboxBaseProps = {
     placeholder?: string;
     onChange: (value: string | number) => void;
     valueField?: ValueField;
-    multiple?: boolean;
 };
 export type SelectboxBaseHandler = {
     setValue: (value: string | number) => void;
