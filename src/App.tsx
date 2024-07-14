@@ -7,7 +7,7 @@ import {
   Input,
   PasswordInput,
   Checkbox,
-  DatePicker,
+  RadioGroup,
   Text,
 } from "../lib/";
 import "../lib/index.css";
@@ -16,9 +16,7 @@ function App() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [checked, setChecked] = React.useState(false);
-  const [date, setDate] = React.useState(
-    Math.round(new Date().getTime() / 1000),
-  );
+  const [radio, setRadio] = React.useState("1");
   return (
     <AppProvider>
       <Container>
@@ -40,12 +38,25 @@ function App() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Label>
-        <Label label="Datepicker">
-          <DatePicker
-            name="date"
-            value={date}
-            onChange={(v) => setDate(v)}
-            showTime={true}
+        <Label label="Radio" type="none">
+          <RadioGroup
+            name="radio"
+            value={radio}
+            onChange={(e) => setRadio(e)}
+            options={[
+              {
+                id: "1",
+                label: "Option 1",
+                value: "1",
+                enable: true,
+              },
+              {
+                id: "2",
+                label: "Option 2",
+                value: "2",
+                enable: true,
+              },
+            ]}
           />
         </Label>
         <Checkbox
