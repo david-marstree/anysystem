@@ -53,7 +53,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
             defaultType="day"
             className="xs:max-w-[320px] z-50 rounded-md border border-gray-300 bg-white p-2 md:p-4 shadow-2xl"
           >
-            {({ year, monthName, hour, minute }) => (
+            {({ year, monthName, month, hour, minute }) => (
               <div className="flex w-[320px] flex-col gap-2">
                 <div className="flex w-full justify-between">
                   <div className="flex gap-1 text-2xl font-bold text-black">
@@ -106,6 +106,10 @@ const DatePicker: React.FC<DatePickerProps> = ({
                           !it.isHeader &&
                             !it.isSelected &&
                             "hover:bg-indigo-50",
+                          !it.isHeader &&
+                            moment(new Date(it.value)).format("YYYY-M") !==
+                              year + "-" + month &&
+                            "text-gray-300",
                         )}
                         {...(it.type === "day" &&
                           showTime === false && { action: "close" })}
@@ -187,7 +191,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
                           className={twMerge(
                             "flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium ",
                             item.isSelected
-                              ? "bg-gray-900 text-white"
+                              ? "bg-blue-600 text-white"
                               : " hover:bg-indigo-50 ",
                           )}
                         >
