@@ -14,7 +14,7 @@ const s = ({
       className: c(
         "relative z-10",
         "peer block h-full w-full cursor-pointer appearance-none rounded border-2 border-gray-400 focus:outline-4 focus:outline-blue-500",
-        "checked:border-blue-500",
+        "checked:border-blue-600",
         o && "border-red-500",
         a
       ),
@@ -22,7 +22,7 @@ const s = ({
       ...e
     }
   ),
-  /* @__PURE__ */ r("span", { className: "absolute left-1/2 top-1/2 hidden h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center overflow-hidden rounded font-bold text-blue-500 peer-checked:flex", children: /* @__PURE__ */ r(d, { className: "h-full w-full rounded" }) })
+  /* @__PURE__ */ r("span", { className: "absolute left-1/2 top-1/2 hidden h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center overflow-hidden rounded font-bold text-blue-600 peer-checked:flex", children: /* @__PURE__ */ r(d, { className: "h-full w-full rounded" }) })
 ] });
 export {
   s as CheckboxBase
