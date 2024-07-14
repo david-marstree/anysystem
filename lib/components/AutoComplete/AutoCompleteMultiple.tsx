@@ -114,7 +114,15 @@ const AutoCompleteMultiple: React.ForwardRefRenderFunction<
   AutoCompleteMultipleHandler,
   AutoCompleteMultipleProps
 > = (
-  { id, name, value = [], options, valueField = "value", onChange },
+  {
+    id,
+    name,
+    value = [],
+    options,
+    valueField = "value",
+    onChange,
+    placeholder,
+  },
   innerRef,
 ) => {
   const [state, dispatch] = React.useReducer(reducer, {
@@ -175,6 +183,7 @@ const AutoCompleteMultiple: React.ForwardRefRenderFunction<
           </ul>
         )}
         <ComboboxInput
+          placeholder={placeholder}
           value={state.query}
           onChange={(event) =>
             dispatch({ type: "SEARCH", query: event.target.value })

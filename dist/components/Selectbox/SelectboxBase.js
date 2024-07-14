@@ -1,10 +1,11 @@
 import { jsxs as i, jsx as t, Fragment as p } from "react/jsx-runtime";
 import g, { Fragment as j } from "react";
-import { u as H, a as M, b as A, c as C, d as z, e as B, H as D, X as G, o as I, f as P, s as X, g as _ } from "../../index-WJdgKpVa.js";
-import { b as $ } from "../../index-wvw0O1v3.js";
+import { u as H, a as M, b as A, c as C, d as z, e as B, H as D, X as G } from "../../index-vZEwQcSd.js";
+import { b as I } from "../../index-wvw0O1v3.js";
 import { t as v } from "../../bundle-mjs-SHnj3fHy.js";
 import { getValue as n } from "./helper.js";
-import { M as O, U as q, G as J, V as K } from "../../listbox-BoGLpnJ5.js";
+import { M as P, U as X, G as _, V as $ } from "../../listbox-uFQRPSYb.js";
+import { o as O, f as q, s as J, a as K } from "../../floating-ui.react-dom-xElE0hWP.js";
 const Q = (s, a) => a.type === "SETVALUE" ? {
   ...s,
   value: a.value,
@@ -30,8 +31,8 @@ const Q = (s, a) => a.type === "SETVALUE" ? {
     selected: f.find((e) => n(e, d) === o || "") || null
   }), { refs: y, x: E, y: N, strategy: S, floatingStyles: F, context: u } = H({
     open: !0,
-    middleware: [I(10), P(), X()],
-    whileElementsMounted: _,
+    middleware: [O(10), q(), J()],
+    whileElementsMounted: K,
     placement: "bottom"
   }), T = M(u, { move: !1 }), U = A(u), V = C(u), R = z(u, { role: "tooltip" }), { getReferenceProps: k, getFloatingProps: L } = B([
     T,
@@ -80,7 +81,7 @@ const Q = (s, a) => a.type === "SETVALUE" ? {
           }
         ),
         /* @__PURE__ */ i(
-          O,
+          P,
           {
             className: "hidden md:flex",
             as: "div",
@@ -95,7 +96,7 @@ const Q = (s, a) => a.type === "SETVALUE" ? {
             ref: y.setReference,
             ...k(),
             children: [
-              /* @__PURE__ */ i(q, { className: "relative z-10 inline-flex w-full justify-between !p-0 focus:outline-none", children: [
+              /* @__PURE__ */ i(X, { className: "relative z-10 inline-flex w-full justify-between !p-0 focus:outline-none", children: [
                 /* @__PURE__ */ t("span", { children: l.value ? /* @__PURE__ */ t(p, { children: ((b = l.selected) == null ? void 0 : b.label) || "" }) : h }),
                 /* @__PURE__ */ t(
                   D,
@@ -116,7 +117,7 @@ const Q = (s, a) => a.type === "SETVALUE" ? {
                   leaveFrom: "scale-100 transform opacity-100",
                   leaveTo: "scale-95 transform opacity-0",
                   children: /* @__PURE__ */ t(
-                    J,
+                    _,
                     {
                       className: "absolute !z-[999] mt-2 inline-block w-full origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none",
                       ref: y.setFloating,
@@ -131,7 +132,7 @@ const Q = (s, a) => a.type === "SETVALUE" ? {
                       children: /* @__PURE__ */ t("div", { className: "flex flex-col px-1 py-1", children: l.list.map((e) => {
                         var r, x;
                         return /* @__PURE__ */ t(
-                          K,
+                          $,
                           {
                             className: v(
                               "relative flex cursor-pointer select-none justify-between px-5 py-4 text-black hover:bg-indigo-100",
@@ -148,7 +149,7 @@ const Q = (s, a) => a.type === "SETVALUE" ? {
                                   className: v(
                                     "absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600"
                                   ),
-                                  children: /* @__PURE__ */ t($, { className: "h-5 w-5", "aria-hidden": "true" })
+                                  children: /* @__PURE__ */ t(I, { className: "h-5 w-5", "aria-hidden": "true" })
                                 }
                               ) : /* @__PURE__ */ t(p, {})
                             ] })
@@ -177,7 +178,7 @@ const Q = (s, a) => a.type === "SETVALUE" ? {
       ]
     }
   );
-}, re = g.forwardRef(W);
+}, ie = g.forwardRef(W);
 export {
-  re as default
+  ie as default
 };

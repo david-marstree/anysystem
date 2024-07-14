@@ -7,8 +7,7 @@ import {
   Input,
   PasswordInput,
   Checkbox,
-  Selectbox,
-  AutoComplete,
+  DatePicker,
   Text,
 } from "../lib/";
 import "../lib/index.css";
@@ -17,7 +16,9 @@ function App() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
   const [checked, setChecked] = React.useState(false);
-  const [option, setOption] = React.useState(["1"] as string[]);
+  const [date, setDate] = React.useState(
+    Math.round(new Date().getTime() / 1000),
+  );
   return (
     <AppProvider>
       <Container>
@@ -39,17 +40,12 @@ function App() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </Label>
-        <Label label="Selectbox">
-          <AutoComplete
-            name="option"
-            options={[
-              { id: 1, label: "Option 1", value: 1, enable: true },
-              { id: 2, label: "Option 2", value: 2, enable: true },
-            ]}
-            placeholder="Select an option"
-            value={option}
-            onChange={(v: string[]) => setOption(v as string[])}
-            multiple={true}
+        <Label label="Datepicker">
+          <DatePicker
+            name="date"
+            value={date}
+            onChange={(v) => setDate(v)}
+            showTime={true}
           />
         </Label>
         <Checkbox

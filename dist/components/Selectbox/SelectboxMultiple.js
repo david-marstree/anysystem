@@ -1,11 +1,12 @@
 import { jsxs as f, jsx as l, Fragment as y } from "react/jsx-runtime";
-import h, { Fragment as k } from "react";
+import g, { Fragment as k } from "react";
 import { _ as A } from "../../lodash-XYp3qmxI.js";
-import { u as L, a as H, b as C, c as _, d as z, e as D, H as G, X as I, o as O, f as P, s as X, g as $ } from "../../index-WJdgKpVa.js";
-import { b as q } from "../../index-wvw0O1v3.js";
-import { t as g } from "../../bundle-mjs-SHnj3fHy.js";
+import { u as L, a as H, b as C, c as _, d as z, e as D, H as G, X as I } from "../../index-vZEwQcSd.js";
+import { b as O } from "../../index-wvw0O1v3.js";
+import { t as h } from "../../bundle-mjs-SHnj3fHy.js";
 import { getValue as n } from "./helper.js";
-import { M as B, U as J, G as K, V as Q } from "../../listbox-BoGLpnJ5.js";
+import { o as P, f as X, s as $, a as q } from "../../floating-ui.react-dom-xElE0hWP.js";
+import { M as B, U as J, G as K, V as Q } from "../../listbox-uFQRPSYb.js";
 const W = (r, s) => s.type === "SETVALUE" ? {
   ...r,
   value: s.value,
@@ -30,7 +31,7 @@ const W = (r, s) => s.type === "SETVALUE" ? {
   value: p = []
 }, w) => {
   var x;
-  const [t, v] = h.useReducer(W, {
+  const [t, v] = g.useReducer(W, {
     list: o,
     value: p || [],
     valueField: u,
@@ -40,8 +41,8 @@ const W = (r, s) => s.type === "SETVALUE" ? {
     }) : []
   }), { refs: b, x: E, y: N, strategy: S, floatingStyles: T, context: m } = L({
     open: !0,
-    middleware: [O(10), P(), X()],
-    whileElementsMounted: $,
+    middleware: [P(10), X(), $()],
+    whileElementsMounted: q,
     placement: "bottom"
   }), F = H(m, { move: !1 }), U = C(m), V = _(m), j = z(m, { role: "tooltip" }), { getReferenceProps: M, getFloatingProps: R } = D([
     F,
@@ -49,14 +50,14 @@ const W = (r, s) => s.type === "SETVALUE" ? {
     V,
     j
   ]);
-  return h.useImperativeHandle(w, () => ({
+  return g.useImperativeHandle(w, () => ({
     setValue: (e) => {
       v({ type: "SETVALUE", value: e });
     }
   })), /* @__PURE__ */ f(
     "div",
     {
-      className: g(
+      className: h(
         "form-control relative inline-block text-left",
         !t.value && "text-gray-300"
         //empty
@@ -137,7 +138,7 @@ const W = (r, s) => s.type === "SETVALUE" ? {
                         return /* @__PURE__ */ l(
                           Q,
                           {
-                            className: g(
+                            className: h(
                               "relative flex cursor-pointer select-none justify-between px-5 py-4 text-black hover:bg-indigo-100",
                               e.enable === !1 && "cursor-not-allowed opacity-50",
                               ((a = t.value) == null ? void 0 : a.includes(n(e, u))) && "bg-indigo-100"
@@ -149,10 +150,10 @@ const W = (r, s) => s.type === "SETVALUE" ? {
                               (i = t.value) != null && i.includes(n(e, u)) ? /* @__PURE__ */ l(
                                 "span",
                                 {
-                                  className: g(
+                                  className: h(
                                     "absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600"
                                   ),
-                                  children: /* @__PURE__ */ l(q, { className: "h-5 w-5", "aria-hidden": "true" })
+                                  children: /* @__PURE__ */ l(O, { className: "h-5 w-5", "aria-hidden": "true" })
                                 }
                               ) : /* @__PURE__ */ l(y, {})
                             ] })
@@ -181,7 +182,7 @@ const W = (r, s) => s.type === "SETVALUE" ? {
       ]
     }
   );
-}, ne = h.forwardRef(Y);
+}, oe = g.forwardRef(Y);
 export {
-  ne as default
+  oe as default
 };

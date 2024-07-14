@@ -1,11 +1,11 @@
 import { jsx as a, jsxs as f } from "react/jsx-runtime";
 import d, { Fragment as p } from "react";
 import { t as y } from "../../bundle-mjs-SHnj3fHy.js";
-import { H as v, X as g } from "../../index-WJdgKpVa.js";
-import { b } from "../../index-wvw0O1v3.js";
+import { H as g, X as b } from "../../index-vZEwQcSd.js";
+import { b as x } from "../../index-wvw0O1v3.js";
 import { getValue as u } from "../Selectbox/helper.js";
-import { N as x, G as C, H as E, z as w, K as N } from "../../combobox-CUB-N452.js";
-const L = (l, r) => r.type === "SEARCH" ? {
+import { N as C, G as E, H as w, z as N, K as L } from "../../combobox-BFmS_epO.js";
+const S = (l, r) => r.type === "SEARCH" ? {
   ...l,
   query: r.query,
   filterList: l.list.filter((t) => t.label.toLowerCase().includes(r.query.toLowerCase()))
@@ -17,8 +17,16 @@ const L = (l, r) => r.type === "SEARCH" ? {
   ...l,
   selected: r.selected,
   value: u(r.selected, l.valueField) + ""
-} : l, S = ({ id: l, name: r, options: t, value: i = "", valueField: o = "value", onChange: m }, h) => {
-  const [c, s] = d.useReducer(L, {
+} : l, H = ({
+  id: l,
+  name: r,
+  options: t,
+  value: i = "",
+  valueField: o = "value",
+  onChange: m,
+  placeholder: h
+}, v) => {
+  const [c, s] = d.useReducer(S, {
     list: t,
     query: "",
     filterList: t,
@@ -29,11 +37,11 @@ const L = (l, r) => r.type === "SEARCH" ? {
       return i ? n === i : !1;
     }) || null
   });
-  return d.useImperativeHandle(h, () => ({
+  return d.useImperativeHandle(v, () => ({
     search: (e) => s({ type: "SEARCH", query: e }),
     setValue: (e) => s({ type: "SETVALUE", value: e })
   })), /* @__PURE__ */ a(
-    x,
+    C,
     {
       value: c.selected,
       onChange: (e) => {
@@ -44,15 +52,16 @@ const L = (l, r) => r.type === "SEARCH" ? {
       },
       children: /* @__PURE__ */ f("div", { className: "relative", children: [
         /* @__PURE__ */ a(
-          C,
+          E,
           {
+            placeholder: h,
             onChange: (e) => s({ type: "SEARCH", query: e.target.value }),
             autoComplete: "off",
             displayValue: (e) => (e == null ? void 0 : e.label) || ""
           }
         ),
-        /* @__PURE__ */ a(E, { className: "absolute inset-y-0 right-0 flex items-center pr-2", children: /* @__PURE__ */ a(
-          v,
+        /* @__PURE__ */ a(w, { className: "absolute inset-y-0 right-0 flex items-center pr-2", children: /* @__PURE__ */ a(
+          g,
           {
             className: "h-5 w-5 text-gray-400",
             "aria-hidden": "true"
@@ -70,7 +79,7 @@ const L = (l, r) => r.type === "SEARCH" ? {
           }
         ),
         /* @__PURE__ */ a(
-          g,
+          b,
           {
             as: p,
             enter: "transition duration-100 ease-out",
@@ -80,7 +89,7 @@ const L = (l, r) => r.type === "SEARCH" ? {
             leaveFrom: "scale-100 transform opacity-100",
             leaveTo: "scale-95 transform opacity-0",
             afterLeave: () => s({ type: "SEARCH", query: "" }),
-            children: /* @__PURE__ */ a(w, { className: "absolute z-50 mt-5 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm", children: c.filterList.map((e) => /* @__PURE__ */ a(N, { as: p, value: e, children: ({ selected: n }) => /* @__PURE__ */ f(
+            children: /* @__PURE__ */ a(N, { className: "absolute z-50 mt-5 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm", children: c.filterList.map((e) => /* @__PURE__ */ a(L, { as: p, value: e, children: ({ selected: n }) => /* @__PURE__ */ f(
               "li",
               {
                 className: y(
@@ -96,7 +105,7 @@ const L = (l, r) => r.type === "SEARCH" ? {
                       className: y(
                         "absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600"
                       ),
-                      children: /* @__PURE__ */ a(b, { className: "h-5 w-5", "aria-hidden": "true" })
+                      children: /* @__PURE__ */ a(x, { className: "h-5 w-5", "aria-hidden": "true" })
                     }
                   ) : null
                 ]
@@ -107,7 +116,7 @@ const L = (l, r) => r.type === "SEARCH" ? {
       ] })
     }
   );
-}, j = d.forwardRef(S);
+}, k = d.forwardRef(H);
 export {
-  j as default
+  k as default
 };

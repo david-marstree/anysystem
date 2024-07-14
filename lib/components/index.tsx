@@ -6,6 +6,8 @@ export * from "./Column/";
 export { default as Column } from "./Column/";
 export * from "./Container/";
 export { default as Container } from "./Container/";
+export * from "./DatePicker/";
+export { default as DatePicker } from "./DatePicker/";
 export * from "./Icon/";
 export { default as Icon } from "./Icon/";
 export * from "./Input/";

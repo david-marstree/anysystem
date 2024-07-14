@@ -89,7 +89,15 @@ const AutoCompleteBase: React.ForwardRefRenderFunction<
   AutoCompleteBaseHandler,
   AutoCompleteBaseProps
 > = (
-  { id, name, options, value = "", valueField = "value", onChange },
+  {
+    id,
+    name,
+    options,
+    value = "",
+    valueField = "value",
+    onChange,
+    placeholder,
+  },
   innerRef,
 ) => {
   const [state, dispatch] = React.useReducer(reducer, {
@@ -123,6 +131,7 @@ const AutoCompleteBase: React.ForwardRefRenderFunction<
     >
       <div className="relative">
         <ComboboxInput
+          placeholder={placeholder}
           onChange={(event) =>
             dispatch({ type: "SEARCH", query: event.target.value })
           }
