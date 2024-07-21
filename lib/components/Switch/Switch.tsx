@@ -13,7 +13,7 @@ const Switch: React.FC<SwitchProps> = ({ checked, onChange, name, value }) => {
     <HeadlessSwitch
       checked={checked}
       onChange={(v) => onChange(v)}
-      className="group relative flex h-7 w-14 cursor-pointer rounded-full bg-gray-800/10 p-1 transition-colors duration-200 ease-in-out focus:outline-none data-[checked]:bg-primary-500 data-[focus]:outline-1 data-[focus]:outline-white"
+      className="group relative flex h-7 w-14 cursor-pointer rounded-full bg-gray-800/10 dark:bg-gray-50/10 p-1 transition-colors duration-200 ease-in-out focus:outline-none data-[checked]:bg-primary-500 data-[focus]:outline-1 data-[focus]:outline-white"
     >
       <span
         aria-hidden="true"
