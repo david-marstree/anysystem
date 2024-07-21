@@ -9,7 +9,7 @@ export type LabelBaseProps = {
   htmlFor?: string;
   isError?: boolean;
   errorMessage?: string;
-  type?: "border" | "none";
+  type?: "border" | "normal" | "horizontal";
 };
 
 const LabelBase: React.FC<LabelBaseProps> = ({
@@ -25,9 +25,9 @@ const LabelBase: React.FC<LabelBaseProps> = ({
     <div className="flex flex-col">
       <div
         className={twMerge(
-          "relative mb-2 mt-2 flex w-full flex-col ",
+          "relative flex w-full flex-col ",
           type === "border" && "rounded border border-gray-400",
-          "form-group",
+          type === "horizontal" ? "flex-row gap-2" : "form-group",
           isError && "error",
           className,
         )}
@@ -37,7 +37,8 @@ const LabelBase: React.FC<LabelBaseProps> = ({
             className={twMerge(
               type === "border" &&
                 "hidden text-gray-600 opacity-0 dark:text-white",
-              "text-sm font-semibold mb-1",
+              type === "horizontal" && "flex items-center justify-center",
+              "mb-1 text-sm font-semibold",
             )}
             htmlFor={htmlFor}
           >

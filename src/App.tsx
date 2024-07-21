@@ -10,6 +10,7 @@ import {
   Checkbox,
   RadioGroup,
   Text,
+  Switch,
 } from "../lib/";
 import "../lib/index.css";
 
@@ -21,7 +22,7 @@ function App() {
   const [radio, setRadio] = React.useState("1");
   return (
     <AppProvider>
-      <Container>
+      <Container className="flex flex-col gap-2">
         <Text tag="h1">Sign in</Text>
         <Text tag="p">to continue to anysystem</Text>
         <Label label="Username">
@@ -70,7 +71,7 @@ function App() {
             phonePrefix="853"
           />
         </Label>
-        <Label label="Radio" type="none">
+        <Label label="Radio" type="normal">
           <RadioGroup
             name="radio"
             value={radio}
@@ -103,6 +104,14 @@ function App() {
           checked={checked}
           onChange={(e) => setChecked(e.target.checked)}
         />
+        <Label label="Open" type="horizontal">
+          <Switch
+            name="open"
+            value="open"
+            checked={checked}
+            onChange={(v: boolean) => setChecked(v)}
+          />
+        </Label>
         <Button variant="primary">Button</Button>
       </Container>
     </AppProvider>

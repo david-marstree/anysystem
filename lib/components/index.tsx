@@ -2,6 +2,8 @@ export * from "./Button/";
 export { default as Button } from "./Button/";
 export * from "./Checkbox/";
 export { default as Checkbox } from "./Checkbox/";
+export * from "./Switch/";
+export { default as Switch } from "./Switch/";
 export * from "./Column/";
 export { default as Column } from "./Column/";
 export * from "./Container/";
