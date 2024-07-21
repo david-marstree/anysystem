@@ -25,3 +25,4 @@ bun.lockb
 yarn.lock
 pnpm-lock.yaml
 lerna.json
+dist
