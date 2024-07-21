@@ -229,9 +229,9 @@ const SelectboxBase: React.ForwardRefRenderFunction<
                 <ListboxOption
                   key={opt.id}
                   className={twMerge(
-                    "relative flex cursor-pointer select-none justify-between px-5 py-4 text-black hover:bg-indigo-100",
+                    "relative flex cursor-pointer select-none justify-between px-5 py-4 text-black hover:bg-primary-100",
                     opt.enable === false && "cursor-not-allowed opacity-50",
-                    state.selected?.id === opt.id && "bg-indigo-100",
+                    state.selected?.id === opt.id && "bg-primary-100",
                   )}
                   value={opt}
                   disabled={opt.enable === false}
@@ -241,7 +241,7 @@ const SelectboxBase: React.ForwardRefRenderFunction<
                     {state.selected?.id === opt.id ? (
                       <span
                         className={twMerge(
-                          "absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600",
+                          "absolute inset-y-0 left-0 flex items-center pl-3 text-primary/60",
                         )}
                       >
                         <CheckIcon className="h-5 w-5" aria-hidden="true" />

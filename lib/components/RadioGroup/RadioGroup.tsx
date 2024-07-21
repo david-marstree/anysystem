@@ -98,7 +98,7 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
             className={({ checked }) =>
               twMerge(
                 "group relative flex cursor-pointer rounded py-4 px-5 border border-gray-400 transition focus:outline-none",
-                checked && "bg-blue-100 border-blue-600",
+                checked && "bg-primary-100 border-primary-600",
               )
             }
           >
@@ -110,14 +110,15 @@ const RadioGroup: React.FC<RadioGroupProps> = ({
                 {checked ? (
                   <CheckCircleIcon
                     className={twMerge(
-                      "size-6 transition fill-blue-600 opacity-0 group-hover:opacity-80",
-                      checked && "size-6 opacity-100 transition fill-blue-600 ",
+                      "size-6 transition fill-primary-600 opacity-0 group-hover:opacity-80",
+                      checked &&
+                        "size-6 opacity-100 transition fill-primary-600",
                     )}
                   />
                 ) : (
                   <CheckCircleOutlineIcon
                     className={twMerge(
-                      "size-6 transition text-gray-200 group-hover:text-blue-600",
+                      "size-6 transition text-gray-200 group-hover:text-primary-600",
                     )}
                   />
                 )}

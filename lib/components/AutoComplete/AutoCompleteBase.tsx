@@ -168,8 +168,8 @@ const AutoCompleteBase: React.ForwardRefRenderFunction<
                 {({ selected }) => (
                   <li
                     className={twMerge(
-                      "relative flex cursor-pointer justify-between px-5 py-4 text-black hover:bg-indigo-100",
-                      selected && "bg-indigo-100",
+                      "relative flex cursor-pointer justify-between px-5 py-4 text-black hover:bg-primary-100",
+                      selected && "bg-primary-100",
                       opt.enable === false && "cursor-not-allowed opacity-50",
                     )}
                   >
@@ -177,7 +177,7 @@ const AutoCompleteBase: React.ForwardRefRenderFunction<
                     {selected ? (
                       <span
                         className={twMerge(
-                          "absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600",
+                          "absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600",
                         )}
                       >
                         <CheckIcon className="h-5 w-5" aria-hidden="true" />

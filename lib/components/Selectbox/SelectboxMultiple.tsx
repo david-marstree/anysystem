@@ -227,10 +227,10 @@ const SelectboxMultiple: React.ForwardRefRenderFunction<
                 <ListboxOption
                   key={option.id}
                   className={twMerge(
-                    "relative flex cursor-pointer select-none justify-between px-5 py-4 text-black hover:bg-indigo-100",
+                    "relative flex cursor-pointer select-none justify-between px-5 py-4 text-black hover:bg-primary-100",
                     option.enable === false && "cursor-not-allowed opacity-50",
                     state.value?.includes(getValue(option, valueField)) &&
-                      "bg-indigo-100",
+                      "bg-primary-100",
                   )}
                   value={option}
                   disabled={option.enable === false}
@@ -240,7 +240,7 @@ const SelectboxMultiple: React.ForwardRefRenderFunction<
                     {state.value?.includes(getValue(option, valueField)) ? (
                       <span
                         className={twMerge(
-                          "absolute inset-y-0 left-0 flex items-center pl-3 text-indigo-600",
+                          "absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600",
                         )}
                       >
                         <CheckIcon className="h-5 w-5" aria-hidden="true" />

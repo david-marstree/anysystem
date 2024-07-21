@@ -47,7 +47,7 @@
   .form-group:has(input:focus),
   .form-group:has(textarea:focus),
   .form-group:has([data-headlessui-state="open"]) {
-    @apply border-blue-600 z-50;
+    @apply border-primary-500 z-50;
   }
   .form-group:has(input:focus),
   .form-group:has(input:autofill),

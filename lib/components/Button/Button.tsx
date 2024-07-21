@@ -15,7 +15,7 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
       case "default":
         return "bg-gray-400 text-white after:bg-white";
       case "primary":
-        return "bg-blue-600 text-white after:bg-white";
+        return "bg-primary-600 text-white after:bg-white";
       default:
         return "bg-gray-400 text-white after:bg-white";
     }

@@ -51,7 +51,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
           <Datepicker.Picker
             id="Picker-Date"
             defaultType="day"
-            className="xs:max-w-[320px] z-50 rounded-md border border-gray-300 bg-white p-2 md:p-4 shadow-2xl"
+            className="xs:max-w-[320px] z-50 rounded-md border border-gray-300 bg-white p-2 shadow-2xl md:p-4"
           >
             {({ year, monthName, month, hour, minute }) => (
               <div className="flex w-[320px] flex-col gap-2">
@@ -102,10 +102,10 @@ const DatePicker: React.FC<DatePickerProps> = ({
                         className={twMerge(
                           "rounded-md p-2 ",
                           it.isToday && "border border-gray-800",
-                          it.isSelected && "bg-blue-600 text-white",
+                          it.isSelected && "bg-primary-600 text-white",
                           !it.isHeader &&
                             !it.isSelected &&
-                            "hover:bg-indigo-50",
+                            "hover:bg-primary-50",
                           !it.isHeader &&
                             moment(new Date(it.value)).format("YYYY-M") !==
                               year + "-" + month &&
@@ -132,7 +132,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
 
                 <Datepicker.Button
                   className={twMerge(
-                    "w-full rounded bg-blue-600 p-2 text-white relative",
+                    "relative w-full rounded bg-primary-600 p-2 text-white",
                     "after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:rounded-l after:bg-gray-400 after:opacity-0", //after:
                     "hover:after:w-full hover:after:transform hover:after:opacity-20 hover:after:transition-all hover:after:duration-300", //hover:
                   )}
@@ -144,7 +144,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
                 <Datepicker.Button
                   action="toggleHourPicker"
                   className={twMerge(
-                    "rounded-md p-1 text-2xl hover:bg-indigo-100",
+                    "rounded-md p-1 text-2xl hover:bg-primary-100",
                     showTime === true ? "" : "hidden",
                   )}
                 >
@@ -168,8 +168,8 @@ const DatePicker: React.FC<DatePickerProps> = ({
                           className={twMerge(
                             "flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium ",
                             item.isSelected
-                              ? "bg-blue-600 text-white"
-                              : " hover:bg-indigo-50 ",
+                              ? "bg-primary-600 text-white"
+                              : " hover:bg-primary-50 ",
                           )}
                         >
                           {("0" + item.text).slice(-2)}
@@ -191,8 +191,8 @@ const DatePicker: React.FC<DatePickerProps> = ({
                           className={twMerge(
                             "flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium ",
                             item.isSelected
-                              ? "bg-blue-600 text-white"
-                              : " hover:bg-indigo-50 ",
+                              ? "bg-primary-600 text-white"
+                              : " hover:bg-primary-50 ",
                           )}
                         >
                           {("0" + item.text).slice(-2)}

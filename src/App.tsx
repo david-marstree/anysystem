@@ -12,7 +12,7 @@ import {
   Text,
   Switch,
 } from "../lib/";
-import "../lib/index.css";
+import "./index.less";
 
 function App() {
   const [username, setUsername] = React.useState("");
