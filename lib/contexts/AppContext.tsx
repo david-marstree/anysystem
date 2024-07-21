@@ -1,14 +1,24 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-const AppContext = React.createContext({});
+export type AppContextType = {
+  appName: string;
+};
+
+export const AppContext = React.createContext<AppContextType>({
+  appName: "",
+});
 
 export type AppProviderProps = {
+  appName: string;
   children: React.ReactNode;
 };
 
-export const AppProvider: React.FC<AppProviderProps> = ({ children }) => (
-  <AppContext.Provider value={{}}>
+export const AppProvider: React.FC<AppProviderProps> = ({
+  appName,
+  children,
+}) => (
+  <AppContext.Provider value={{ appName }}>
     <BrowserRouter>{children}</BrowserRouter>
   </AppContext.Provider>
 );

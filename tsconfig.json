@@ -23,7 +23,9 @@
     "paths": {
       "@/*": ["./*"],
       "@components/*": ["./components/*"],
-      "@contexts/*": ["./contexts/*"]
+      "@layouts/*": ["./layouts/*"],
+      "@contexts/*": ["./contexts/*"],
+      "@hooks/*": ["./hooks/*"]
     }
   },
   "include": ["src", "lib"],
