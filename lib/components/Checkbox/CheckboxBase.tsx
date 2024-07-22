@@ -30,7 +30,7 @@ export const CheckboxBase: React.FC<CheckboxBaseProps> = ({
         }}
         {...props}
       />
-      <span className="absolute left-1/2 top-1/2 hidden h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center overflow-hidden rounded font-bold text-primary-600 peer-checked:flex">
+      <span className="absolute left-1/2 top-1/2 hidden h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center overflow-hidden rounded font-bold text-primary-600 peer-checked:z-10 peer-checked:flex dark:fill-primary-600">
         <AiFillCheckSquare className="h-full w-full rounded" />
       </span>
     </div>
