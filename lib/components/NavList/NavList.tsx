@@ -26,7 +26,7 @@ const NavList: React.FC<NavListProps> = ({ list }) => {
   const location = useLocation();
 
   return (
-    <nav className="bg-white px-4 py-6 dark:bg-gray-800 w-full">
+    <nav className="w-full bg-white px-4 py-6 dark:bg-gray-950">
       <ul>
         {list &&
           list.map((item, index) => (
@@ -36,9 +36,9 @@ const NavList: React.FC<NavListProps> = ({ list }) => {
                   <a
                     href={item.path}
                     className={twMerge(
-                      "flex w-full items-center justify-start gap-2 rounded p-3 font-semibold hover:bg-primary-50 dark:text-white dark:hover:bg-gray-700",
+                      "flex w-full items-center justify-start gap-2 rounded p-3 font-semibold hover:bg-primary-50 dark:text-white dark:hover:bg-gray-800",
                       location.pathname === item.path
-                        ? "bg-primary-50 dark:bg-gray-700"
+                        ? "bg-primary-50 dark:bg-gray-800"
                         : "",
                     )}
                   >

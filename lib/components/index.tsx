@@ -33,5 +33,7 @@ export * from "./NavList/";
 export { default as NavList } from "./NavList/";
 export * from "./Navbar/";
 export { default as Navbar } from "./Navbar/";
+export * from "./Modal/";
+export { default as Modal } from "./Modal/";
 export * from "./Component";
 export { default as default } from "./Component";

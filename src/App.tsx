@@ -15,11 +15,15 @@ import {
   NavList,
   SideMenuLayout,
   SideMenuHandler,
+  Modal,
+  ModalHandler,
+  DatePicker,
 } from "../lib/";
 import "./index.less";
 
 function App() {
   const menuRef = React.useRef<SideMenuHandler>(null);
+  const modalRef = React.useRef<ModalHandler>(null);
   const [username, setUsername] = React.useState("");
   const [phonenumber, setPhoneNumber] = React.useState("");
   const [password, setPassword] = React.useState("");
@@ -56,6 +60,14 @@ function App() {
               value={password}
               placeholder="Password"
               onChange={(e) => setPassword(e.target.value)}
+            />
+          </Label>
+          <Label label="Birth of date">
+            <DatePicker
+              name="birthday"
+              value={new Date().getTime() / 1000}
+              showTime
+              onChange={(e) => console.log(e)}
             />
           </Label>
           <Label label="Phone number">
@@ -129,7 +141,29 @@ function App() {
               onChange={(v: boolean) => setChecked(v)}
             />
           </Label>
-          <Button variant="primary">Button</Button>
+          <Button variant="primary" onClick={() => modalRef.current?.show()}>
+            Button
+          </Button>
+
+          <Modal
+            ref={modalRef}
+            title="Modal Title"
+            open={false}
+            buttons={[
+              {
+                variant: "primary",
+                label: "Okay",
+                onClick: () => modalRef.current?.hide(),
+              },
+              {
+                variant: "default",
+                label: "Close",
+                onClick: () => modalRef.current?.hide(),
+              },
+            ]}
+          >
+            <p>Modal content</p>
+          </Modal>
         </Container>
       </SideMenuLayout>
     </AppProvider>

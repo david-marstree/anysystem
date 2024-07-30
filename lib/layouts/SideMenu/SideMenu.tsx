@@ -82,7 +82,7 @@ const SideMenu: React.ForwardRefRenderFunction<
         leaveFrom="translate-y-0"
         leaveTo="-translate-y-full"
       >
-        <div className="absolute bottom-0 top-14 z-50 w-full bg-white shadow dark:bg-gray-800 lg:hidden flex">
+        <div className="absolute bottom-0 top-14 z-50 flex w-full bg-white shadow dark:bg-gray-900 lg:hidden">
           {menu}
         </div>
       </Transition>
@@ -98,7 +98,9 @@ const SideMenu: React.ForwardRefRenderFunction<
           leaveFrom="translate-x-0"
           leaveTo="-translate-x-full"
         >
-          <div className="hidden w-[320px] shadow lg:flex">{menu}</div>
+          <div className="hidden w-[320px] shadow dark:shadow-gray-800 dark:bg-gray-900 lg:flex">
+            {menu}
+          </div>
         </Transition>
         {/* desktop sidemenu end*/}
         <div className="grow">{children}</div>

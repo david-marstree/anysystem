@@ -5,11 +5,11 @@
   html,
   body {
     @apply w-full h-screen;
-    @apply dark:bg-gray-900 dark:text-white;
+    @apply dark:bg-gray-950 dark:text-white;
   }
   input,
   textarea {
-    @apply dark:bg-gray-900 dark:text-white;
+    @apply dark:bg-gray-950 dark:text-white;
   }
   #root {
     @apply w-full h-full;

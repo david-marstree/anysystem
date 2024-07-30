@@ -23,7 +23,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
     <>
       <input
         className={twMerge(
-          "w-full bg-white ",
+          "w-full bg-white dark:bg-gray-800",
           showTime === true ? "!hidden" : "md:hidden",
         )}
         type={showTime === true ? "datetime-local" : "date"}
@@ -51,12 +51,12 @@ const DatePicker: React.FC<DatePickerProps> = ({
           <Datepicker.Picker
             id="Picker-Date"
             defaultType="day"
-            className="xs:max-w-[320px] z-50 rounded-md border border-gray-300 bg-white p-2 shadow-2xl md:p-4"
+            className="xs:max-w-[320px] z-50 rounded-md border border-gray-300 bg-white p-2 shadow-2xl dark:border-gray-700 dark:bg-gray-900 md:p-4"
           >
             {({ year, monthName, month, hour, minute }) => (
               <div className="flex w-[320px] flex-col gap-2">
                 <div className="flex w-full justify-between">
-                  <div className="flex gap-1 text-2xl font-bold text-black">
+                  <div className="flex gap-1 text-2xl font-bold text-black dark:text-white">
                     <Datepicker.Button action="toggleMonth">
                       {monthName}
                     </Datepicker.Button>
@@ -66,13 +66,13 @@ const DatePicker: React.FC<DatePickerProps> = ({
                   </div>
                   <div className="flex gap-2">
                     <Datepicker.Button
-                      className="rounded-md bg-gray-300 p-3 hover:bg-gray-400"
+                      className="rounded-md bg-gray-300 p-3 hover:bg-gray-400 dark:bg-gray-700"
                       action="prev"
                     >
                       <AiOutlineArrowLeft size={20} />
                     </Datepicker.Button>
                     <Datepicker.Button
-                      className="rounded-md bg-gray-300 p-3 hover:bg-gray-400"
+                      className="rounded-md bg-gray-300 p-3 hover:bg-gray-400 dark:bg-gray-700"
                       action="next"
                     >
                       <AiOutlineArrowRight size={20} />
@@ -100,8 +100,9 @@ const DatePicker: React.FC<DatePickerProps> = ({
                           it.isHeader || it.disabled || readOnly === true
                         }
                         className={twMerge(
-                          "rounded-md p-2 ",
-                          it.isToday && "border border-gray-800",
+                          "rounded-md p-2 dark:hover:bg-gray-700",
+                          it.isToday &&
+                            "border border-gray-800 dark:border-gray-600",
                           it.isSelected && "bg-primary-600 text-white",
                           !it.isHeader &&
                             !it.isSelected &&
@@ -133,7 +134,7 @@ const DatePicker: React.FC<DatePickerProps> = ({
                 <Datepicker.Button
                   className={twMerge(
                     "relative w-full rounded bg-primary-600 p-2 text-white",
-                    "after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:rounded-l after:bg-gray-400 after:opacity-0", //after:
+                    "after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:rounded-l after:bg-gray-400 after:opacity-0 dark:after:bg-gray-600", //after:
                     "hover:after:w-full hover:after:transform hover:after:opacity-20 hover:after:transition-all hover:after:duration-300", //hover:
                   )}
                   action="todayHour"
@@ -144,14 +145,14 @@ const DatePicker: React.FC<DatePickerProps> = ({
                 <Datepicker.Button
                   action="toggleHourPicker"
                   className={twMerge(
-                    "rounded-md p-1 text-2xl hover:bg-primary-100",
+                    "rounded-md p-1 text-2xl hover:bg-primary-100 dark:hover:bg-gray-700",
                     showTime === true ? "" : "hidden",
                   )}
                 >
                   {("0" + hour).slice(-2) + ":" + ("0" + minute).slice(-2)}
                 </Datepicker.Button>
                 <Datepicker.Picker
-                  className="flex max-h-56 rounded-md border border-gray-300 bg-white py-2 shadow-md"
+                  className="flex max-h-56 rounded-md border border-gray-300 bg-white py-2 shadow-md dark:border-gray-700 dark:bg-gray-900 dark:text-white"
                   id="HourPicker"
                 >
                   <Datepicker.Items
@@ -168,8 +169,8 @@ const DatePicker: React.FC<DatePickerProps> = ({
                           className={twMerge(
                             "flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium ",
                             item.isSelected
-                              ? "bg-primary-600 text-white"
-                              : " hover:bg-primary-50 ",
+                              ? "bg-primary-600 text-white dark:bg-gray-700"
+                              : "hover:bg-primary-50 dark:hover:bg-gray-700",
                           )}
                         >
                           {("0" + item.text).slice(-2)}
@@ -191,8 +192,8 @@ const DatePicker: React.FC<DatePickerProps> = ({
                           className={twMerge(
                             "flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium ",
                             item.isSelected
-                              ? "bg-primary-600 text-white"
-                              : " hover:bg-primary-50 ",
+                              ? "bg-primary-600 text-white dark:bg-gray-700"
+                              : "hover:bg-primary-50 dark:hover:bg-gray-700",
                           )}
                         >
                           {("0" + item.text).slice(-2)}

@@ -162,14 +162,14 @@ const AutoCompleteBase: React.ForwardRefRenderFunction<
           leaveTo="scale-95 transform opacity-0"
           afterLeave={() => dispatch({ type: "SEARCH", query: "" })}
         >
-          <ComboboxOptions className="absolute z-50 mt-5 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm">
+          <ComboboxOptions className="absolute z-50 mt-5 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm dark:bg-gray-900">
             {state.filterList.map((opt: SelectOption) => (
               <ComboboxOption as={Fragment} key={opt.id} value={opt}>
                 {({ selected, focus }) => (
                   <li
                     className={twMerge(
-                      "relative flex cursor-pointer justify-between px-5 py-4 text-black hover:bg-primary-100",
-                      (selected || focus) && "bg-primary-100",
+                      "relative flex cursor-pointer justify-between px-5 py-4 text-black hover:bg-primary-100 dark:text-white",
+                      (selected || focus) && "bg-primary-100 dark:bg-gray-700",
                       opt.enable === false && "cursor-not-allowed opacity-50",
                     )}
                   >

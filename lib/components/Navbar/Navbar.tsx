@@ -10,7 +10,7 @@ export type NavbarProps = {
 
 const Navbar: React.FC<NavbarProps> = ({ title, menuRef, children }) => {
   return (
-    <header className="sticky top-0 z-10 flex h-[56px] w-full bg-white shadow dark:bg-primary-800  dark:text-white">
+    <header className="sticky top-0 z-10 flex h-[56px] w-full bg-white shadow dark:bg-gray-900 dark:text-white">
       <div className="relative flex h-full w-full flex-auto items-center justify-between">
         <div className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 transform lg:block">
           {children}
