@@ -33,7 +33,7 @@ export type ModalProps = {
 };
 
 const Modal: React.ForwardRefRenderFunction<ModalHandler, ModalProps> = (
-  { open = true, title, buttons, children, className, size = "md" },
+  { open = false, title, buttons, children, className, size = "md" },
   innerRef,
 ) => {
   const [isOpen, setIsOpen] = React.useState(open);

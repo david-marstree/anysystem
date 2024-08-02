@@ -67,7 +67,7 @@ function App() {
               name="birthday"
               value={new Date().getTime() / 1000}
               showTime
-              onChange={(e) => console.log(e)}
+              onChange={() => null}
             />
           </Label>
           <Label label="Phone number">
@@ -148,7 +148,6 @@ function App() {
           <Modal
             ref={modalRef}
             title="Modal Title"
-            open={false}
             buttons={[
               {
                 variant: "primary",
