@@ -18,7 +18,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, menuRef, children }) => {
 
         {/*desktop sidemenu toggle*/}
         <button
-          className="hidden w-[320px] items-center h-full justify-start gap-4 px-7 py-2 hover:bg-primary-100 dark:hover:bg-primary-700 lg:flex"
+          className="hidden w-[320px] items-center h-full justify-start gap-4 px-7 py-2 hover:bg-primary-100 dark:hover:bg-gray-700 lg:flex"
           onClick={() => menuRef?.current?.toggleMenu()}
         >
           <Icon name="AiOutlineMenu" />
@@ -28,7 +28,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, menuRef, children }) => {
         {/*desktop sidemenu toggle*/}
         {/*mobile sidemenu toggle*/}
         <button
-          className="flex items-center justify-start gap-4 px-4 py-2 hover:bg-primary-100 dark:hover:bg-primary-700 lg:hidden"
+          className="flex items-center justify-start gap-4 px-4 py-2 hover:bg-primary-100 dark:hover:bg-gray-700 lg:hidden"
           onClick={() => menuRef?.current?.toggleSmMenu()}
         >
           <Icon name="AiOutlineMenu" />

@@ -8,7 +8,9 @@
     @apply w-screen h-screen;
     @apply dark:bg-gray-950 dark:text-white;
   }
-  input,
+  input:not([type="checkbox"]):not([type="radio"]) {
+    @apply dark:bg-gray-950 dark:text-white;
+  }
   textarea {
     @apply dark:bg-gray-950 dark:text-white;
   }
@@ -106,7 +108,7 @@
     thead {
       tr {
         th {
-          @apply border border-t-gray-100 border-b-black border-x-0 font-semibold px-4 py-2;
+          @apply border border-t-gray-100 border-b-black border-x-0 font-semibold px-4 py-2 dark:bg-gray-800;
         }
       }
     }
@@ -118,7 +120,7 @@
 
         &:hover {
           td {
-            @apply bg-primary-50;
+            @apply bg-primary-50 dark:bg-gray-800;
           }
         }
       }
