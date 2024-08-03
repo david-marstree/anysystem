@@ -24,10 +24,8 @@ export const useLocalStorage = (
       remove();
       return;
     }
-    window.localStorage.setItem(
-      key,
-      JSON.stringify({ ...totalValue, [name]: value }),
-    );
+    const json = JSON.stringify({ ...totalValue, [name]: value });
+    window.localStorage.setItem(key, json);
   };
 
   const value = React.useMemo(() => {

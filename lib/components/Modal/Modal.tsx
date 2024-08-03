@@ -38,11 +38,10 @@ const Modal: React.ForwardRefRenderFunction<ModalHandler, ModalProps> = (
 ) => {
   const [isOpen, setIsOpen] = React.useState(open);
 
-  const show = () => setIsOpen(true);
   const hide = () => setIsOpen(false);
 
   React.useImperativeHandle(innerRef, () => ({
-    show,
+    show: () => setIsOpen(true),
     hide,
   }));
 

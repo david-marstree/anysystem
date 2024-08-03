@@ -2,17 +2,18 @@ import React from "react";
 import { SideMenuLayout, Navbar, NavList } from "../../lib/";
 import type { SideMenuHandler } from "../../lib/";
 
-export type ErpLayoutProps = {
+export type SubLayoutProps = {
   title?: string;
   children: React.ReactNode;
 };
 
-const ErpLayout: React.FC<ErpLayoutProps> = ({ title, children }) => {
+const SubLayout: React.FC<SubLayoutProps> = ({ title, children }) => {
   const menuRef = React.useRef<SideMenuHandler>(null);
   return (
     <SideMenuLayout
       ref={menuRef}
       header={<Navbar title={title} menuRef={menuRef} />}
+      menuType="fixed"
       menu={
         <NavList
           list={[
@@ -27,4 +28,4 @@ const ErpLayout: React.FC<ErpLayoutProps> = ({ title, children }) => {
   );
 };
 
-export default ErpLayout;
+export default SubLayout;
