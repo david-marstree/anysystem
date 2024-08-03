@@ -1,8 +1,8 @@
 import React from "react";
 import _ from "lodash";
-import { DataTableContext } from "./DataTable";
-import { CheckboxBase } from "../Checkbox";
-import DataCell from "./DataCell";
+import { DataTableContext } from "../contexts/DataTableContext";
+import { CheckboxBase } from "../../Checkbox";
+import DataTableCell from "./DataTableCell";
 
 export type DataRowProps = {
   children?: React.ReactNode;
@@ -10,7 +10,7 @@ export type DataRowProps = {
   index: number;
 };
 
-const DataRow: React.FC<DataRowProps> = ({ row, children, index }) => {
+const DataTableRow: React.FC<DataRowProps> = ({ row, children, index }) => {
   const { selectable, fields, state, dispatch } =
     React.useContext(DataTableContext);
 
@@ -19,7 +19,7 @@ const DataRow: React.FC<DataRowProps> = ({ row, children, index }) => {
       {selectable && (
         <td className="w-[50px]">
           <CheckboxBase
-            checked={Boolean(state.checked[index])}
+            checked={Boolean(state.DTChecked[index])}
             onChange={() => dispatch({ type: "SELECT_ROW", index })}
           />
         </td>
@@ -29,12 +29,14 @@ const DataRow: React.FC<DataRowProps> = ({ row, children, index }) => {
       ) : !_.isPlainObject(row) ? (
         <></>
       ) : (
-        fields.map((field, i) => (
-          <DataCell key={i} data={row} field={field.value} />
-        ))
+        fields
+          .filter((field) => state.DTShowFields.includes(field.key))
+          .map((field, i) => (
+            <DataTableCell key={i} data={row} field={field.value} />
+          ))
       )}
     </tr>
   );
 };
 
-export default DataRow;
+export default DataTableRow;

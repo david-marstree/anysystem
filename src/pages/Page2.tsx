@@ -5,10 +5,11 @@ import { DataTable } from "../../lib";
 const Page2: React.FC = () => {
   return (
     <ErpLayout>
-      <div className="p-4">
+      <div className="h-full w-full px-4 py-8 md:px-7">
         <h1>Page 2</h1>
         <DataTable
           selectable
+          chooseFieldable
           data={[
             {
               id: "1",
@@ -33,6 +34,7 @@ const Page2: React.FC = () => {
               label: "Name",
               key: "name",
               value: "$.name",
+              default: true,
             },
           ]}
         />

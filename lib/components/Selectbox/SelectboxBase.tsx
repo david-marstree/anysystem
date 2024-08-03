@@ -241,7 +241,7 @@ const SelectboxBase: React.ForwardRefRenderFunction<
                     {state.selected?.id === opt.id ? (
                       <span
                         className={twMerge(
-                          "absolute inset-y-0 left-0 flex items-center pl-3 text-primary/60",
+                          "absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600",
                         )}
                       >
                         <CheckIcon className="h-5 w-5" aria-hidden="true" />
