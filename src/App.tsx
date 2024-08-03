@@ -13,7 +13,7 @@ function App() {
         <Route
           path="/"
           element={
-            <Suspense fallback={null}>
+            <Suspense>
               <HomePage />
             </Suspense>
           }
@@ -21,7 +21,7 @@ function App() {
         <Route
           path="/about"
           element={
-            <Suspense fallback={null}>
+            <Suspense>
               <Page2 />
             </Suspense>
           }
