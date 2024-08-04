@@ -79,7 +79,7 @@ const SideMenu: React.ForwardRefRenderFunction<
 
   return (
     <>
-      <div className="fixed top-0 z-50 w-full left-0 right-0">{header}</div>
+      <div className="fixed top-0 w-full left-0 right-0 z-10">{header}</div>
       <div
         className={twMerge(
           "flex min-h-full w-full min-w-min flex-col pt-[56px]",
@@ -96,7 +96,7 @@ const SideMenu: React.ForwardRefRenderFunction<
           leaveFrom="translate-y-0"
           leaveTo="-translate-y-full"
         >
-          <div className="absolute bottom-0 top-14 z-50 flex w-full bg-white shadow dark:bg-gray-900 lg:hidden">
+          <div className="absolute bottom-0 top-14 z-10 flex w-full bg-white shadow dark:bg-gray-900 lg:hidden">
             {menu}
           </div>
         </Transition>
@@ -105,7 +105,8 @@ const SideMenu: React.ForwardRefRenderFunction<
         <div className="flex w-full flex-auto">
           <div
             className={twMerge(
-              "hidden w-[320px] shadow dark:shadow-gray-800 dark:bg-gray-900 lg:flex fixed top-0 pt-[56px] left-0 z-40 bottom-0 transform transition duration-300",
+              "hidden w-[320px] shadow bg-white dark:shadow-gray-800 dark:bg-gray-900 lg:flex fixed top-[56px] left-0 bottom-0 transform transition duration-300",
+              menuType === "fixed" && "z-50",
               state.showLgMenu === true ? "translate-x-0" : "-translate-x-full",
             )}
           >
