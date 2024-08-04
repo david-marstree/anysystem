@@ -15,21 +15,32 @@
     "build": "tsc -p ./tsconfig-build.json && bunx --bun vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "bunx --bun vite preview",
-    "deploy": "npm login && npm publish"
+    "deploy": "npm login && npm publish",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "peerDependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "tailwind-merge": "^2.2.0",
-    "formik": "^2.4.6",
-    "react-router-dom": "^6.24.0",
     "@aliakbarazizi/headless-datepicker": "^2.0.2",
     "@floating-ui/react": "^0.26.19",
     "@headlessui/react": "^2.1.2",
+    "formik": "^2.4.6",
     "moment": "^2.30.1",
-    "react-icons": "^5.2.1"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.2.1",
+    "react-router-dom": "^6.24.0",
+    "tailwind-merge": "^2.2.0"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.6.1",
+    "@storybook/addon-essentials": "^8.2.7",
+    "@storybook/addon-interactions": "^8.2.7",
+    "@storybook/addon-links": "^8.2.7",
+    "@storybook/addon-onboarding": "^8.2.7",
+    "@storybook/blocks": "^8.2.7",
+    "@storybook/react": "^8.2.7",
+    "@storybook/react-vite": "^8.2.7",
+    "@storybook/test": "^8.2.7",
     "@types/lodash": "^4.17.6",
     "@types/react": "^18.2.43",
     "@types/react-dom": "^18.2.17",
@@ -40,6 +51,7 @@
     "eslint": "^8.55.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "eslint-plugin-storybook": "^0.8.0",
     "glob": "^10.3.15",
     "less": "^4.2.0",
     "node": "^20.13.1",
@@ -49,11 +61,11 @@
     "postcss-nesting": "^12.1.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "storybook": "^8.2.7",
     "tailwindcss": "^3.4.4",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vite-plugin-dts": "^3.9.1",
     "vite-plugin-lib-inject-css": "^2.1.1"
-  },
-  "dependencies": {}
+  }
 }

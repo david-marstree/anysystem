@@ -26,3 +26,5 @@ yarn.lock
 pnpm-lock.yaml
 lerna.json
 dist
+
+*storybook.log
