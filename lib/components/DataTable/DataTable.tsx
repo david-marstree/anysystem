@@ -2,7 +2,10 @@ import React from "react";
 import _ from "lodash";
 import type { State, Action, DataTableField } from "./libs/type";
 //contexts
-import { DataTableProvider } from "./contexts/DataTableContext";
+import {
+  DataTableProvider,
+  DataTableContextType,
+} from "./contexts/DataTableContext";
 //components
 import DataTableHead from "./components/DataTableHead";
 import DataTableBody from "./components/DataTableBody";
@@ -10,7 +13,10 @@ import FieldSelectbox from "./components/FieldSelectbox";
 //hooks
 import { useLocalStorage } from "../../hooks/useLocalStorage";
 
-const reducer = (state: State, action: Action): State => {
+const reducer = <DataType extends object>(
+  state: State<DataType>,
+  action: Action<DataType>,
+): State<DataType> => {
   if (action.type === "SELECT_ALL") {
     return {
       ...state,
@@ -43,20 +49,20 @@ const reducer = (state: State, action: Action): State => {
   return state;
 };
 
-export type DataTableProps = {
-  data: object[];
-  fields: DataTableField[];
+export type DataTableProps<DataType extends object> = {
+  data: DataType[];
+  fields: DataTableField<DataType>[];
   selectable?: boolean;
   chooseFieldable?: boolean;
   name?: string;
 };
-const DataTable: React.FC<DataTableProps> = ({
+const DataTable = <DataType extends object>({
   name = "",
   data,
   fields,
   selectable = false,
   chooseFieldable = false,
-}) => {
+}: DataTableProps<DataType>) => {
   const [showFields, setShowFields] = useLocalStorage(
     `tableName-path-${window.location.pathname.replace(/\//g, "-")}-name-${name}`,
     fields.every((field) => Boolean(field?.default) !== true)
@@ -77,8 +83,16 @@ const DataTable: React.FC<DataTableProps> = ({
   }, [state.DTShowFields]);
 
   return (
-    <DataTableProvider
-      value={{ selectable, fields, chooseFieldable, state, dispatch }}
+    <DataTableProvider<DataType>
+      value={
+        {
+          selectable,
+          fields,
+          chooseFieldable,
+          state,
+          dispatch,
+        } as DataTableContextType<DataType>
+      }
     >
       <div className="relative w-full">
         <table className="table">

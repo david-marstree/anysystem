@@ -13,16 +13,16 @@ import {
 import type { SelectOption, ValueField } from "../Selectbox";
 import { getValue } from "../Selectbox/helper";
 
-type State = {
+type State<ListOption extends SelectOption> = {
   query: string;
-  list: SelectOption[];
-  filterList: SelectOption[];
+  list: ListOption[];
+  filterList: ListOption[];
   value: string;
-  valueField: ValueField;
-  selected: SelectOption | null;
+  valueField: ValueField<ListOption>;
+  selected: ListOption | null;
 };
 
-type Action =
+type Action<ListOption extends SelectOption> =
   | {
       type: "SEARCH";
       query: string;
@@ -33,15 +33,18 @@ type Action =
     }
   | {
       type: "SETSELECT";
-      selected: SelectOption;
+      selected: ListOption;
     };
 
-const reducer = (state: State, action: Action): State => {
+const reducer = <ListOption extends SelectOption>(
+  state: State<ListOption>,
+  action: Action<ListOption>,
+): State<ListOption> => {
   if (action.type === "SEARCH") {
     return {
       ...state,
       query: action.query,
-      filterList: state.list.filter((opt: SelectOption) => {
+      filterList: state.list.filter((opt: ListOption) => {
         return opt.label.toLowerCase().includes(action.query.toLowerCase());
       }),
     };
@@ -51,8 +54,8 @@ const reducer = (state: State, action: Action): State => {
       ...state,
       value: action.value,
       selected:
-        state.list.find((opt: SelectOption) => {
-          const v = getValue(opt, state.valueField);
+        state.list.find((opt: ListOption) => {
+          const v = getValue<ListOption>(opt, state.valueField);
           return v === action.value;
         }) || null,
     };
@@ -61,7 +64,7 @@ const reducer = (state: State, action: Action): State => {
     return {
       ...state,
       selected: action.selected,
-      value: getValue(action.selected, state.valueField) + "",
+      value: getValue<ListOption>(action.selected, state.valueField) + "",
     };
   }
 
@@ -73,22 +76,19 @@ export type AutoCompleteBaseHandler = {
   setValue: (value: string) => void;
 };
 
-export type AutoCompleteBaseProps = {
+export type AutoCompleteBaseProps<ListOption extends SelectOption> = {
   id?: string;
-  options: SelectOption[];
+  options: ListOption[];
   name: string;
   value?: string | number;
   readOnly?: boolean;
   className?: string;
   placeholder?: string;
   onChange?: (value: string | number) => void;
-  valueField?: ValueField;
+  valueField?: ValueField<ListOption>;
 };
 
-const AutoCompleteBase: React.ForwardRefRenderFunction<
-  AutoCompleteBaseHandler,
-  AutoCompleteBaseProps
-> = (
+const AutoCompleteBase = <ListOption extends SelectOption>(
   {
     id,
     name,
@@ -97,21 +97,21 @@ const AutoCompleteBase: React.ForwardRefRenderFunction<
     valueField = "value",
     onChange,
     placeholder,
-  },
-  innerRef,
+  }: AutoCompleteBaseProps<ListOption>,
+  innerRef: React.Ref<AutoCompleteBaseHandler>,
 ) => {
-  const [state, dispatch] = React.useReducer(reducer, {
+  const [state, dispatch] = React.useReducer(reducer<ListOption>, {
     list: options,
     query: "",
     filterList: options,
     value: value,
     valueField,
     selected:
-      (options.find((opt: SelectOption) => {
-        const v = getValue(opt, valueField);
+      (options.find((opt: ListOption) => {
+        const v = getValue<ListOption>(opt, valueField);
         return value ? v === value : false;
-      }) as SelectOption) || null,
-  } as State);
+      }) as ListOption) || null,
+  } as State<ListOption>);
 
   React.useImperativeHandle(innerRef, () => ({
     search: (query: string) => dispatch({ type: "SEARCH", query }),
@@ -124,9 +124,10 @@ const AutoCompleteBase: React.ForwardRefRenderFunction<
       onChange={(option) => {
         dispatch({
           type: "SETSELECT",
-          selected: option as SelectOption,
+          selected: option as ListOption,
         });
-        onChange && onChange(option ? getValue(option, valueField) : "");
+        onChange &&
+          onChange(option ? getValue<ListOption>(option, valueField) : "");
       }}
     >
       <div className="relative">
@@ -162,8 +163,8 @@ const AutoCompleteBase: React.ForwardRefRenderFunction<
           leaveTo="scale-95 transform opacity-0"
           afterLeave={() => dispatch({ type: "SEARCH", query: "" })}
         >
-          <ComboboxOptions className="absolute z-50 mt-5 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none sm:text-sm dark:bg-gray-900">
-            {state.filterList.map((opt: SelectOption) => (
+          <ComboboxOptions className="absolute z-50 mt-5 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-gray-900 sm:text-sm">
+            {state.filterList.map((opt: ListOption) => (
               <ComboboxOption as={Fragment} key={opt.id} value={opt}>
                 {({ selected, focus }) => (
                   <li
@@ -194,4 +195,10 @@ const AutoCompleteBase: React.ForwardRefRenderFunction<
   );
 };
 
-export default React.forwardRef(AutoCompleteBase);
+export default React.forwardRef(AutoCompleteBase) as <
+  ListOption extends SelectOption,
+>(
+  props: AutoCompleteBaseProps<ListOption> & {
+    ref?: React.Ref<AutoCompleteBaseHandler>;
+  },
+) => React.ReactElement;

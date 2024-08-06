@@ -39,25 +39,30 @@ const reducer = (state: State, action: Action): State => {
   return state;
 };
 
-export type InputTelProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  type: "tel";
-  name: string;
-  className?: {
-    container?: string;
-    input?: string;
+export type InputTelProps<ListOption extends SelectOption> =
+  React.InputHTMLAttributes<HTMLInputElement> & {
+    type: "tel";
+    name: string;
+    className?: {
+      container?: string;
+      input?: string;
+    };
+    inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+    phonePrefixOptions: ListOption[];
+    phonePrefix?: string;
+    onChange?: (value: string) => void;
   };
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
-  phonePrefixOptions: SelectOption[];
-  phonePrefix?: string;
-  onChange?: (value: string) => void;
-};
 
-const InputTel: React.ForwardRefRenderFunction<
-  HTMLInputElement,
-  InputTelProps
-> = (
-  { className, value, phonePrefix, phonePrefixOptions, onChange, ...props },
-  innerRef,
+const InputTel = <ListOption extends SelectOption>(
+  {
+    className,
+    value,
+    phonePrefix,
+    phonePrefixOptions,
+    onChange,
+    ...props
+  }: InputTelProps<ListOption>,
+  innerRef: React.Ref<HTMLInputElement>,
 ) => {
   const telClassName = React.useMemo(() => {
     let c = className || { container: undefined, input: undefined };
@@ -90,7 +95,7 @@ const InputTel: React.ForwardRefRenderFunction<
   return (
     <div className="flex">
       <div className="btn-phone-prefix w-1/2">
-        <AutoComplete
+        <AutoComplete<ListOption>
           options={phonePrefixOptions}
           name={`phonePrefix-${props.name}`}
           valueField="value"

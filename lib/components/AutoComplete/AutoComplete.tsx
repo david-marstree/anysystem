@@ -1,5 +1,6 @@
 import React from "react";
 import AutoCompleteBase from "./AutoCompleteBase";
+import type { SelectOption } from "../Selectbox";
 import type {
   AutoCompleteBaseHandler,
   AutoCompleteBaseProps,
@@ -17,32 +18,38 @@ export { default as AutoCompleteMultiple } from "./AutoCompleteMultiple";
 export type AutoCompleteHandler =
   | AutoCompleteBaseHandler
   | AutoCompleteMultipleHandler;
-export type AutoCompleteProps = (
-  | AutoCompleteBaseProps
-  | AutoCompleteMultipleProps
+export type AutoCompleteProps<ListOption extends SelectOption> = (
+  | AutoCompleteBaseProps<ListOption>
+  | AutoCompleteMultipleProps<ListOption>
 ) & {
   multiple?: boolean;
 };
 
-const AutoComplete: React.ForwardRefRenderFunction<
-  AutoCompleteHandler,
-  AutoCompleteProps
-> = ({ multiple, ...props }, innerRef) => {
+const AutoComplete = <ListOption extends SelectOption>(
+  { multiple, ...props }: AutoCompleteProps<ListOption>,
+  innerRef: React.Ref<AutoCompleteHandler>,
+) => {
   return (
     <>
       {multiple === true ? (
-        <AutoCompleteMultiple
+        <AutoCompleteMultiple<ListOption>
           ref={innerRef as React.Ref<AutoCompleteMultipleHandler>}
-          {...(props as AutoCompleteMultipleProps)}
+          {...(props as AutoCompleteMultipleProps<ListOption>)}
         />
       ) : (
-        <AutoCompleteBase
+        <AutoCompleteBase<ListOption>
           ref={innerRef as React.Ref<AutoCompleteBaseHandler>}
-          {...(props as AutoCompleteBaseProps)}
+          {...(props as AutoCompleteBaseProps<ListOption>)}
         />
       )}
     </>
   );
 };
 
-export default React.forwardRef(AutoComplete);
+export default React.forwardRef(AutoComplete) as <
+  ListOption extends SelectOption,
+>(
+  props: AutoCompleteProps<ListOption> & {
+    ref?: React.Ref<AutoCompleteHandler>;
+  },
+) => React.ReactElement;

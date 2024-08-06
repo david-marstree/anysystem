@@ -1,14 +1,16 @@
 export type ValueKey = `$${string}`;
 
-export type ValueNode = (row: object) => React.ReactNode | string;
+export type ValueNode<DataType extends object> = (
+  row: DataType,
+) => React.ReactNode | string;
 
-export type State = {
-  DTData: object[];
+export type State<DataType extends object> = {
+  DTData: DataType[];
   DTChecked: boolean[];
   DTShowFields: string[];
 };
 
-export type Action =
+export type Action<DataType extends object> =
   | {
       type: "SELECT_ALL";
     }
@@ -22,12 +24,12 @@ export type Action =
     }
   | {
       type: "SET_FIELD";
-      fields: DataTableField[];
+      fields: DataTableField<DataType>[];
     };
 
-export type DataTableField = {
+export type DataTableField<DataType extends object> = {
   key: string;
   label: string;
-  value: ValueKey | ValueNode | string;
+  value: ValueKey | ValueNode<DataType> | string;
   default?: boolean;
 };

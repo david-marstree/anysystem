@@ -3,17 +3,17 @@ import _ from "lodash";
 import { getValueByKey } from "../libs/helper";
 import { ValueKey, ValueNode } from "../libs/type";
 
-export type DataTableCellProps = {
+export type DataTableCellProps<DataType extends object> = {
   children?: React.ReactNode;
-  data?: object;
-  field?: string | ValueNode | ValueKey;
+  data?: DataType;
+  field?: string | ValueNode<DataType> | ValueKey;
 };
 
-const DataTableCell: React.FC<DataTableCellProps> = ({
+const DataTableCell = <T extends object>({
   children,
   data,
   field,
-}) => {
+}: DataTableCellProps<T>): React.ReactElement => {
   if (children) {
     return <td>{children}</td>;
   }

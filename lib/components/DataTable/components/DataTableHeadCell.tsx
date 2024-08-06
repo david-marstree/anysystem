@@ -1,11 +1,13 @@
 import React from "react";
 import type { DataTableField } from "../libs/type";
 
-export type DataTableHeadCellProps = {
-  field: DataTableField;
+export type DataTableHeadCellProps<DataType extends object> = {
+  field: DataTableField<DataType>;
 };
 
-const DataTableHeadCell: React.FC<DataTableHeadCellProps> = ({ field }) => {
+const DataTableHeadCell = <DataType extends object>({
+  field,
+}: DataTableHeadCellProps<DataType>): React.ReactElement => {
   return <th>{field.label}</th>;
 };
 

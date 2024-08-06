@@ -15,16 +15,16 @@ import {
 import type { SelectOption, ValueField } from "../Selectbox";
 import { getValue } from "../Selectbox/helper";
 
-type State = {
-  list: SelectOption[];
+type State<ListOption extends SelectOption> = {
+  list: ListOption[];
   query: string;
-  filterList: SelectOption[];
+  filterList: ListOption[];
   value: string[];
-  valueField: ValueField;
-  selected: SelectOption[];
+  valueField: ValueField<ListOption>;
+  selected: ListOption[];
 };
 
-type Action =
+type Action<ListOption extends SelectOption> =
   | {
       type: "SEARCH";
       query: string;
@@ -35,19 +35,22 @@ type Action =
     }
   | {
       type: "SETSELECT";
-      selected: SelectOption[];
+      selected: ListOption[];
     }
   | {
       type: "REMOVESELECT";
-      selected: SelectOption;
+      selected: ListOption;
     };
 
-const reducer = (state: State, action: Action): State => {
+const reducer = <ListOption extends SelectOption>(
+  state: State<ListOption>,
+  action: Action<ListOption>,
+): State<ListOption> => {
   if (action.type === "SEARCH") {
     return {
       ...state,
       query: action.query,
-      filterList: state.list.filter((opt: SelectOption) => {
+      filterList: state.list.filter((opt: ListOption) => {
         return opt.label.toLowerCase().includes(action.query.toLowerCase());
       }),
     };
@@ -57,8 +60,8 @@ const reducer = (state: State, action: Action): State => {
       ...state,
       value: action.value,
       selected:
-        state.list.filter((opt: SelectOption) => {
-          const v = getValue(opt, state.valueField);
+        state.list.filter((opt: ListOption) => {
+          const v = getValue<ListOption>(opt, state.valueField);
           return action.value.includes(v);
         }) || [],
       query: "",
@@ -68,14 +71,14 @@ const reducer = (state: State, action: Action): State => {
     return {
       ...state,
       selected: action.selected,
-      value: action.selected.map((opt: SelectOption) => {
-        return getValue(opt, state.valueField);
+      value: action.selected.map((opt: ListOption) => {
+        return getValue<ListOption>(opt, state.valueField);
       }),
       query: "",
     };
   }
   if (action.type === "REMOVESELECT") {
-    const v = getValue(action.selected, state.valueField);
+    const v = getValue<ListOption>(action.selected, state.valueField);
     const value = state.value.filter((val: string) => {
       return val !== v;
     });
@@ -83,8 +86,8 @@ const reducer = (state: State, action: Action): State => {
       ...state,
       value,
       selected: state.selected
-        ? state.selected.filter((opt: SelectOption) => {
-            return getValue(opt, state.valueField) !== v;
+        ? state.selected.filter((opt: ListOption) => {
+            return getValue<ListOption>(opt, state.valueField) !== v;
           })
         : [],
     };
@@ -98,22 +101,19 @@ export type AutoCompleteMultipleHandler = {
   setValue: (value: string[]) => void;
 };
 
-export type AutoCompleteMultipleProps = {
+export type AutoCompleteMultipleProps<ListOption extends SelectOption> = {
   id?: string;
-  options: SelectOption[];
+  options: ListOption[];
   name: string;
   value?: string[] | number[];
   readOnly?: boolean;
   className?: string;
   placeholder?: string;
   onChange?: (value: string[] | number[]) => void;
-  valueField?: ValueField;
+  valueField?: ValueField<ListOption>;
 };
 
-const AutoCompleteMultiple: React.ForwardRefRenderFunction<
-  AutoCompleteMultipleHandler,
-  AutoCompleteMultipleProps
-> = (
+const AutoCompleteMultiple = <ListOption extends SelectOption>(
   {
     id,
     name,
@@ -122,21 +122,21 @@ const AutoCompleteMultiple: React.ForwardRefRenderFunction<
     valueField = "value",
     onChange,
     placeholder,
-  },
-  innerRef,
+  }: AutoCompleteMultipleProps<ListOption>,
+  innerRef: React.Ref<AutoCompleteMultipleHandler>,
 ) => {
-  const [state, dispatch] = React.useReducer(reducer, {
+  const [state, dispatch] = React.useReducer(reducer<ListOption>, {
     query: "",
     list: options,
     filterList: options,
     value: value || [],
     valueField,
     selected:
-      options.filter((opt: SelectOption) => {
-        const v = getValue(opt, valueField);
+      options.filter((opt: ListOption) => {
+        const v = getValue<ListOption>(opt, valueField);
         return _.some(value, (val: string | number) => val + "" === v + "");
       }) || [],
-  } as State);
+  } as State<ListOption>);
 
   React.useImperativeHandle(innerRef, () => ({
     search: (query: string) => {
@@ -153,11 +153,11 @@ const AutoCompleteMultiple: React.ForwardRefRenderFunction<
       onChange={(option) => {
         dispatch({
           type: "SETSELECT",
-          selected: option as SelectOption[],
+          selected: option as ListOption[],
         });
         const valueArray =
-          option?.map((opt: SelectOption) => {
-            return getValue(opt, valueField);
+          option?.map((opt: ListOption) => {
+            return getValue<ListOption>(opt, valueField);
           }) || [];
         onChange && onChange(valueArray);
       }}
@@ -166,7 +166,7 @@ const AutoCompleteMultiple: React.ForwardRefRenderFunction<
       <div className="relative flex gap-1">
         {state.selected.length > 0 && (
           <ul className="form-control flex gap-1">
-            {state.selected?.map((opt: SelectOption, index: number) => (
+            {state.selected?.map((opt: ListOption, index: number) => (
               <li key={index}>
                 <div className="flex rounded bg-indigo-50 p-1">
                   <span className="whitespace-nowrap text-xs">{opt.label}</span>
@@ -227,7 +227,7 @@ const AutoCompleteMultiple: React.ForwardRefRenderFunction<
           afterLeave={() => dispatch({ type: "SEARCH", query: "" })}
         >
           <ComboboxOptions className="absolute mt-10 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-gray-900 sm:text-sm">
-            {state.filterList.map((opt: SelectOption) => (
+            {state.filterList.map((opt: ListOption) => (
               <ComboboxOption as={Fragment} key={opt.id} value={opt}>
                 {({ selected, focus }) => (
                   <li
@@ -258,4 +258,10 @@ const AutoCompleteMultiple: React.ForwardRefRenderFunction<
   );
 };
 
-export default React.forwardRef(AutoCompleteMultiple);
+export default React.forwardRef(AutoCompleteMultiple) as <
+  ListOption extends SelectOption,
+>(
+  props: AutoCompleteMultipleProps<ListOption> & {
+    ref?: React.Ref<AutoCompleteMultipleHandler>;
+  },
+) => React.ReactElement;

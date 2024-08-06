@@ -23,7 +23,7 @@ import {
 import { DataTableContext } from "../contexts/DataTableContext";
 import type { DataTableField } from "../libs/type";
 
-const FieldSelectbox: React.FC = () => {
+const FieldSelectbox = <DataType extends object>() => {
   const { fields, state, dispatch } = React.useContext(DataTableContext);
   //useFloating
   const { refs, x, y, strategy, floatingStyles, context } = useFloating({
@@ -52,7 +52,7 @@ const FieldSelectbox: React.FC = () => {
       as="div"
       value={fields.filter((f) => state.DTShowFields.includes(f.key))}
       multiple
-      onChange={(opt: DataTableField[]) => {
+      onChange={(opt: DataTableField<DataType>[]) => {
         const keys = opt.map((o) => o.key);
         dispatch({
           type: "SET_FIELD",
@@ -95,7 +95,7 @@ const FieldSelectbox: React.FC = () => {
           })}
         >
           <div className="flex flex-col px-1 py-1">
-            {fields.map((opt: DataTableField) => (
+            {fields.map((opt: DataTableField<DataType>) => (
               <ListboxOption
                 key={opt.key}
                 className={twMerge(
