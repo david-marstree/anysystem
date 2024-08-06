@@ -10,11 +10,11 @@ export type DataRowProps<DataType extends object> = {
   index: number;
 };
 
-const DataTableRow = <T extends object>({
+const DataTableRow = <DataType extends object>({
   row,
   children,
   index,
-}: DataRowProps<T>): React.ReactElement => {
+}: DataRowProps<DataType>): React.ReactElement => {
   const { selectable, fields, state, dispatch } =
     React.useContext(DataTableContext);
 
@@ -36,7 +36,7 @@ const DataTableRow = <T extends object>({
         fields
           .filter((field) => state.DTShowFields.includes(field.key))
           .map((field, i) => (
-            <DataTableCell key={i} data={row} field={field.value} />
+            <DataTableCell<DataType> key={i} data={row} field={field.value} />
           ))
       )}
     </tr>

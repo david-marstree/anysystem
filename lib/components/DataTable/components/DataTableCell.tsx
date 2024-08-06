@@ -9,11 +9,11 @@ export type DataTableCellProps<DataType extends object> = {
   field?: string | ValueNode<DataType> | ValueKey;
 };
 
-const DataTableCell = <T extends object>({
+const DataTableCell = <DataType extends object>({
   children,
   data,
   field,
-}: DataTableCellProps<T>): React.ReactElement => {
+}: DataTableCellProps<DataType>): React.ReactElement => {
   if (children) {
     return <td>{children}</td>;
   }
