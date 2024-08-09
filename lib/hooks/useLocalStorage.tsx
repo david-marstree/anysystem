@@ -1,9 +1,9 @@
 import React from "react";
 import { AppContext } from "../contexts/AppContext";
 
-export const useLocalStorage = (
+export const useLocalStorage = <ValueType extends unknown>(
   name: string,
-  defaultValue?: boolean | string | number | object | null,
+  defaultValue?: ValueType,
 ) => {
   const { appName } = React.useContext(AppContext);
 
@@ -19,7 +19,7 @@ export const useLocalStorage = (
     return JSON.parse(value);
   }, [key, localStorage]);
 
-  const set = (value: object | null | string | number | boolean) => {
+  const set = <ValueType extends unknown>(value: ValueType) => {
     if (value === null) {
       remove();
       return;
@@ -39,23 +39,16 @@ export const useLocalStorage = (
     return totalValue[name];
   }, [totalValue, name, defaultValue]);
 
-  const remove = React.useCallback(() => {
+  const remove = React.useCallback(<ValueType extends unknown>() => {
     window.localStorage.setItem(
       key,
       JSON.stringify(
-        totalValue.reduce(
-          (
-            acc: object,
-            v: string | object | number | boolean | null,
-            k: string,
-          ) => {
-            if (k === name) {
-              return acc;
-            }
-            return { ...acc, [k]: v };
-          },
-          {},
-        ),
+        totalValue.reduce((acc: object, v: ValueType, k: string) => {
+          if (k === name) {
+            return acc;
+          }
+          return { ...acc, [k]: v };
+        }, {} as object),
       ),
     );
   }, [key]);

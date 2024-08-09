@@ -2,15 +2,15 @@ import React from "react";
 
 import type { DataTableField, State, Action } from "../libs/type";
 
-export type DataTableContextType = {
+export type DataTableContextType<DataType extends object> = {
   selectable: boolean;
   chooseFieldable: boolean;
-  fields: DataTableField[];
-  state: State;
-  dispatch: React.Dispatch<Action>;
+  fields: DataTableField<DataType>[];
+  state: State<DataType>;
+  dispatch: React.Dispatch<Action<DataType>>;
 };
 
-export const DataTableContext = React.createContext<DataTableContextType>({
+export const DataTableContext = React.createContext<DataTableContextType<any>>({
   selectable: false,
   chooseFieldable: false,
   fields: [],
@@ -18,4 +18,18 @@ export const DataTableContext = React.createContext<DataTableContextType>({
   dispatch: () => {},
 });
 
-export const DataTableProvider = DataTableContext.Provider;
+export type DataTableProviderProps<DataType extends object> = {
+  value: DataTableContextType<DataType>;
+  children: React.ReactNode;
+};
+
+export const DataTableProvider = <DataType extends object>({
+  children,
+  value,
+}: DataTableProviderProps<DataType>) => {
+  return (
+    <DataTableContext.Provider value={value}>
+      {children}
+    </DataTableContext.Provider>
+  );
+};

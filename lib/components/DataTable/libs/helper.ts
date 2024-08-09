@@ -11,15 +11,15 @@ type ReduceObject = {
   key: string;
 };
 
-export const getValueByKey = (
-  data: unknown,
-  key: ValueKey | ValueNode | string,
+export const getValueByKey = <DataType extends object>(
+  data: DataType,
+  key: ValueKey | ValueNode<DataType> | string,
 ): unknown => {
   if (!_.isPlainObject(data) && !_.isArray(data)) {
     return data;
   }
   if (typeof key === "function") {
-    return key(data as object);
+    return key(data);
   }
   if (!isValueKey(key)) {
     return key;

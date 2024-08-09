@@ -4,13 +4,17 @@ import { DataTableContext } from "../contexts/DataTableContext";
 import { CheckboxBase } from "../../Checkbox";
 import DataTableCell from "./DataTableCell";
 
-export type DataRowProps = {
+export type DataRowProps<DataType extends object> = {
   children?: React.ReactNode;
-  row?: object;
+  row?: DataType;
   index: number;
 };
 
-const DataTableRow: React.FC<DataRowProps> = ({ row, children, index }) => {
+const DataTableRow = <DataType extends object>({
+  row,
+  children,
+  index,
+}: DataRowProps<DataType>): React.ReactElement => {
   const { selectable, fields, state, dispatch } =
     React.useContext(DataTableContext);
 
@@ -32,7 +36,7 @@ const DataTableRow: React.FC<DataRowProps> = ({ row, children, index }) => {
         fields
           .filter((field) => state.DTShowFields.includes(field.key))
           .map((field, i) => (
-            <DataTableCell key={i} data={row} field={field.value} />
+            <DataTableCell<DataType> key={i} data={row} field={field.value} />
           ))
       )}
     </tr>

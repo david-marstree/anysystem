@@ -8,31 +8,34 @@ import {
 import type { SelectOption, ValueField } from "../Selectbox/SelectboxBase";
 import { getValue } from "../Selectbox/helper";
 
-type State = {
-  list: SelectOption[];
+type State<ListOption extends SelectOption> = {
+  list: ListOption[];
   value: string | number;
-  valueField: ValueField;
-  selected: SelectOption | null;
+  valueField: ValueField<ListOption>;
+  selected: ListOption | null;
 };
 
-type Action =
+type Action<ListOption extends SelectOption> =
   | {
       type: "SETVALUE";
       value: string;
     }
   | {
       type: "SETSELECT";
-      selected: SelectOption;
+      selected: ListOption;
     };
 
-const reducer = (state: State, action: Action): State => {
+const reducer = <ListOption extends SelectOption>(
+  state: State<ListOption>,
+  action: Action<ListOption>,
+): State<ListOption> => {
   if (action.type === "SETVALUE") {
     return {
       ...state,
       value: action.value,
       selected:
-        state.list.find((opt: SelectOption) => {
-          const v = getValue(opt, state.valueField);
+        state.list.find((opt: ListOption) => {
+          const v = getValue<ListOption>(opt, state.valueField);
           return v === action.value;
         }) || null,
     };
@@ -49,45 +52,45 @@ const reducer = (state: State, action: Action): State => {
   return state;
 };
 
-export type RadioGroupProps = {
+export type RadioGroupProps<ListOption extends SelectOption> = {
   id?: string;
   name: string;
-  options: SelectOption[];
+  options: ListOption[];
   value: string;
   readOnly?: boolean;
   className?: string;
   placeholder?: string;
   onChange: (value: string) => void;
-  valueField?: ValueField;
+  valueField?: ValueField<ListOption>;
 };
 
-const RadioGroup: React.FC<RadioGroupProps> = ({
+const RadioGroup = <ListOption extends SelectOption>({
   options,
   value,
   valueField = "value",
   onChange,
-}) => {
-  const [state, dispatch] = React.useReducer(reducer, {
+}: RadioGroupProps<ListOption>) => {
+  const [state, dispatch] = React.useReducer(reducer<ListOption>, {
     list: options,
     value,
     valueField,
     selected:
-      options.find((opt: SelectOption) => {
-        const v = getValue(opt, valueField);
+      options.find((opt: ListOption) => {
+        const v = getValue<ListOption>(opt, valueField);
         return v === value || "";
       }) || null,
-  });
+  } as State<ListOption>);
 
   return (
     <div className="radio-group w-full">
       <HeadlessRadioGroup
         value={state.selected}
-        onChange={(opt: SelectOption) => {
+        onChange={(opt: ListOption) => {
           dispatch({
             type: "SETSELECT",
             selected: opt,
           });
-          onChange && onChange(getValue(opt, state.valueField));
+          onChange && onChange(getValue<ListOption>(opt, state.valueField));
         }}
         className="space-y-2"
       >

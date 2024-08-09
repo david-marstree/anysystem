@@ -24,9 +24,16 @@ import { twMerge } from "tailwind-merge";
 //helpers
 import { getValue } from "./helper";
 
-export type ValueCallback = (option: SelectOption) => string;
+export type ValueCallback<ListOption extends SelectOption> = (
+  option: ListOption,
+) => string;
 
-export type ValueField = ValueCallback | "id" | "value" | "label" | string;
+export type ValueField<ListOption extends SelectOption> =
+  | ValueCallback<ListOption>
+  | "id"
+  | "value"
+  | "label"
+  | string;
 
 export type SelectOption = {
   id: string | number;
@@ -35,31 +42,34 @@ export type SelectOption = {
   enable: boolean;
 };
 
-export type Action =
+export type Action<ListOption extends SelectOption> =
   | {
       type: "SETVALUE";
       value: string;
     }
   | {
       type: "SETSELECT";
-      selected: SelectOption;
+      selected: ListOption;
     };
 
-type State = {
-  list: SelectOption[];
+type State<ListOption extends SelectOption> = {
+  list: ListOption[];
   value: string | number;
-  valueField: ValueField;
-  selected: SelectOption | null;
+  valueField: ValueField<ListOption>;
+  selected: ListOption | null;
 };
 
-const reducer = (state: State, action: Action): State => {
+const reducer = <ListOption extends SelectOption>(
+  state: State<ListOption>,
+  action: Action<ListOption>,
+): State<ListOption> => {
   if (action.type === "SETVALUE") {
     return {
       ...state,
       value: action.value,
       selected:
-        state.list.find((opt: SelectOption) => {
-          const v = getValue(opt, state.valueField);
+        state.list.find((opt: ListOption) => {
+          const v = getValue<ListOption>(opt, state.valueField);
           return v === action.value;
         }) || null,
     };
@@ -69,33 +79,30 @@ const reducer = (state: State, action: Action): State => {
     return {
       ...state,
       selected: action.selected,
-      value: getValue(action.selected, state.valueField) + "",
+      value: getValue<ListOption>(action.selected, state.valueField) + "",
     };
   }
 
   return state;
 };
 
-export type SelectboxBaseProps = {
+export type SelectboxBaseProps<ListOption extends SelectOption> = {
   id?: string;
   name: string;
-  options: SelectOption[];
+  options: ListOption[];
   value: string | number;
   readOnly?: boolean;
   className?: string;
   placeholder?: string;
   onChange: (value: string | number) => void;
-  valueField?: ValueField;
+  valueField?: ValueField<ListOption>;
 };
 
 export type SelectboxBaseHandler = {
   setValue: (value: string | number) => void;
 };
 
-const SelectboxBase: React.ForwardRefRenderFunction<
-  SelectboxBaseHandler,
-  SelectboxBaseProps
-> = (
+const SelectboxBase = <ListOption extends SelectOption>(
   {
     id,
     name,
@@ -104,15 +111,15 @@ const SelectboxBase: React.ForwardRefRenderFunction<
     onChange,
     placeholder = "Select a option",
     valueField = "value",
-  },
-  innerRef,
+  }: SelectboxBaseProps<ListOption>,
+  innerRef: React.Ref<SelectboxBaseHandler>,
 ) => {
-  const [state, dispatch] = React.useReducer(reducer, {
+  const [state, dispatch] = React.useReducer(reducer<ListOption>, {
     list: options,
     value,
     valueField,
     selected:
-      options.find((opt: SelectOption) => {
+      options.find((opt: ListOption) => {
         const v = getValue(opt, valueField);
         return v === value || "";
       }) || null,
@@ -167,10 +174,10 @@ const SelectboxBase: React.ForwardRefRenderFunction<
         }}
       >
         <option value="">{placeholder}</option>
-        {state.list.map((opt: SelectOption) => (
+        {state.list.map((opt: ListOption) => (
           <option
             key={opt.id}
-            value={getValue(opt, valueField)}
+            value={getValue<ListOption>(opt, valueField)}
             disabled={opt.enable === false}
           >
             {opt.label}
@@ -184,10 +191,10 @@ const SelectboxBase: React.ForwardRefRenderFunction<
         as="div"
         value={state.selected}
         onChange={(option) => {
-          const v = getValue(option as SelectOption, valueField);
+          const v = getValue(option as ListOption, valueField);
           dispatch({
             type: "SETSELECT",
-            selected: option as SelectOption,
+            selected: option as ListOption,
           });
           if (onChange) onChange(v);
         }}
@@ -225,7 +232,7 @@ const SelectboxBase: React.ForwardRefRenderFunction<
             })}
           >
             <div className="flex flex-col px-1 py-1">
-              {state.list.map((opt: SelectOption) => (
+              {state.list.map(<T extends SelectOption>(opt: T) => (
                 <ListboxOption
                   key={opt.id}
                   className={twMerge(
@@ -269,4 +276,10 @@ const SelectboxBase: React.ForwardRefRenderFunction<
   );
 };
 
-export default React.forwardRef(SelectboxBase);
+export default React.forwardRef(SelectboxBase) as <
+  ListOption extends SelectOption,
+>(
+  props: SelectboxBaseProps<ListOption> & {
+    ref?: React.Ref<SelectboxBaseHandler>;
+  },
+) => React.ReactElement;
