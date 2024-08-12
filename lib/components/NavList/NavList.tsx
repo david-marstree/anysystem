@@ -37,7 +37,7 @@ const NavList: React.FC<NavListProps> = ({ list }) => {
                   <a
                     href={item?.path}
                     className={twMerge(
-                      "flex w-full items-center justify-start gap-2 rounded p-3 font-semibold hover:bg-primary-50 dark:text-white dark:hover:bg-gray-800",
+                      "flex w-full items-center justify-start gap-2 rounded p-3 font-semibold hover:bg-primary-50 dark:text-white dark:hover:bg-gray-800 cursor-pointer",
                       location.pathname === item.path
                         ? "bg-primary-50 dark:bg-gray-800"
                         : "",
