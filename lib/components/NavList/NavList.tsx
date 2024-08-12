@@ -35,7 +35,7 @@ const NavList: React.FC<NavListProps> = ({ list }) => {
               {!item?.title ? (
                 !item.list ? (
                   <a
-                    href={item.path ? item.path : "javascript:void();"}
+                    href={item?.path}
                     className={twMerge(
                       "flex w-full items-center justify-start gap-2 rounded p-3 font-semibold hover:bg-primary-50 dark:text-white dark:hover:bg-gray-800",
                       location.pathname === item.path
@@ -74,11 +74,7 @@ const NavList: React.FC<NavListProps> = ({ list }) => {
                               {/* 44px */}
                               <DisclosureButton
                                 as="a"
-                                href={
-                                  subItem.path
-                                    ? subItem.path
-                                    : "javascript:void();"
-                                }
+                                href={subItem?.path}
                                 className={twMerge(
                                   "block rounded py-2 pl-9 pr-2 text-gray-700 hover:bg-primary-50 dark:text-white dark:hover:bg-gray-700",
                                   location.pathname === subItem.path &&
