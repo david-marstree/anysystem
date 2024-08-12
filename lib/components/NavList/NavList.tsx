@@ -16,6 +16,7 @@ export type NavItemObject = {
   icon?: string;
   title?: boolean;
   list?: NavItemObject[];
+  onClick?: () => void;
 };
 
 export type NavListProps = {
@@ -34,13 +35,14 @@ const NavList: React.FC<NavListProps> = ({ list }) => {
               {!item?.title ? (
                 !item.list ? (
                   <a
-                    href={item.path}
+                    href={item.path ? item.path : "javascript:void();"}
                     className={twMerge(
                       "flex w-full items-center justify-start gap-2 rounded p-3 font-semibold hover:bg-primary-50 dark:text-white dark:hover:bg-gray-800",
                       location.pathname === item.path
                         ? "bg-primary-50 dark:bg-gray-800"
                         : "",
                     )}
+                    onClick={item?.onClick}
                   >
                     {item.icon && <Icon name={item.icon} size={20} />}
                     <span>{item.label}</span>
@@ -72,12 +74,17 @@ const NavList: React.FC<NavListProps> = ({ list }) => {
                               {/* 44px */}
                               <DisclosureButton
                                 as="a"
-                                href={subItem.path}
+                                href={
+                                  subItem.path
+                                    ? subItem.path
+                                    : "javascript:void();"
+                                }
                                 className={twMerge(
                                   "block rounded py-2 pl-9 pr-2 text-gray-700 hover:bg-primary-50 dark:text-white dark:hover:bg-gray-700",
                                   location.pathname === subItem.path &&
                                     "bg-primary-50 dark:bg-gray-700",
                                 )}
+                                onClick={subItem?.onClick}
                               >
                                 {subItem.label}
                               </DisclosureButton>
