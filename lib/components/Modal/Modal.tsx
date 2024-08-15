@@ -79,7 +79,7 @@ const Modal: React.ForwardRefRenderFunction<ModalHandler, ModalProps> = (
               >
                 <DialogPanel
                   className={twMerge(
-                    "flex w-full max-w-md transform flex-col overflow-hidden rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-gray-800",
+                    "flex w-full max-w-md transform flex-col rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all dark:bg-gray-800",
                     size === "md" && "max-w-md",
                     size === "lg" && "max-w-lg",
                     size === "xl" && "max-w-xl",

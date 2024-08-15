@@ -110,6 +110,7 @@ export type AutoCompleteMultipleProps<ListOption extends SelectOption> = {
   className?: string;
   placeholder?: string;
   onChange?: (value: string[] | number[]) => void;
+  onSearch?: (query: string) => void;
   valueField?: ValueField<ListOption>;
 };
 
@@ -121,6 +122,7 @@ const AutoCompleteMultiple = <ListOption extends SelectOption>(
     options,
     valueField = "value",
     onChange,
+    onSearch,
     placeholder,
   }: AutoCompleteMultipleProps<ListOption>,
   innerRef: React.Ref<AutoCompleteMultipleHandler>,
@@ -185,9 +187,10 @@ const AutoCompleteMultiple = <ListOption extends SelectOption>(
         <ComboboxInput
           placeholder={placeholder}
           value={state.query}
-          onChange={(event) =>
-            dispatch({ type: "SEARCH", query: event.target.value })
-          }
+          onChange={(event) => {
+            dispatch({ type: "SEARCH", query: event.target.value });
+            onSearch && onSearch(event.target.value);
+          }}
           onKeyDown={(e) => {
             if (
               e.key === "Backspace" &&

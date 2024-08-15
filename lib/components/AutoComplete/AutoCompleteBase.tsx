@@ -85,6 +85,7 @@ export type AutoCompleteBaseProps<ListOption extends SelectOption> = {
   className?: string;
   placeholder?: string;
   onChange?: (value: string | number) => void;
+  onSearch?: (query: string) => void;
   valueField?: ValueField<ListOption>;
 };
 
@@ -96,6 +97,7 @@ const AutoCompleteBase = <ListOption extends SelectOption>(
     value = "",
     valueField = "value",
     onChange,
+    onSearch,
     placeholder,
   }: AutoCompleteBaseProps<ListOption>,
   innerRef: React.Ref<AutoCompleteBaseHandler>,
@@ -133,9 +135,10 @@ const AutoCompleteBase = <ListOption extends SelectOption>(
       <div className="relative">
         <ComboboxInput
           placeholder={placeholder}
-          onChange={(event) =>
-            dispatch({ type: "SEARCH", query: event.target.value })
-          }
+          onChange={(event) => {
+            dispatch({ type: "SEARCH", query: event.target.value });
+            onSearch && onSearch(event.target.value);
+          }}
           autoComplete="off"
           displayValue={(opt: SelectOption | null) => opt?.label || ""}
         />
