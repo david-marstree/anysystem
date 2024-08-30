@@ -30,7 +30,7 @@ const FieldSelectbox = <DataType extends object>() => {
     open: true,
     middleware: [offset(10), flip(), shift()],
     whileElementsMounted: autoUpdate,
-    placement: "bottom-end",
+    // placement: "bottom-end",
   });
 
   const hover = useHover(context, { move: false });
@@ -48,8 +48,8 @@ const FieldSelectbox = <DataType extends object>() => {
 
   return (
     <Listbox
-      className="absolute right-2 top-2"
       as="div"
+      className="absolute top-2 right-2"
       value={fields.filter((f) => state.DTShowFields.includes(f.key))}
       multiple
       onChange={(opt: DataTableField<DataType>[]) => {
@@ -67,9 +67,9 @@ const FieldSelectbox = <DataType extends object>() => {
       ref={refs.setReference}
       {...getReferenceProps()}
     >
-      <ListboxButton className="relative z-10 inline-flex justify-between !p-0 focus:outline-none">
+      <ListboxButton className="inline-flex justify-between !p-0 focus:outline-none">
         <AiFillPlusCircle
-          className="h-5 w-5 text-gray-400"
+          className="w-5 h-5 text-gray-400 cursor-pointer"
           aria-hidden="true"
         />
       </ListboxButton>
@@ -83,7 +83,8 @@ const FieldSelectbox = <DataType extends object>() => {
         leaveTo="scale-95 transform opacity-0"
       >
         <ListboxOptions
-          className="absolute !z-[999] mt-2 inline-block w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          anchor="bottom"
+          className="z-[999] mt-2 inline-block w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
           ref={refs.setFloating}
           style={floatingStyles}
           {...getFloatingProps({
@@ -99,22 +100,20 @@ const FieldSelectbox = <DataType extends object>() => {
               <ListboxOption
                 key={opt.key}
                 className={twMerge(
-                  "relative flex cursor-pointer select-none justify-between px-3 py-2 text-black hover:bg-primary-100",
+                  "relative flex justify-between px-3 py-2 text-black cursor-pointer select-none hover:bg-primary-100"
                 )}
                 value={opt}
               >
                 <>
                   <span className="pl-6">{opt.label}</span>
-                  {state.DTShowFields?.includes(opt.key) ? (
+                  {state.DTShowFields?.includes(opt.key) && (
                     <span
                       className={twMerge(
-                        "absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600",
+                        "absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600"
                       )}
                     >
-                      <CheckIcon className="h-4 w-5" aria-hidden="true" />
+                      <CheckIcon className="w-5 h-4" aria-hidden="true" />
                     </span>
-                  ) : (
-                    <></>
                   )}
                 </>
               </ListboxOption>

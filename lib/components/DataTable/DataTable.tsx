@@ -15,7 +15,7 @@ import { useLocalStorage } from "../../hooks/useLocalStorage";
 
 const reducer = <DataType extends object>(
   state: State<DataType>,
-  action: Action<DataType>,
+  action: Action<DataType>
 ): State<DataType> => {
   if (action.type === "SELECT_ALL") {
     return {
@@ -69,7 +69,7 @@ const DataTable = <DataType extends object>({
       ? fields.map((field) => field.key)
       : fields
           .filter((field) => field.default === true)
-          .map((field) => field.key),
+          .map((field) => field.key)
   );
 
   const [state, dispatch] = React.useReducer(reducer, {
@@ -95,11 +95,11 @@ const DataTable = <DataType extends object>({
       }
     >
       <div className="relative w-full">
+        <FieldSelectbox<DataType> />
         <table className="table">
           <DataTableHead />
           <DataTableBody />
         </table>
-        <FieldSelectbox />
       </div>
     </DataTableProvider>
   );
