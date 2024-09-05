@@ -4,7 +4,6 @@ import { FiAlertCircle } from "react-icons/fi";
 
 export type LabelBaseProps = {
   label: React.ReactNode;
-  children: React.ReactNode;
   className?: string;
   htmlFor?: string;
   isError?: boolean;
@@ -12,7 +11,11 @@ export type LabelBaseProps = {
   type?: "border" | "normal" | "horizontal";
 };
 
-const LabelBase: React.FC<LabelBaseProps> = ({
+export type LabelProps = LabelBaseProps & {
+  children: React.ReactNode;
+};
+
+const LabelBase: React.FC<LabelProps> = ({
   label,
   className,
   htmlFor,
@@ -29,7 +32,7 @@ const LabelBase: React.FC<LabelBaseProps> = ({
           type === "border" && "rounded border border-gray-400",
           type === "horizontal" ? "flex-row gap-2" : "form-group",
           isError && "error",
-          className,
+          className
         )}
       >
         {label && (
@@ -38,7 +41,7 @@ const LabelBase: React.FC<LabelBaseProps> = ({
               type === "border" &&
                 "hidden text-gray-600 opacity-0 dark:text-white",
               type === "horizontal" && "flex items-center justify-center",
-              "mb-1 text-sm font-semibold",
+              "mb-1 text-sm font-semibold"
             )}
             htmlFor={htmlFor}
           >
@@ -48,7 +51,7 @@ const LabelBase: React.FC<LabelBaseProps> = ({
         {children}
       </div>
       {isError && errorMessage && (
-        <span className="flex items-center gap-1 text-sm text-red-600">
+        <span className="flex items-center text-sm text-red-600 gap-1">
           <div className="w-4">
             <FiAlertCircle />
           </div>

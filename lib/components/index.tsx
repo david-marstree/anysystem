@@ -35,6 +35,8 @@ export * from "./Navbar/";
 export { default as Navbar } from "./Navbar/";
 export * from "./Modal/";
 export { default as Modal } from "./Modal/";
+export * from "./FormControl/";
+export { default as FormControl } from "./FormControl/";
 export * from "./DataTable/";
 export { default as DataTable } from "./DataTable/";
 export * from "./Component";
