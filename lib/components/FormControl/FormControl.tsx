@@ -5,6 +5,7 @@ import type { PasswordInputProps } from "../PasswordInput";
 import type { DatePickerProps } from "../DatePicker";
 import RadioGroup, { RadioGroupProps } from "../RadioGroup";
 import type { SwitchProps } from "../Switch";
+import type { CheckboxProps } from "../Checkbox";
 import type { SelectOption } from "../Selectbox";
 
 const Label = React.lazy(() => import("../Label"));
@@ -12,64 +13,77 @@ const Input = React.lazy(() => import("../Input"));
 const PasswordInput = React.lazy(() => import("../PasswordInput"));
 const DatePicker = React.lazy(() => import("../DatePicker"));
 const Switch = React.lazy(() => import("../Switch"));
+const Checkbox = React.lazy(() => import("../Checkbox"));
 
 export type FormControlProps<ListOption extends SelectOption> =
-  | (InputProps<ListOption> & {
+  | ({
       type: "password" | "text" | "tel" | "number" | "email";
       labelProps: LabelBaseProps;
-    })
-  | (DatePickerProps & {
+    } & InputProps<ListOption>)
+  | ({
       type: "date";
       labelProps: LabelBaseProps;
-    })
-  | (DatePickerProps & {
+    } & DatePickerProps)
+  | ({
       type: "datetime";
       labelProps: LabelBaseProps;
-    })
-  | (RadioGroupProps<ListOption> & {
+    } & DatePickerProps)
+  | ({
       type: "radio";
       labelProps: LabelBaseProps;
-    })
-  | (SwitchProps & {
+    } & RadioGroupProps<ListOption>)
+  | ({
       type: "switch";
       labelProps: LabelBaseProps;
-    });
+    } & SwitchProps)
+  | ({
+      type: "confirm";
+      labelProps?: LabelBaseProps;
+    } & CheckboxProps);
 
 const FormControl = <ListOption extends SelectOption>(
-  { type, labelProps, ...props }: FormControlProps<ListOption>,
+  { type, ...props }: FormControlProps<ListOption>,
   innerRef: React.Ref<HTMLInputElement>
 ) => {
   return (
     <Suspense fallback={null}>
-      <Label
-        type={
-          type === "radio"
-            ? "normal"
-            : type === "switch"
-              ? "horizontal"
-              : undefined
-        }
-        {...(labelProps as LabelBaseProps)}
-      >
-        {type === "password" ? (
-          <PasswordInput {...(props as PasswordInputProps)} ref={innerRef} />
-        ) : type === "date" || type === "datetime" ? (
-          <DatePicker
-            {...(props as DatePickerProps)}
-            showTime={type === "datetime"}
-          />
-        ) : type === "radio" ? (
-          <RadioGroup<ListOption> {...(props as RadioGroupProps<ListOption>)} />
-        ) : type === "switch" ? (
-          <Switch {...(props as SwitchProps)} />
-        ) : (
-          <Input
-            ref={innerRef}
-            type={type}
-            {...(props as InputProps<ListOption>)}
-          />
-        )}
-      </Label>
+      {type !== "confirm" ? (
+        <Label
+          type={
+            type === "radio"
+              ? "normal"
+              : type === "switch"
+                ? "horizontal"
+                : undefined
+          }
+          {...(props?.labelProps
+            ? (props.labelProps as LabelBaseProps)
+            : { label: "" })}
+        >
+          {type === "password" ? (
+            <PasswordInput {...(props as PasswordInputProps)} ref={innerRef} />
+          ) : type === "date" || type === "datetime" ? (
+            <DatePicker
+              {...(props as DatePickerProps)}
+              showTime={type === "datetime"}
+            />
+          ) : type === "radio" ? (
+            <RadioGroup<ListOption>
+              {...(props as RadioGroupProps<ListOption>)}
+            />
+          ) : type === "switch" ? (
+            <Switch {...(props as SwitchProps)} />
+          ) : (
+            <Input
+              ref={innerRef}
+              type={type}
+              {...(props as InputProps<ListOption>)}
+            />
+          )}
+        </Label>
+      ) : (
+        <Checkbox {...(props as CheckboxProps)} />
+      )}
     </Suspense>
   );
 };

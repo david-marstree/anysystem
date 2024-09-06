@@ -1,12 +1,5 @@
 import React from "react";
-import {
-  FormControl,
-  Container,
-  Button,
-  Checkbox,
-  Text,
-  Modal,
-} from "../../lib";
+import { FormControl, Container, Button, Text, Modal } from "../../lib";
 import type { ModalHandler } from "../../lib";
 import ErpLayout from "../layouts/ErpLayout";
 
@@ -17,6 +10,7 @@ const HomePage: React.FC = () => {
   const [password, setPassword] = React.useState("");
   const [checked, setChecked] = React.useState(false);
   const [radio, setRadio] = React.useState("1");
+
   return (
     <ErpLayout>
       <Container className="flex flex-col gap-2">
@@ -101,7 +95,8 @@ const HomePage: React.FC = () => {
           ]}
           labelProps={{ label: "Radio", type: "normal" }}
         />
-        <Checkbox
+        <FormControl
+          type="confirm"
           label="Remember me"
           name="rememberMe"
           checked={checked}
