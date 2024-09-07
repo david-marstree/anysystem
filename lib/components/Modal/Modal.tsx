@@ -34,7 +34,7 @@ export type ModalProps = {
 
 const Modal: React.ForwardRefRenderFunction<ModalHandler, ModalProps> = (
   { open = false, title, buttons, children, className, size = "md" },
-  innerRef,
+  innerRef
 ) => {
   const [isOpen, setIsOpen] = React.useState(open);
 
@@ -48,7 +48,7 @@ const Modal: React.ForwardRefRenderFunction<ModalHandler, ModalProps> = (
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={hide}>
+        <Dialog as="div" className="relative z-[999]" onClose={hide}>
           <TransitionChild
             as={Fragment}
             enter="duration-300 ease-out"
@@ -65,7 +65,7 @@ const Modal: React.ForwardRefRenderFunction<ModalHandler, ModalProps> = (
             <div
               className={twMerge(
                 "flex min-h-full items-center justify-center text-center",
-                size === "full" ? "p-0" : "p-4",
+                size === "full" ? "p-0" : "p-4"
               )}
             >
               <TransitionChild
@@ -83,14 +83,14 @@ const Modal: React.ForwardRefRenderFunction<ModalHandler, ModalProps> = (
                     size === "md" && "max-w-md",
                     size === "lg" && "max-w-lg",
                     size === "xl" && "max-w-xl",
-                    size === "full" && "h-screen max-w-full rounded-none",
+                    size === "full" && "h-screen max-w-full rounded-none"
                   )}
                 >
                   <DialogTitle
                     as="div"
                     className={twMerge(
                       "text-lg font-medium leading-6 text-gray-900 dark:text-white",
-                      className?.header,
+                      className?.header
                     )}
                   >
                     {title}
@@ -102,7 +102,7 @@ const Modal: React.ForwardRefRenderFunction<ModalHandler, ModalProps> = (
                   <div
                     className={twMerge(
                       "mt-4 flex justify-end gap-2",
-                      className?.footer,
+                      className?.footer
                     )}
                   >
                     {/* START buttons */}
@@ -115,7 +115,7 @@ const Modal: React.ForwardRefRenderFunction<ModalHandler, ModalProps> = (
                             label: buLabel,
                             ...buRest
                           }: ModalButton,
-                          i: number,
+                          i: number
                         ) => (
                           <Button
                             key={i}
@@ -126,7 +126,7 @@ const Modal: React.ForwardRefRenderFunction<ModalHandler, ModalProps> = (
                           >
                             {buLabel}
                           </Button>
-                        ),
+                        )
                       )}
                     {/* END buttons */}
                   </div>
