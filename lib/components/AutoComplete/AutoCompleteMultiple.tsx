@@ -109,7 +109,7 @@ export type AutoCompleteMultipleProps<ListOption extends SelectOption> = {
   readOnly?: boolean;
   className?: string;
   placeholder?: string;
-  onChange?: (value: string[] | number[]) => void;
+  onChange?: (value: string[] )=> void;
   onSearch?: (query: string) => void;
   valueField?: ValueField<ListOption>;
 };
@@ -167,11 +167,11 @@ const AutoCompleteMultiple = <ListOption extends SelectOption>(
     >
       <div className="relative flex gap-1">
         {state.selected.length > 0 && (
-          <ul className="form-control flex gap-1">
+          <ul className="flex form-control gap-1">
             {state.selected?.map((opt: ListOption, index: number) => (
               <li key={index}>
-                <div className="flex rounded bg-indigo-50 p-1">
-                  <span className="whitespace-nowrap text-xs">{opt.label}</span>
+                <div className="flex p-1 rounded bg-indigo-50">
+                  <span className="text-xs whitespace-nowrap">{opt.label}</span>
                   <button
                     onClick={() =>
                       dispatch({ type: "REMOVESELECT", selected: opt })

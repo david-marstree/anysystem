@@ -45,6 +45,8 @@ const FormControl = <ListOption extends SelectOption>(
   { type, ...props }: FormControlProps<ListOption>,
   innerRef: React.Ref<HTMLInputElement>
 ) => {
+  const { labelProps, ...restProps } = props;
+
   return (
     <Suspense fallback={null}>
       {type !== "confirm" ? (
@@ -56,33 +58,34 @@ const FormControl = <ListOption extends SelectOption>(
                 ? "horizontal"
                 : undefined
           }
-          {...(props?.labelProps
-            ? (props.labelProps as LabelBaseProps)
-            : { label: "" })}
+          {...(labelProps ? (labelProps as LabelBaseProps) : { label: "" })}
         >
           {type === "password" ? (
-            <PasswordInput {...(props as PasswordInputProps)} ref={innerRef} />
+            <PasswordInput
+              {...(restProps as PasswordInputProps)}
+              ref={innerRef}
+            />
           ) : type === "date" || type === "datetime" ? (
             <DatePicker
-              {...(props as DatePickerProps)}
+              {...(restProps as DatePickerProps)}
               showTime={type === "datetime"}
             />
           ) : type === "radio" ? (
             <RadioGroup<ListOption>
-              {...(props as RadioGroupProps<ListOption>)}
+              {...(restProps as RadioGroupProps<ListOption>)}
             />
           ) : type === "switch" ? (
-            <Switch {...(props as SwitchProps)} />
+            <Switch {...(restProps as SwitchProps)} />
           ) : (
             <Input
               ref={innerRef}
               type={type}
-              {...(props as InputProps<ListOption>)}
+              {...(restProps as InputProps<ListOption>)}
             />
           )}
         </Label>
       ) : (
-        <Checkbox {...(props as CheckboxProps)} />
+        <Checkbox {...(restProps as CheckboxProps)} />
       )}
     </Suspense>
   );

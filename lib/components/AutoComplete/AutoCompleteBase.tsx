@@ -38,7 +38,7 @@ type Action<ListOption extends SelectOption> =
 
 const reducer = <ListOption extends SelectOption>(
   state: State<ListOption>,
-  action: Action<ListOption>,
+  action: Action<ListOption>
 ): State<ListOption> => {
   if (action.type === "SEARCH") {
     return {
@@ -84,7 +84,7 @@ export type AutoCompleteBaseProps<ListOption extends SelectOption> = {
   readOnly?: boolean;
   className?: string;
   placeholder?: string;
-  onChange?: (value: string | number) => void;
+  onChange?: (value: string) => void;
   onSearch?: (query: string) => void;
   valueField?: ValueField<ListOption>;
 };
@@ -100,7 +100,7 @@ const AutoCompleteBase = <ListOption extends SelectOption>(
     onSearch,
     placeholder,
   }: AutoCompleteBaseProps<ListOption>,
-  innerRef: React.Ref<AutoCompleteBaseHandler>,
+  innerRef: React.Ref<AutoCompleteBaseHandler>
 ) => {
   const [state, dispatch] = React.useReducer(reducer<ListOption>, {
     list: options,
@@ -174,14 +174,14 @@ const AutoCompleteBase = <ListOption extends SelectOption>(
                     className={twMerge(
                       "relative flex cursor-pointer justify-between px-5 py-4 text-black hover:bg-primary-100 dark:text-white",
                       (selected || focus) && "bg-primary-100 dark:bg-gray-700",
-                      opt.enable === false && "cursor-not-allowed opacity-50",
+                      opt.enable === false && "cursor-not-allowed opacity-50"
                     )}
                   >
                     <span className="pl-5">{opt.label}</span>
                     {selected ? (
                       <span
                         className={twMerge(
-                          "absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600",
+                          "absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600"
                         )}
                       >
                         <CheckIcon className="h-5 w-5" aria-hidden="true" />
@@ -203,5 +203,5 @@ export default React.forwardRef(AutoCompleteBase) as <
 >(
   props: AutoCompleteBaseProps<ListOption> & {
     ref?: React.Ref<AutoCompleteBaseHandler>;
-  },
+  }
 ) => React.ReactElement;
