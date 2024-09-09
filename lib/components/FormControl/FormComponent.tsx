@@ -157,8 +157,6 @@ const FormComponent = <FormValues extends Record<string, unknown>>({
     );
   }, [fields]);
 
-  console.log("validationSchema", validationSchema);
-
   return (
     <Formik
       enableReinitialize
