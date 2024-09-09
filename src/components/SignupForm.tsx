@@ -5,11 +5,9 @@ import type { SelectOption } from "../../lib/";
 const SignupForm = <
   FormValues extends Record<string, unknown>,
 >(): React.ReactElement => {
-  const { values, handleChange, handleBlur, setFieldValue, touched, errors } =
+  const { values, handleChange, setFieldValue, touched, errors } =
     useFormContext<FormValues>();
 
-  console.log("errors", errors);
-  console.log("touched", touched);
   return (
     <>
       <FormControl
@@ -17,7 +15,6 @@ const SignupForm = <
         value={(values?.username as string) || ""}
         placeholder="Username"
         onChange={handleChange}
-        onBlur={handleBlur}
         type="text"
         labelProps={{
           label: "Username",
@@ -30,9 +27,12 @@ const SignupForm = <
         value={(values?.password as string) || ""}
         placeholder="Password"
         onChange={handleChange}
-        onBlur={handleBlur}
         type="password"
-        labelProps={{ label: "Password" }}
+        labelProps={{
+          label: "Password",
+          isError: Boolean(touched?.password && errors.password),
+          errorMessage: (errors?.password as string) || "",
+        }}
       />
       <FormControl
         name="date"
@@ -68,7 +68,11 @@ const SignupForm = <
           },
         ]}
         phonePrefix="853"
-        labelProps={{ label: "Phone number" }}
+        labelProps={{
+          label: "Phone number",
+          isError: Boolean(touched?.phonenumber && errors.phonenumber),
+          errorMessage: (errors?.phonenumber as string) || "",
+        }}
       />
       <FormControl
         type="radio"

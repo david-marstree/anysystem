@@ -26,23 +26,29 @@ const HomePage: React.FC = () => {
           fields={[
             {
               name: "username",
-              dataType: "text",
+              dataType: "string",
               label: "Username",
               placeholder: "Username",
               value: "davidaasm@gmail.com",
-              validation: [{ type: "required", message: "Required" }],
+              validation: [
+                { type: "required", message: "Required" },
+                { type: "email", message: "Invalid email" },
+              ],
             },
             {
               name: "phonenumber",
-              dataType: "tel",
+              dataType: "string",
               label: "Phone number",
               placeholder: "Phone number",
               value: "852-66297530",
-              validation: [{ type: "required", message: "Required" }],
+              validation: [
+                { type: "required", message: "Required" },
+                { type: "max", value: 12, message: "Invalid phone number" },
+              ],
             },
             {
               name: "password",
-              dataType: "password",
+              dataType: "string",
               label: "Password",
               placeholder: "Password",
               value: "123123",
