@@ -50,7 +50,7 @@ export type InputTelProps<ListOption extends SelectOption> =
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
     phonePrefixOptions: ListOption[];
     phonePrefix?: string;
-    onChange?: (value: string) => void;
+    onChange?: (value: string) => unknown;
   };
 
 const InputTel = <ListOption extends SelectOption>(
@@ -62,7 +62,7 @@ const InputTel = <ListOption extends SelectOption>(
     onChange,
     ...props
   }: InputTelProps<ListOption>,
-  innerRef: React.Ref<HTMLInputElement>,
+  innerRef: React.Ref<HTMLInputElement>
 ) => {
   const telClassName = React.useMemo(() => {
     let c = className || { container: undefined, input: undefined };
@@ -94,7 +94,7 @@ const InputTel = <ListOption extends SelectOption>(
 
   return (
     <div className="flex">
-      <div className="btn-phone-prefix w-1/2">
+      <div className="w-1/2 btn-phone-prefix">
         <AutoComplete<ListOption>
           options={phonePrefixOptions}
           name={`phonePrefix-${props.name}`}
@@ -102,7 +102,7 @@ const InputTel = <ListOption extends SelectOption>(
           value={state.prefix}
           onChange={(value: string | number) => {
             dispatch({ type: "SETPREFIX", value: value as string });
-            onChange && onChange(`${value}-${state.content}`);
+            onChange && onChange(`${value}-${state.content}` as string);
           }}
         />
       </div>

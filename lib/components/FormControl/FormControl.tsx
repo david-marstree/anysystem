@@ -17,7 +17,7 @@ const Checkbox = React.lazy(() => import("../Checkbox"));
 
 export type FormControlProps<ListOption extends SelectOption> =
   | ({
-      type: "password" | "text" | "tel" | "number" | "email";
+      type: "password" | "text" | "number" | "email" | "tel";
       labelProps: LabelBaseProps;
     } & InputProps<ListOption>)
   | ({

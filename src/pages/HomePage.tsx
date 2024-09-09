@@ -1,13 +1,6 @@
 import React from "react";
-import {
-  FormComponent,
-  FormControl,
-  Container,
-  Button,
-  Text,
-  Modal,
-} from "../../lib";
-import type { FormProps } from "../../lib";
+import { FormComponent, Container, Text, Modal } from "../../lib";
+import SignupForm from "../components/SignupForm";
 import type { ModalHandler } from "../../lib";
 import ErpLayout from "../layouts/ErpLayout";
 
@@ -22,11 +15,6 @@ type HomePageFormValues = {
 
 const HomePage: React.FC = () => {
   const modalRef = React.useRef<ModalHandler>(null);
-  const [username, setUsername] = React.useState("");
-  const [phonenumber, setPhoneNumber] = React.useState("");
-  const [password, setPassword] = React.useState("");
-  const [checked, setChecked] = React.useState(false);
-  const [radio, setRadio] = React.useState("1");
 
   return (
     <ErpLayout>
@@ -35,115 +23,35 @@ const HomePage: React.FC = () => {
         <Text tag="p">to continue to anysystem</Text>
         <FormComponent<HomePageFormValues>
           className="space-y-2"
-          initialValues={{
-            username: "",
-            phonenumber: "",
-            password: "",
-            date: 0,
-            checkbox: false,
-            radio: "1",
-          }}
+          fields={[
+            {
+              name: "username",
+              dataType: "text",
+              label: "Username",
+              placeholder: "Username",
+              value: "davidaasm@gmail.com",
+              validation: [{ type: "required", message: "Required" }],
+            },
+            {
+              name: "phonenumber",
+              dataType: "tel",
+              label: "Phone number",
+              placeholder: "Phone number",
+              value: "852-66297530",
+              validation: [{ type: "required", message: "Required" }],
+            },
+            {
+              name: "password",
+              dataType: "password",
+              label: "Password",
+              placeholder: "Password",
+              value: "123123",
+              validation: [{ type: "required", message: "Required" }],
+            },
+          ]}
           onSubmit={(values) => console.log(values)}
         >
-          <>
-            <FormControl
-              name="username"
-              value={username}
-              placeholder="Username"
-              onChange={(e) => setUsername(e.target.value)}
-              type="text"
-              labelProps={{ label: "Username" }}
-            />
-            <FormControl
-              name="password"
-              value={password}
-              placeholder="Password"
-              onChange={(e) => setPassword(e.target.value)}
-              type="password"
-              labelProps={{ label: "Password" }}
-            />
-            <FormControl
-              name="date"
-              value={new Date().getTime() / 1000}
-              onChange={(v: unknown) => console.log(v)}
-              type="date"
-              labelProps={{ label: "Birth of Date" }}
-            />
-            <FormControl
-              name="phonenumber"
-              value={phonenumber}
-              placeholder="Phone number"
-              onChange={(v: unknown) => setPhoneNumber(v + "")}
-              type="tel"
-              phonePrefixOptions={[
-                {
-                  id: "1",
-                  label: "Macau +853",
-                  value: "853",
-                  enable: true,
-                },
-                {
-                  id: "2",
-                  label: "China +86",
-                  value: "86",
-                  enable: true,
-                },
-                {
-                  id: "3",
-                  label: "Hong Kong +852",
-                  value: "852",
-                  enable: true,
-                },
-              ]}
-              phonePrefix="853"
-              labelProps={{ label: "Phone number" }}
-            />
-            <FormControl
-              type="radio"
-              name="radio"
-              value={radio}
-              onChange={(e) => setRadio(e)}
-              options={[
-                {
-                  id: "1",
-                  label: "Option 1",
-                  value: "1",
-                  enable: true,
-                },
-                {
-                  id: "2",
-                  label: "Option 2",
-                  value: "2",
-                  enable: true,
-                },
-                {
-                  id: "3",
-                  label: "Option 3",
-                  value: "3",
-                  enable: true,
-                },
-              ]}
-              labelProps={{ label: "Radio", type: "normal" }}
-            />
-            <FormControl
-              type="confirm"
-              label="Remember me"
-              name="rememberMe"
-              checked={checked}
-              onChange={(e) => setChecked(e.target.checked)}
-            />
-            <FormControl
-              type="switch"
-              name="open"
-              value="open"
-              checked={checked}
-              onChange={(v: boolean) => setChecked(v)}
-              labelProps={{ label: "Open" }}
-            />
-            <Button variant="primary" onClick={() => modalRef.current?.show()}>
-              Button
-            </Button>
-          </>
+          <SignupForm<HomePageFormValues> />
         </FormComponent>
 
         <Modal
