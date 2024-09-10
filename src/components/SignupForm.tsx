@@ -5,16 +5,18 @@ import type { SelectOption } from "../../lib/";
 const SignupForm = <
   FormValues extends Record<string, unknown>,
 >(): React.ReactElement => {
-  const { values, handleChange, setFieldValue, touched, errors } =
+  const { values, setFieldValue, touched, errors } =
     useFormContext<FormValues>();
 
   return (
     <>
+      {/*
+
       <FormControl
         name="username"
         value={(values?.username as string) || ""}
         placeholder="Username"
-        onChange={handleChange}
+        onChange={(v) => setFieldValue("username", v)}
         type="text"
         labelProps={{
           label: "Username",
@@ -26,7 +28,7 @@ const SignupForm = <
         name="password"
         value={(values?.password as string) || ""}
         placeholder="Password"
-        onChange={handleChange}
+        onChange={(v) => setFieldValue("password", v)}
         type="password"
         labelProps={{
           label: "Password",
@@ -112,10 +114,11 @@ const SignupForm = <
         type="switch"
         name="open"
         value="open"
-        checked={(values?.checkbox as boolean) || false}
+        checked={(values?.open as boolean) || false}
         onChange={(v: boolean) => setFieldValue("open", v)}
         labelProps={{ label: "Open" }}
       />
+      */}
 
       <Button variant="primary" type="submit">
         Button

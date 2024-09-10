@@ -100,7 +100,7 @@ const InputTel = <ListOption extends SelectOption>(
           name={`phonePrefix-${props.name}`}
           valueField="value"
           value={state.prefix}
-          onChange={(value: string | number) => {
+          onChange={(value: string) => {
             dispatch({ type: "SETPREFIX", value: value as string });
             onChange && onChange(`${value}-${state.content}` as string);
           }}
@@ -111,7 +111,7 @@ const InputTel = <ListOption extends SelectOption>(
         value={state.content}
         onChange={(e) => {
           dispatch({ type: "SETCONTENT", value: e.target.value });
-          onChange && onChange(`${state.prefix}-${e.target.value}`);
+          onChange && onChange(`${state.prefix}-${e.target.value}` as string);
         }}
         {...props}
         ref={innerRef}

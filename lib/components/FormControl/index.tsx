@@ -1,3 +1,4 @@
+export * from "./type";
 export * from "./FormControl";
 export { default as default } from "./FormControl";
 export * from "./FormComponent";
