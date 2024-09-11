@@ -31,7 +31,6 @@ const FormContent: React.FC<FormContentProps> = ({ fields }) => {
               ) : (
                 <FormControl
                   {...(field.componentProps as FormControlProps<SelectOption>)}
-                  // @ts-ignore-next-line
                   type={field?.componentProps.type}
                   name={field.name}
                   value={values?.[field.name as keyof typeof values] || ""}
