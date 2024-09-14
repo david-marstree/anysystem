@@ -14,6 +14,7 @@ export * from "./Icon/";
 export { default as Icon } from "./Icon/";
 export * from "./Input/";
 export { default as Input } from "./Input/";
+export * from "./TelephoneInput/";
 export { default as TelephoneInput } from "./TelephoneInput/";
 export * from "./Label/";
 export { default as Label } from "./Label/";

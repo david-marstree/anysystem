@@ -1,6 +1,12 @@
 import { Schema } from "yup";
-import { FormControlProps } from "./FormControl";
-import { SelectOption } from "..";
+import type { LabelBaseProps } from "../Label/";
+import type { InputProps } from "../Input/";
+import type { TelephoneInputProps } from "../TelephoneInput";
+import type { DatePickerProps } from "../DatePicker/";
+import type { SwitchProps } from "../Switch/";
+import type { RadioGroupProps } from "../RadioGroup";
+import type { CheckboxProps } from "../Checkbox";
+import type { SelectOption } from "../Selectbox";
 
 export type YupSchema = {
   [key: string]: Schema;
@@ -28,7 +34,67 @@ export type FormField = {
   value: string;
   validation?: Validation[];
   component?: React.FC<any>;
-  componentProps: FormControlProps<SelectOption>;
+  componentProps:
+    | FormFieldInputProps
+    | FormFieldDateTimeProps
+    | FormFieldRadioProps<SelectOption>
+    | FormFieldSwitchProps
+    | FormFieldConfirmProps
+    | FormFieldTelephoneProps;
 };
 
 export type FormFieldWithStructure = (FormField | FormField[])[];
+
+export type FormControlInputProps = {
+  type: "password" | "text" | "number" | "email";
+  labelProps: LabelBaseProps;
+  onChange?: (value: string) => void;
+} & InputProps;
+
+export type FormFieldInputProps = Omit<FormControlInputProps, "name">;
+
+export type FormControlDateTimeProps = DatePickerProps & {
+  type: "date" | "datetime";
+  labelProps: LabelBaseProps;
+  onChange?: (value: string) => void;
+};
+
+export type FormFieldDateTimeProps = Omit<
+  FormControlDateTimeProps,
+  "name" | "value" | "onChange"
+>;
+
+export type FormControlRadioProps<ListOption extends SelectOption> = {
+  type: "radio";
+  labelProps: LabelBaseProps;
+  onChange?: (value: string) => void;
+} & RadioGroupProps<ListOption>;
+
+export type FormFieldRadioProps<ListOption extends SelectOption> = Omit<
+  FormControlRadioProps<ListOption>,
+  "name" | "value" | "onChange"
+>;
+
+export type FormControlSwitchProps = {
+  type: "switch";
+  labelProps: LabelBaseProps;
+  onChange?: (value: string) => void;
+} & SwitchProps;
+
+export type FormFieldSwitchProps = Omit<FormControlSwitchProps, "name">;
+
+export type FormControlConfirmProps = {
+  type: "confirm";
+  labelProps: LabelBaseProps;
+  onChange?: (value: string) => void;
+} & CheckboxProps;
+
+export type FormFieldConfirmProps = Omit<FormControlConfirmProps, "name">;
+
+export type FormControlTelephoneProps = {
+  type: "tel";
+  labelProps: LabelBaseProps;
+  onChange?: (value: string) => void;
+} & TelephoneInputProps;
+
+export type FormFieldTelephoneProps = Omit<FormControlTelephoneProps, "name">;

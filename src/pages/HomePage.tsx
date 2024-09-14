@@ -87,6 +87,38 @@ const HomePage: React.FC = () => {
                   labelProps: { label: "Phone number" },
                 },
               },
+              {
+                name: "birthOfDate",
+                dataType: "string",
+                value: Math.round(new Date().getTime() / 1000) + "",
+                componentProps: {
+                  type: "datetime",
+                  labelProps: { label: "Birth of date" },
+                },
+              },
+              {
+                name: "gender",
+                dataType: "string",
+                value: "M",
+                componentProps: {
+                  type: "radio",
+                  labelProps: { label: "Gender" },
+                  options: [
+                    {
+                      id: "M",
+                      label: "Male",
+                      value: "M",
+                      enable: true,
+                    },
+                    {
+                      id: "F",
+                      label: "Female",
+                      value: "F",
+                      enable: true,
+                    },
+                  ],
+                },
+              },
             ]}
             onSubmit={(values) => console.log(values)}
           >

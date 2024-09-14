@@ -2,62 +2,36 @@ import React, { Suspense } from "react";
 import type { InputProps } from "../Input";
 import type { LabelBaseProps } from "../Label";
 import type { PasswordInputProps } from "../PasswordInput";
+import type { TelephoneInputProps } from "../TelephoneInput";
 import type { DatePickerProps } from "../DatePicker";
 import RadioGroup, { RadioGroupProps } from "../RadioGroup";
 import type { SwitchProps } from "../Switch";
 import type { CheckboxProps } from "../Checkbox";
 import type { SelectOption } from "../Selectbox";
+import type {
+  FormControlInputProps,
+  FormControlDateTimeProps,
+  FormControlRadioProps,
+  FormControlSwitchProps,
+  FormControlConfirmProps,
+  FormControlTelephoneProps,
+} from "./type";
 
 const Label = React.lazy(() => import("../Label"));
 const Input = React.lazy(() => import("../Input"));
 const PasswordInput = React.lazy(() => import("../PasswordInput"));
+const TelephoneInput = React.lazy(() => import("../TelephoneInput"));
 const DatePicker = React.lazy(() => import("../DatePicker"));
 const Switch = React.lazy(() => import("../Switch"));
 const Checkbox = React.lazy(() => import("../Checkbox"));
 
-export type FormControlType =
-  | "password"
-  | "text"
-  | "number"
-  | "email"
-  | "tel"
-  | "date"
-  | "datetime"
-  | "radio"
-  | "switch"
-  | "confirm";
-
 export type FormControlProps<ListOption extends SelectOption> =
-  | ({
-      type: "password" | "text" | "number" | "email" | "tel";
-      labelProps: LabelBaseProps;
-      onChange?: (value: string) => void;
-    } & InputProps<ListOption>)
-  | ({
-      type: "date";
-      labelProps: LabelBaseProps;
-      onChange?: (value: string) => void;
-    } & DatePickerProps)
-  | ({
-      type: "datetime";
-      labelProps: LabelBaseProps;
-      onChange?: (value: string) => void;
-    } & DatePickerProps)
-  | ({
-      type: "radio";
-      labelProps: LabelBaseProps;
-      onChange?: (value: string) => void;
-    } & RadioGroupProps<ListOption>)
-  | ({
-      type: "switch";
-      labelProps: LabelBaseProps;
-      onChange?: (value: string) => void;
-    } & SwitchProps)
-  | ({
-      type: "confirm";
-      labelProps?: LabelBaseProps;
-      onChange?: (value: string) => void;
-    } & CheckboxProps);
+  | FormControlInputProps
+  | FormControlDateTimeProps
+  | FormControlRadioProps<ListOption>
+  | FormControlSwitchProps
+  | FormControlConfirmProps
+  | FormControlTelephoneProps;
 
 const FormControl = <ListOption extends SelectOption>({
   type,
@@ -97,6 +71,11 @@ const FormControl = <ListOption extends SelectOption>({
             />
           ) : type === "switch" ? (
             <Switch {...(restProps as SwitchProps)} onChange={onChange} />
+          ) : type === "tel" ? (
+            <TelephoneInput
+              {...(restProps as TelephoneInputProps)}
+              onChange={onChange}
+            />
           ) : (
             <Input
               type={type}
@@ -104,7 +83,7 @@ const FormControl = <ListOption extends SelectOption>({
                 onChange &&
                 onChange(typeof e === "string" ? e : (e.target.value as string))
               }
-              {...(restProps as InputProps<ListOption>)}
+              {...(restProps as InputProps)}
             />
           )}
         </Label>

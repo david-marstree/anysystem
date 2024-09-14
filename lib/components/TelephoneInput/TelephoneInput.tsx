@@ -1,6 +1,6 @@
 import React from "react";
-import InputBase from "./InputBase";
-import type { InputBaseProps } from "./InputBase";
+import InputBase from "../Input/InputBase";
+import type { InputBaseProps } from "../Input/InputBase";
 import AutoComplete from "../AutoComplete/AutoComplete";
 import { SelectOption } from "../Selectbox";
 import { twMerge } from "tailwind-merge";
@@ -39,27 +39,28 @@ const reducer = (state: State, action: Action): State => {
   return state;
 };
 
-export type InputTelProps = React.InputHTMLAttributes<HTMLInputElement> & {
-  type: "tel";
-  name: string;
-  className?: {
-    container?: string;
-    input?: string;
+export type TelephoneInputProps =
+  React.InputHTMLAttributes<HTMLInputElement> & {
+    type: "tel";
+    name: string;
+    className?: {
+      container?: string;
+      input?: string;
+    };
+    inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+    phonePrefixOptions: SelectOption[];
+    phonePrefix?: string;
+    onChange?: (value: string) => unknown;
   };
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
-  phonePrefixOptions: SelectOption[];
-  phonePrefix?: string;
-  onChange?: (value: string) => unknown;
-};
 
-const InputTel = ({
+const TelephoneInput = ({
   className,
   value,
   phonePrefix,
   phonePrefixOptions,
   onChange,
   ...props
-}: InputTelProps) => {
+}: TelephoneInputProps) => {
   const telClassName = React.useMemo(() => {
     let c = className || { container: undefined, input: undefined };
     c.container = twMerge("w-1/2", c?.container || "");
@@ -121,4 +122,4 @@ const InputTel = ({
   );
 };
 
-export default InputTel;
+export default TelephoneInput;

@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { useFormContext } from "./FormComponent";
 import type { FormFieldWithStructure } from "./type";
 import Row from "../Row";
@@ -17,7 +17,7 @@ const FormContent: React.FC<FormContentProps> = ({ fields }) => {
   return (
     <>
       {fields.map((field, i) => (
-        <Fragment key={i}>
+        <Row key={i}>
           {Array.isArray(field) ? (
             <Row
               className="space-y-2 md:space-y-0"
@@ -70,7 +70,7 @@ const FormContent: React.FC<FormContentProps> = ({ fields }) => {
               )}
             </Column>
           )}
-        </Fragment>
+        </Row>
       ))}
     </>
   );
