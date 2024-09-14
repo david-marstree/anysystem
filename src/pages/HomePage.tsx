@@ -119,6 +119,35 @@ const HomePage: React.FC = () => {
                   ],
                 },
               },
+              {
+                name: "country",
+                dataType: "string",
+                value: "Macau",
+                componentProps: {
+                  type: "autocomplete",
+                  labelProps: { label: "Country" },
+                  options: [
+                    {
+                      id: "1",
+                      label: "Macau",
+                      value: "Macau",
+                      enable: true,
+                    },
+                    {
+                      id: "2",
+                      label: "Hong Kong",
+                      value: "Hong Kong",
+                      enable: true,
+                    },
+                    {
+                      id: "3",
+                      label: "China",
+                      value: "China",
+                      enable: true,
+                    },
+                  ],
+                },
+              },
             ]}
             onSubmit={(values) => console.log(values)}
           >

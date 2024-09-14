@@ -101,6 +101,7 @@ const TelephoneInput = ({
             dispatch({ type: "SETPREFIX", value: value as string });
             onChange && onChange(`${value}-${state.content}` as string);
           }}
+          closeButton={false}
         />
       </div>
       <InputBase

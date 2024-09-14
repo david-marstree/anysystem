@@ -71,6 +71,13 @@ export const getFieldValidation = (
               schmea: Yup.string(),
             });
           }
+          if (field.dataType === "string[]") {
+            acc.push({
+              name: field.name,
+              type: "string[]",
+              schmea: Yup.array().of(Yup.string()),
+            });
+          }
           if (field.dataType === "number") {
             acc.push({
               name: field.name,
@@ -89,7 +96,7 @@ export const getFieldValidation = (
         },
         [] as {
           name: string;
-          type: "string" | "number" | "boolean";
+          type: "string" | "number" | "boolean" | "string[]";
           schmea: Yup.Schema;
         }[]
       )

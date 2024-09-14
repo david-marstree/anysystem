@@ -147,6 +147,7 @@ const SelectboxMultiple = <ListOption extends SelectOption>(
     >
       {/* mobile select START*/}
       <select
+        value={state.value}
         multiple
         className="w-full bg-transparent outline-0 md:hidden"
         onChange={(e) => {

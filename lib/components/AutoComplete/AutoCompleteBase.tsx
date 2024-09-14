@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { twMerge } from "tailwind-merge";
 import { HiChevronUpDown as ChevronUpDownIcon } from "react-icons/hi2";
 import { FiCheck as CheckIcon } from "react-icons/fi";
+import { IoClose } from "react-icons/io5";
 import {
   Combobox,
   ComboboxInput,
@@ -84,6 +85,7 @@ export type AutoCompleteBaseProps<ListOption extends SelectOption> = {
   readOnly?: boolean;
   className?: string;
   placeholder?: string;
+  closeButton?: boolean;
   onChange?: (value: string) => void;
   onSearch?: (query: string) => void;
   valueField?: ValueField<ListOption>;
@@ -99,6 +101,7 @@ const AutoCompleteBase = <ListOption extends SelectOption>(
     onChange,
     onSearch,
     placeholder,
+    closeButton = true,
   }: AutoCompleteBaseProps<ListOption>,
   innerRef: React.Ref<AutoCompleteBaseHandler>
 ) => {
@@ -142,12 +145,29 @@ const AutoCompleteBase = <ListOption extends SelectOption>(
           autoComplete="off"
           displayValue={(opt: SelectOption | null) => opt?.label || ""}
         />
-        <ComboboxButton className="absolute inset-y-0 right-0 flex items-center pr-2">
-          <ChevronUpDownIcon
-            className="h-5 w-5 text-gray-400"
-            aria-hidden="true"
-          />
-        </ComboboxButton>
+        <div className="absolute inset-y-0 right-0 flex items-center pr-2">
+          <button
+            type="button"
+            className={twMerge(
+              "size-5 text-gray-400 hover:text-gray-500 rounded-full hover:bg-gray-200 items-center flex justify-center",
+              !state.value ? "hidden" : "",
+              closeButton ? "" : "!hidden"
+            )}
+            onClick={() => {
+              dispatch({ type: "SETVALUE", value: "" });
+              dispatch({ type: "SEARCH", query: "" });
+              onChange && onChange("");
+            }}
+          >
+            <IoClose />
+          </button>
+          <ComboboxButton className="items-center">
+            <ChevronUpDownIcon
+              className="text-gray-400 size-5"
+              aria-hidden="true"
+            />
+          </ComboboxButton>
+        </div>
         <input
           className="!hidden"
           type="text"
@@ -166,7 +186,7 @@ const AutoCompleteBase = <ListOption extends SelectOption>(
           leaveTo="scale-95 transform opacity-0"
           afterLeave={() => dispatch({ type: "SEARCH", query: "" })}
         >
-          <ComboboxOptions className="absolute z-50 mt-5 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-gray-900 sm:text-sm">
+          <ComboboxOptions className="absolute z-50 w-full py-1 mt-5 overflow-auto text-base bg-white shadow-lg max-h-60 rounded-md ring-1 ring-black/5 focus:outline-none dark:bg-gray-900 sm:text-sm">
             {state.filterList.map((opt: ListOption) => (
               <ComboboxOption as={Fragment} key={opt.id} value={opt}>
                 {({ selected, focus }) => (
@@ -184,7 +204,7 @@ const AutoCompleteBase = <ListOption extends SelectOption>(
                           "absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600"
                         )}
                       >
-                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                        <CheckIcon className="w-5 h-5" aria-hidden="true" />
                       </span>
                     ) : null}
                   </li>

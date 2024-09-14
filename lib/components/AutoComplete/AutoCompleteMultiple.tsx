@@ -173,6 +173,7 @@ const AutoCompleteMultiple = <ListOption extends SelectOption>(
                 <div className="flex p-1 rounded bg-indigo-50">
                   <span className="text-xs whitespace-nowrap">{opt.label}</span>
                   <button
+                    type="button"
                     onClick={() =>
                       dispatch({ type: "REMOVESELECT", selected: opt })
                     }
@@ -207,7 +208,7 @@ const AutoCompleteMultiple = <ListOption extends SelectOption>(
         />
         <ComboboxButton className="absolute inset-y-0 right-0 flex items-center pr-2">
           <ChevronUpDownIcon
-            className="h-5 w-5 text-gray-400"
+            className="w-5 h-5 text-gray-400"
             aria-hidden="true"
           />
         </ComboboxButton>
@@ -229,7 +230,7 @@ const AutoCompleteMultiple = <ListOption extends SelectOption>(
           leaveTo="scale-95 transform opacity-0"
           afterLeave={() => dispatch({ type: "SEARCH", query: "" })}
         >
-          <ComboboxOptions className="absolute mt-10 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black/5 focus:outline-none dark:bg-gray-900 sm:text-sm">
+          <ComboboxOptions className="absolute w-full py-1 mt-10 overflow-auto text-base bg-white shadow-lg max-h-60 rounded-md ring-1 ring-black/5 focus:outline-none dark:bg-gray-900 sm:text-sm">
             {state.filterList.map((opt: ListOption) => (
               <ComboboxOption as={Fragment} key={opt.id} value={opt}>
                 {({ selected, focus }) => (

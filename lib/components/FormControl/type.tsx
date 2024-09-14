@@ -6,7 +6,8 @@ import type { DatePickerProps } from "../DatePicker/";
 import type { SwitchProps } from "../Switch/";
 import type { RadioGroupProps } from "../RadioGroup";
 import type { CheckboxProps } from "../Checkbox";
-import type { SelectOption } from "../Selectbox";
+import type { SelectboxProps, SelectOption } from "../Selectbox";
+import { AutoCompleteProps } from "../AutoComplete";
 
 export type YupSchema = {
   [key: string]: Schema;
@@ -30,8 +31,8 @@ export type Validation = ValidationBase | ValidationMaxMin | ValidationMatch;
 
 export type FormField = {
   name: string;
-  dataType: "string" | "number" | "boolean";
-  value: string;
+  dataType: "string" | "number" | "boolean" | "string[]";
+  value: string | number | boolean | string[];
   validation?: Validation[];
   component?: React.FC<any>;
   componentProps:
@@ -40,7 +41,9 @@ export type FormField = {
     | FormFieldRadioProps<SelectOption>
     | FormFieldSwitchProps
     | FormFieldConfirmProps
-    | FormFieldTelephoneProps;
+    | FormFieldTelephoneProps
+    | FormFieldSelectboxProps<SelectOption>
+    | FormFieldAutoCompleteProps<SelectOption>;
 };
 
 export type FormFieldWithStructure = (FormField | FormField[])[];
@@ -98,3 +101,25 @@ export type FormControlTelephoneProps = {
 } & TelephoneInputProps;
 
 export type FormFieldTelephoneProps = Omit<FormControlTelephoneProps, "name">;
+
+export type FormControlSelectboxProps<ListOption extends SelectOption> = {
+  type: "select";
+  labelProps: LabelBaseProps;
+  onChange?: (value: string | string[]) => void;
+} & SelectboxProps<ListOption>;
+
+export type FormFieldSelectboxProps<ListOption extends SelectOption> = Omit<
+  FormControlSelectboxProps<ListOption>,
+  "name" | "value" | "onChange"
+>;
+
+export type FormControlAutoCompleteProps<ListOption extends SelectOption> = {
+  type: "autocomplete";
+  labelProps: LabelBaseProps;
+  onChange?: (value: string | string[]) => void;
+} & AutoCompleteProps<ListOption>;
+
+export type FormFieldAutoCompleteProps<ListOption extends SelectOption> = Omit<
+  FormControlAutoCompleteProps<ListOption>,
+  "name" | "value" | "onChange"
+>;

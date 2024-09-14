@@ -7,7 +7,8 @@ import type { DatePickerProps } from "../DatePicker";
 import RadioGroup, { RadioGroupProps } from "../RadioGroup";
 import type { SwitchProps } from "../Switch";
 import type { CheckboxProps } from "../Checkbox";
-import type { SelectOption } from "../Selectbox";
+import Selectbox, { SelectOption, SelectboxProps } from "../Selectbox";
+import AutoComplete, { AutoCompleteProps } from "../AutoComplete/";
 import type {
   FormControlInputProps,
   FormControlDateTimeProps,
@@ -15,6 +16,8 @@ import type {
   FormControlSwitchProps,
   FormControlConfirmProps,
   FormControlTelephoneProps,
+  FormControlSelectboxProps,
+  FormControlAutoCompleteProps,
 } from "./type";
 
 const Label = React.lazy(() => import("../Label"));
@@ -31,7 +34,9 @@ export type FormControlProps<ListOption extends SelectOption> =
   | FormControlRadioProps<ListOption>
   | FormControlSwitchProps
   | FormControlConfirmProps
-  | FormControlTelephoneProps;
+  | FormControlTelephoneProps
+  | FormControlSelectboxProps<ListOption>
+  | FormControlAutoCompleteProps<ListOption>;
 
 const FormControl = <ListOption extends SelectOption>({
   type,
@@ -74,6 +79,16 @@ const FormControl = <ListOption extends SelectOption>({
           ) : type === "tel" ? (
             <TelephoneInput
               {...(restProps as TelephoneInputProps)}
+              onChange={onChange}
+            />
+          ) : type === "select" ? (
+            <Selectbox<ListOption>
+              {...(restProps as SelectboxProps<ListOption>)}
+              onChange={(e: string | string[]) => onChange && onChange(e)}
+            />
+          ) : type === "autocomplete" ? (
+            <AutoComplete<ListOption>
+              {...(restProps as AutoCompleteProps<ListOption>)}
               onChange={onChange}
             />
           ) : (

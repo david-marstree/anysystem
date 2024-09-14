@@ -41,6 +41,8 @@ const FormContent: React.FC<FormContentProps> = ({ fields }) => {
                   "radio",
                   "switch",
                   "confirm",
+                  "select",
+                  "autocomplete",
                 ].includes(field.componentProps.type) ? (
                 <FormControl<SelectOption>
                   {...(field.componentProps as FormControlProps<SelectOption>)}
