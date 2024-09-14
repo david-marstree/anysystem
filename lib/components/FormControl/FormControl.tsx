@@ -31,32 +31,32 @@ export type FormControlProps<ListOption extends SelectOption> =
   | ({
       type: "password" | "text" | "number" | "email" | "tel";
       labelProps: LabelBaseProps;
-      onChange: (value: string) => void;
+      onChange?: (value: string) => void;
     } & InputProps<ListOption>)
   | ({
       type: "date";
       labelProps: LabelBaseProps;
-      onChange: (value: number) => void;
+      onChange?: (value: string) => void;
     } & DatePickerProps)
   | ({
       type: "datetime";
       labelProps: LabelBaseProps;
-      onChange: (value: number) => void;
+      onChange?: (value: string) => void;
     } & DatePickerProps)
   | ({
       type: "radio";
       labelProps: LabelBaseProps;
-      onChange: (value: string) => void;
+      onChange?: (value: string) => void;
     } & RadioGroupProps<ListOption>)
   | ({
       type: "switch";
       labelProps: LabelBaseProps;
-      onChange: (value: string) => void;
+      onChange?: (value: string) => void;
     } & SwitchProps)
   | ({
       type: "confirm";
       labelProps?: LabelBaseProps;
-      onChange: (value: string) => void;
+      onChange?: (value: string) => void;
     } & CheckboxProps);
 
 const FormControl = <ListOption extends SelectOption>({
@@ -82,12 +82,12 @@ const FormControl = <ListOption extends SelectOption>({
           {type === "password" ? (
             <PasswordInput
               {...(restProps as PasswordInputProps)}
-              onChange={(e) => onChange(e.target.value as string)}
+              onChange={(e) => onChange && onChange(e.target.value as string)}
             />
           ) : type === "date" || type === "datetime" ? (
             <DatePicker
               {...(restProps as DatePickerProps)}
-              onChange={(date) => onChange(date)}
+              onChange={(date) => onChange && onChange(date + "")}
               showTime={type === "datetime"}
             />
           ) : type === "radio" ? (
@@ -101,6 +101,7 @@ const FormControl = <ListOption extends SelectOption>({
             <Input
               type={type}
               onChange={(e: React.ChangeEvent<HTMLInputElement> | string) =>
+                onChange &&
                 onChange(typeof e === "string" ? e : (e.target.value as string))
               }
               {...(restProps as InputProps<ListOption>)}
@@ -115,9 +116,3 @@ const FormControl = <ListOption extends SelectOption>({
 };
 
 export default FormControl;
-
-// export default React.forwardRef(FormControl) as <
-//   ListOption extends SelectOption,
-// >(
-//   props: FormControlProps<ListOption> & { ref?: React.Ref<HTMLInputElement> }
-// ) => JSX.Element;

@@ -42,9 +42,8 @@ const FormContent: React.FC<FormContentProps> = ({ fields }) => {
                   "switch",
                   "confirm",
                 ].includes(field.componentProps.type) ? (
-                <FormControl
+                <FormControl<SelectOption>
                   {...(field.componentProps as FormControlProps<SelectOption>)}
-                  type={field?.componentProps.type}
                   name={field.name}
                   value={values?.[field.name as keyof typeof values] || ""}
                   labelProps={
@@ -62,8 +61,8 @@ const FormContent: React.FC<FormContentProps> = ({ fields }) => {
                         ] as string) || "",
                     } as LabelBaseProps
                   }
-                  onChange={(v: number | string) => {
-                    setFieldValue(field.name, v as string);
+                  onChange={(v: unknown) => {
+                    setFieldValue(field.name, v);
                   }}
                 />
               ) : (

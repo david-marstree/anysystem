@@ -25,7 +25,7 @@ export type Validation = ValidationBase | ValidationMaxMin | ValidationMatch;
 export type FormField = {
   name: string;
   dataType: "string" | "number" | "boolean";
-  value: unknown;
+  value: string;
   validation?: Validation[];
   component?: React.FC<any>;
   componentProps: FormControlProps<SelectOption>;

@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { FormComponent, Container, Text, Modal, TextProps } from "../../lib";
+import { FormComponent, Container, Text, Modal } from "../../lib";
 import SignupForm from "../components/SignupForm";
 import type { ModalHandler } from "../../lib";
 import ErpLayout from "../layouts/ErpLayout";
@@ -36,7 +36,6 @@ const HomePage: React.FC = () => {
                   ],
                   componentProps: {
                     type: "text",
-
                     labelProps: { label: "Username" },
                     placeholder: "Username",
                   },
@@ -85,7 +84,7 @@ const HomePage: React.FC = () => {
                       enable: true,
                     },
                   ],
-                  label: "Phone number",
+                  labelProps: { label: "Phone number" },
                 },
               },
             ]}
