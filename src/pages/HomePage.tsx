@@ -36,7 +36,8 @@ const HomePage: React.FC = () => {
                   ],
                   componentProps: {
                     type: "text",
-                    label: "Username",
+
+                    labelProps: { label: "Username" },
                     placeholder: "Username",
                   },
                 },
@@ -47,7 +48,7 @@ const HomePage: React.FC = () => {
                   validation: [{ type: "required", message: "Required" }],
                   componentProps: {
                     type: "password",
-                    label: "Password",
+                    labelProps: { label: "Password" },
                     placeholder: "Password",
                   },
                 },

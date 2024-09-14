@@ -28,7 +28,7 @@ export type FormField = {
   value: unknown;
   validation?: Validation[];
   component?: React.FC<any>;
-  componentProps: Record<string, unknown>;
+  componentProps: FormControlProps<SelectOption>;
 };
 
 export type FormFieldWithStructure = (FormField | FormField[])[];

@@ -59,10 +59,11 @@ export type FormControlProps<ListOption extends SelectOption> =
       onChange: (value: string) => void;
     } & CheckboxProps);
 
-const FormControl = <ListOption extends SelectOption>(
-  { type, onChange, ...props }: FormControlProps<ListOption>,
-  innerRef: React.Ref<HTMLInputElement>
-) => {
+const FormControl = <ListOption extends SelectOption>({
+  type,
+  onChange,
+  ...props
+}: FormControlProps<ListOption>): React.ReactElement => {
   const { labelProps, ...restProps } = props;
 
   return (
@@ -82,7 +83,6 @@ const FormControl = <ListOption extends SelectOption>(
             <PasswordInput
               {...(restProps as PasswordInputProps)}
               onChange={(e) => onChange(e.target.value as string)}
-              ref={innerRef}
             />
           ) : type === "date" || type === "datetime" ? (
             <DatePicker
@@ -99,7 +99,6 @@ const FormControl = <ListOption extends SelectOption>(
             <Switch {...(restProps as SwitchProps)} onChange={onChange} />
           ) : (
             <Input
-              ref={innerRef}
               type={type}
               onChange={(e: React.ChangeEvent<HTMLInputElement> | string) =>
                 onChange(typeof e === "string" ? e : (e.target.value as string))
@@ -115,8 +114,10 @@ const FormControl = <ListOption extends SelectOption>(
   );
 };
 
-export default React.forwardRef(FormControl) as <
-  ListOption extends SelectOption,
->(
-  props: FormControlProps<ListOption> & { ref?: React.Ref<HTMLInputElement> }
-) => JSX.Element;
+export default FormControl;
+
+// export default React.forwardRef(FormControl) as <
+//   ListOption extends SelectOption,
+// >(
+//   props: FormControlProps<ListOption> & { ref?: React.Ref<HTMLInputElement> }
+// ) => JSX.Element;
