@@ -1,6 +1,5 @@
 import React, { Suspense } from "react";
-import { FormComponent, Container, Text, Modal } from "../../lib";
-import SignupForm from "../components/SignupForm";
+import { FormComponent, Container, Text, Modal, Button } from "../../lib";
 import type { ModalHandler } from "../../lib";
 import ErpLayout from "../layouts/ErpLayout";
 
@@ -151,7 +150,9 @@ const HomePage: React.FC = () => {
             ]}
             onSubmit={(values) => console.log(values)}
           >
-            <SignupForm<HomePageFormValues> />
+            <Button variant="primary" type="submit">
+              Button
+            </Button>
           </FormComponent>
 
           <Modal

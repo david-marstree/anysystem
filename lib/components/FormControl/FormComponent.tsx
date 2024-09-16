@@ -45,10 +45,18 @@ const FormComponent = <FormValues extends Record<string, unknown>>({
       initialValues={formValues}
       onSubmit={onSubmit}
     >
-      <Form autoComplete="off" className={twMerge(className)}>
-        <FormContent fields={fields} />
-        {children}
-      </Form>
+      {({ values, errors, touched, setFieldValue }: FormProps<FormValues>) => (
+        <Form autoComplete="off" className={twMerge(className)}>
+          <FormContent
+            fields={fields}
+            values={values}
+            errors={errors}
+            touched={touched}
+            setFieldValue={setFieldValue}
+          />
+          {children}
+        </Form>
+      )}
     </Formik>
   );
 };

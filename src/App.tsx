@@ -5,6 +5,7 @@ import "./index.less";
 
 const HomePage = React.lazy(() => import("./pages/HomePage"));
 const Page2 = React.lazy(() => import("./pages/Page2"));
+const BuilderPage = React.lazy(() => import("./pages/BuilderPage"));
 
 function App() {
   return (
@@ -23,6 +24,14 @@ function App() {
           element={
             <Suspense>
               <Page2 />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/builder"
+          element={
+            <Suspense>
+              <BuilderPage />
             </Suspense>
           }
         />

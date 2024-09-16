@@ -19,6 +19,7 @@ const SubLayout: React.FC<SubLayoutProps> = ({ title, children }) => {
           list={[
             { label: "Home", path: "/", icon: "AiOutlineHome" },
             { label: "About", path: "/about", icon: "AiOutlineUser" },
+            { label: "Builder", path: "/builder", icon: "AiFillBuild" },
           ]}
         />
       }

@@ -1,5 +1,4 @@
 import React from "react";
-import { useFormContext } from "./FormComponent";
 import type { FormFieldWithStructure } from "./type";
 import Row from "../Row";
 import Column from "../Column";
@@ -9,11 +8,19 @@ import type { SelectOption } from "../Selectbox";
 
 export type FormContentProps = {
   fields: FormFieldWithStructure;
+  values?: Record<string, any>;
+  setFieldValue?: (name: string, value: any) => void;
+  touched?: any;
+  errors?: any;
 };
 
-const FormContent: React.FC<FormContentProps> = ({ fields }) => {
-  const { values, setFieldValue, touched, errors } = useFormContext();
-
+const FormContent: React.FC<FormContentProps> = ({
+  fields,
+  values,
+  setFieldValue,
+  touched,
+  errors,
+}) => {
   return (
     <>
       {fields.map((field, i) => (
@@ -23,7 +30,13 @@ const FormContent: React.FC<FormContentProps> = ({ fields }) => {
               className="space-y-2 md:space-y-0"
               column={{ md: field.length }}
             >
-              <FormContent fields={field} />
+              <FormContent
+                fields={field}
+                values={values}
+                errors={errors}
+                touched={touched}
+                setFieldValue={setFieldValue}
+              />
             </Row>
           ) : (
             <Column>
@@ -64,7 +77,7 @@ const FormContent: React.FC<FormContentProps> = ({ fields }) => {
                     } as LabelBaseProps
                   }
                   onChange={(v: unknown) => {
-                    setFieldValue(field.name, v);
+                    setFieldValue && setFieldValue(field.name, v);
                   }}
                 />
               ) : (

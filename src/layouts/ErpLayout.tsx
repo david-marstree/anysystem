@@ -18,6 +18,7 @@ const ErpLayout: React.FC<ErpLayoutProps> = ({ title, children }) => {
           list={[
             { label: "Home", path: "/", icon: "AiOutlineHome" },
             { label: "About", path: "/about", icon: "AiOutlineUser" },
+            { label: "Builder", path: "/builder", icon: "AiFillBuild" },
           ]}
         />
       }
