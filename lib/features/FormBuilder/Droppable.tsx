@@ -2,12 +2,7 @@ import React from "react";
 import { twMerge } from "tailwind-merge";
 import { useDroppable } from "@dnd-kit/core";
 import { FormBuilderData } from "./type";
-import {
-  Row,
-  FormField,
-  FormContent,
-  FormFieldWithStructure,
-} from "../../components";
+import { Row, FormContent, FormFieldWithStructure } from "../../components";
 
 export type DroppableProps = {
   id: string;
@@ -31,7 +26,7 @@ const Droppable: React.FC<DroppableProps> = ({ id, data }) => {
       )}
     >
       {data.length > 0 ? (
-        <FormContent fields={fields} />
+        <FormContent fields={fields} isBuilder={true} />
       ) : (
         <Row>
           <div
@@ -39,7 +34,7 @@ const Droppable: React.FC<DroppableProps> = ({ id, data }) => {
               "flex items-start justify-center w-full p-2 border border-gray-300 border-dashed"
             )}
           >
-            Empty
+            Drop here
           </div>
         </Row>
       )}

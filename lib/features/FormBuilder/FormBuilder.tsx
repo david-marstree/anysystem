@@ -15,10 +15,9 @@ const FormBuilder: React.FC = () => {
   const [values, setValues] = React.useState<FormBuilderRow[]>([]);
 
   const handleDragEnd = ({ over, active }: DragEndEvent) => {
-    if (!over?.id) return;
     if (!active.data.current) return;
     const dragData = active.data.current;
-    const overId = over?.id;
+    const overId = over?.id || "new-row";
     const overIndex =
       overId === "new-row"
         ? values.length
@@ -55,7 +54,6 @@ const FormBuilder: React.FC = () => {
                   <Draggable
                     id={(c?.id as string) || ""}
                     data={c?.data as FormField}
-                    className="z-50"
                   >
                     <li className="flex items-center justify-start p-2 border border-gray-400 rounded bg-gray-50 space-x-2">
                       <Icon name={c.icon} />

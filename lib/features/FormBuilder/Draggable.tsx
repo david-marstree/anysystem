@@ -17,10 +17,11 @@ const Draggable: React.FC<DraggableProps> = ({
   children,
   className,
 }) => {
-  const { attributes, listeners, setNodeRef, transform } = useDraggable({
-    id,
-    data,
-  });
+  const { attributes, listeners, setNodeRef, transform, isDragging } =
+    useDraggable({
+      id,
+      data,
+    });
   const style = {
     // Outputs `translate3d(x, y, 0)`
     transform: CSS.Translate.toString(transform),
@@ -32,7 +33,7 @@ const Draggable: React.FC<DraggableProps> = ({
       style={style}
       {...listeners}
       {...attributes}
-      className={twMerge(className)}
+      className={twMerge(className, isDragging && "z-50")}
     >
       {children}
     </div>
