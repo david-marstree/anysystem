@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
 import Draggable from "./Draggable";
 import Droppable from "./Droppable";
-import { Container, Text, Icon, FormField } from "../../components/";
+import { Button, Container, Text, Icon, FormField } from "../../components/";
 import type {
   FormBuilderColumn,
   FormBuilderData,
@@ -43,42 +43,53 @@ const FormBuilder: React.FC = () => {
     setValues(row);
   };
 
+  const handleSubmit = () => {
+    console.log("values", JSON.stringify(values, null, 2));
+  };
+
   return (
-    <DndContext onDragEnd={handleDragEnd}>
-      <div className="flex w-full h-full">
-        <section className="w-[320px] h-full border-r border-gray-300 ">
-          <ul className="p-2 grid gap-2 grid-cols-2">
-            {FORMBUILDER_COMPONENTS.map((c, i) => (
-              <Fragment key={i}>
-                {c && c.data && c.id && (
-                  <Draggable
-                    id={(c?.id as string) || ""}
-                    data={c?.data as FormField}
-                  >
-                    <li className="flex items-center justify-start p-2 border border-gray-400 rounded bg-gray-50 space-x-2">
-                      <Icon name={c.icon} />
-                      <span>{c.name}</span>
-                    </li>
-                  </Draggable>
-                )}
-              </Fragment>
-            ))}
-          </ul>
-        </section>
-        <section className="flex-1 px-2 py-3 space-y-2">
-          <Container>
-            <Text tag="h2">Form Builder</Text>
-            <Text tag="p">Please drag and drop the components below</Text>
-            {values.map((row) => (
-              <React.Fragment key={row.id}>
-                <Droppable id={row.id} data={row.data} />
-              </React.Fragment>
-            ))}
-            <Droppable id="new-row" data={[] as FormBuilderColumn[]} />
-          </Container>
-        </section>
+    <>
+      <DndContext onDragEnd={handleDragEnd}>
+        <div className="flex w-full h-full">
+          <section className="w-[320px] h-full border-r border-gray-300 ">
+            <ul className="p-2 grid gap-2 grid-cols-2">
+              {FORMBUILDER_COMPONENTS.map((c, i) => (
+                <Fragment key={i}>
+                  {c && c.data && c.id && (
+                    <Draggable
+                      id={(c?.id as string) || ""}
+                      data={c?.data as FormField}
+                    >
+                      <li className="flex items-center justify-start p-2 border border-gray-400 rounded bg-gray-50 space-x-2">
+                        <Icon name={c.icon} />
+                        <span>{c.name}</span>
+                      </li>
+                    </Draggable>
+                  )}
+                </Fragment>
+              ))}
+            </ul>
+          </section>
+          <section className="flex-1 px-2 py-3 space-y-2">
+            <Container>
+              <Text tag="h2">Form Builder</Text>
+              <Text tag="p">Please drag and drop the components below</Text>
+              {values.map((row) => (
+                <React.Fragment key={row.id}>
+                  <Droppable id={row.id} data={row.data} />
+                </React.Fragment>
+              ))}
+              <Droppable id="new-row" data={[] as FormBuilderColumn[]} />
+            </Container>
+          </section>
+        </div>
+      </DndContext>
+      <div className="fixed bottom-0 flex justify-end w-full p-2 bg-white border-t border-gray-300">
+        <Button type="button" variant="primary" onClick={handleSubmit}>
+          Save
+        </Button>
       </div>
-    </DndContext>
+    </>
   );
 };
 

@@ -1,9 +1,6 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import Row from "../Row";
-import Column from "../Column";
-import { LabelBaseProps } from "../Label";
-import type { SelectOption } from "../Selectbox";
+import { Row, Column, LabelBaseProps, SelectOption, Icon } from "..";
 import FormControl, { FormControlProps } from "./FormControl";
 import type { FormFieldWithStructure } from "./type";
 
@@ -88,10 +85,18 @@ const FormContent: React.FC<FormContentProps> = ({
                   {isBuilder && (
                     <div
                       className={twMerge(
-                        "absolute inset-0 form-builder-holder",
+                        "absolute inset-0 group form-builder-holder",
                         "hover:border-2 hover:border-blue-500"
                       )}
-                    ></div>
+                    >
+                      <div className="relative inset-0">
+                        <div className="absolute top-0 right-0 hidden group-hover:block">
+                          <button type="button" className="p-1 bg-gray-300">
+                            <Icon name="AiOutlineDelete" />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
                   )}
                 </>
               ) : (
