@@ -1,7 +1,8 @@
 import React, { Fragment } from "react";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
-import Draggable from "./Draggable";
-import Droppable from "./Droppable";
+import Draggable from "./components/Draggable";
+import Droppable from "./components/Droppable";
+import { FormBuilderProvider } from "./contexts/FormBuilderContext";
 import { Button, Container, Text, Icon, FormField } from "../../components/";
 import type {
   FormBuilderColumn,
@@ -9,10 +10,13 @@ import type {
   FormBuilderRow,
 } from "./type";
 //constant
-import { FORMBUILDER_COMPONENTS } from "./constant";
+import { FORMBUILDER_COMPONENTS } from "./constants/component_type";
 
-const FormBuilder: React.FC = () => {
-  const [values, setValues] = React.useState<FormBuilderRow[]>([]);
+export type FormBuilderProps = {
+  value?: FormBuilderRow[];
+};
+const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
+  const [values, setValues] = React.useState<FormBuilderRow[]>(value || []);
 
   const handleDragEnd = ({ over, active }: DragEndEvent) => {
     if (!active.data.current) return;
@@ -48,7 +52,7 @@ const FormBuilder: React.FC = () => {
   };
 
   return (
-    <>
+    <FormBuilderProvider values={values} setValues={setValues}>
       <DndContext onDragEnd={handleDragEnd}>
         <div className="flex w-full h-full">
           <section className="w-[320px] h-full border-r border-gray-300 ">
@@ -70,16 +74,18 @@ const FormBuilder: React.FC = () => {
               ))}
             </ul>
           </section>
-          <section className="flex-1 px-2 py-3 space-y-2">
-            <Container>
+          <section className="flex-1 px-2 py-3">
+            <Container className="space-y-2">
               <Text tag="h2">Form Builder</Text>
               <Text tag="p">Please drag and drop the components below</Text>
-              {values.map((row) => (
-                <React.Fragment key={row.id}>
-                  <Droppable id={row.id} data={row.data} />
-                </React.Fragment>
-              ))}
-              <Droppable id="new-row" data={[] as FormBuilderColumn[]} />
+              <div className="space-y-2">
+                {values.map((row) => (
+                  <React.Fragment key={row.id}>
+                    <Droppable id={row.id} data={row.data} />
+                  </React.Fragment>
+                ))}
+                <Droppable id="new-row" data={[] as FormBuilderColumn[]} />
+              </div>
             </Container>
           </section>
         </div>
@@ -89,7 +95,7 @@ const FormBuilder: React.FC = () => {
           Save
         </Button>
       </div>
-    </>
+    </FormBuilderProvider>
   );
 };
 

@@ -30,6 +30,7 @@ export type ValidationMatch = {
 export type Validation = ValidationBase | ValidationMaxMin | ValidationMatch;
 
 export type FormField = {
+  id?: string;
   name: string;
   dataType: "string" | "number" | "boolean" | "string[]";
   value: string | number | boolean | string[];

@@ -1,7 +1,8 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
-import { Row, Column, LabelBaseProps, SelectOption, Icon } from "..";
+import { Row, Column, LabelBaseProps, SelectOption } from "..";
 import FormControl, { FormControlProps } from "./FormControl";
+import Controller from "../../features/FormBuilder/components/Controller";
 import type { FormFieldWithStructure } from "./type";
 
 export type FormContentProps = {
@@ -82,22 +83,7 @@ const FormContent: React.FC<FormContentProps> = ({
                       setFieldValue && setFieldValue(field.name, v);
                     }}
                   />
-                  {isBuilder && (
-                    <div
-                      className={twMerge(
-                        "absolute inset-0 group form-builder-holder",
-                        "hover:border-2 hover:border-blue-500"
-                      )}
-                    >
-                      <div className="relative inset-0">
-                        <div className="absolute top-0 right-0 hidden group-hover:block">
-                          <button type="button" className="p-1 bg-gray-300">
-                            <Icon name="AiOutlineDelete" />
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  {isBuilder && <Controller field={field} />}
                 </>
               ) : (
                 <></>
