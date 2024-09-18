@@ -2,7 +2,7 @@ import React from "react";
 import { twMerge } from "tailwind-merge";
 import { type ResponsiveColumn } from "../Row";
 
-export type ColumnProps = {
+export type ColumnProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
   className?: string;
   span?: ResponsiveColumn;
   children: React.ReactNode;
@@ -134,13 +134,19 @@ const getColumnClassName = (span?: ResponsiveColumn): string => {
   return columnClassName.join(" ");
 };
 const Column: React.FC<ColumnProps> = ({
+  id,
   span = { sm: 1, md: 1 },
   className,
   children,
+  ...props
 }) => {
   const columnClassName = getColumnClassName(span);
   return (
-    <div className={twMerge("my-col", columnClassName, className)}>
+    <div
+      className={twMerge("my-col", columnClassName, className)}
+      id={id}
+      {...props}
+    >
       {children}
     </div>
   );

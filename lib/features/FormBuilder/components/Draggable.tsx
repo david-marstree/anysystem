@@ -2,7 +2,7 @@ import React from "react";
 import { twMerge } from "tailwind-merge";
 import { useDraggable } from "@dnd-kit/core";
 import { CSS } from "@dnd-kit/utilities";
-import type { FormField } from "../../components";
+import type { FormField } from "../../../components";
 
 export type DraggableProps = {
   id: string;

@@ -1,5 +1,7 @@
 import React from "react";
+import _ from "lodash";
 import { twMerge } from "tailwind-merge";
+import { useSortable } from "@dnd-kit/sortable";
 import { FormField, Icon } from "../../../components";
 //contexts
 import { FormBuilderContext } from "../contexts/FormBuilderContext";
@@ -9,7 +11,18 @@ export type ControllerProps = {
 };
 
 const Controller: React.FC<ControllerProps> = ({ field }) => {
-  const { removeItem } = React.useContext(FormBuilderContext);
+  const { values, removeItem } = React.useContext(FormBuilderContext);
+
+  const rowIndex = values.findIndex((r) =>
+    _.some(r.data, (d) => d.id === field.id)
+  );
+  if (rowIndex < 0) return null;
+  const id =
+    values[rowIndex].data.length === 1 ? values[rowIndex].id : field.id;
+
+  const { listeners, attributes } = useSortable({
+    id: id || "form-control",
+  });
 
   const handleRemove = () => {
     if (!field.id) return;
@@ -27,7 +40,15 @@ const Controller: React.FC<ControllerProps> = ({ field }) => {
         <div className="absolute top-0 right-0 hidden group-hover:block">
           <button
             type="button"
-            className="p-1 bg-gray-300"
+            className="p-1 bg-gray-300 hover:bg-gray-200"
+            {...listeners}
+            {...attributes}
+          >
+            <Icon name="AiOutlineDrag" />
+          </button>
+          <button
+            type="button"
+            className="p-1 bg-gray-300 hover:bg-gray-200"
             onClick={handleRemove}
           >
             <Icon name="AiOutlineDelete" />

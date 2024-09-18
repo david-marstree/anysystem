@@ -25,6 +25,7 @@ export const FormBuilderProvider: React.FC<FormBuilderProviderProps> = ({
   values,
   setValues,
 }) => {
+  //removeItem
   const removeItem = (id: string) => {
     //find values row index which data has id
     let realValues = [...values];

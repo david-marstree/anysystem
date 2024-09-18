@@ -13,7 +13,10 @@ export type RowProps = {
   children: React.ReactNode;
 };
 
-const getColumns = (column?: ResponsiveColumn, data?: React.ReactNode) => {
+export const getColumns = (
+  column?: ResponsiveColumn,
+  data?: React.ReactNode
+) => {
   if (!column && !data) return "";
   if (!column) {
     column = {

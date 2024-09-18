@@ -1,16 +1,18 @@
 import React, { Fragment } from "react";
+import _ from "lodash";
 import { DndContext, DragEndEvent } from "@dnd-kit/core";
-import Draggable from "./components/Draggable";
-import Droppable from "./components/Droppable";
-import { FormBuilderProvider } from "./contexts/FormBuilderContext";
+import {
+  SortableContext,
+  arrayMove,
+  verticalListSortingStrategy,
+} from "@dnd-kit/sortable";
 import { Button, Container, Text, Icon, FormField } from "../../components/";
-import type {
-  FormBuilderColumn,
-  FormBuilderData,
-  FormBuilderRow,
-} from "./type";
+import type { FormBuilderData, FormBuilderRow } from "./type";
 //constant
 import { FORMBUILDER_COMPONENTS } from "./constants/component_type";
+import { FormBuilderProvider } from "./contexts/FormBuilderContext";
+import Droppable from "./components/Droppable";
+import SortableItem from "./components/SortableItem";
 
 export type FormBuilderProps = {
   value?: FormBuilderRow[];
@@ -18,33 +20,82 @@ export type FormBuilderProps = {
 const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
   const [values, setValues] = React.useState<FormBuilderRow[]>(value || []);
 
-  const handleDragEnd = ({ over, active }: DragEndEvent) => {
-    if (!active.data.current) return;
-    const dragData = active.data.current;
-    const overId = over?.id || "new-row";
-    const overIndex =
-      overId === "new-row"
-        ? values.length
-        : values.findIndex((r) => r.id === overId);
+  const addRow = (): FormBuilderRow => {
+    return {
+      type: "row",
+      id: `row-${new Date().getTime()}`,
+      data: [],
+    };
+  };
 
-    const columnId = `${dragData.name}-${new Date().getTime()}`;
+  const addItem = (data: FormField) => {
+    const overIndex = values.length;
+    const columnId = `${data.name}-${new Date().getTime()}`;
 
     let row = [...values];
     const columnData: FormBuilderData = {
       type: "column",
       id: columnId,
       name: columnId,
-      data: dragData as FormField,
+      data: data,
     };
-    if (overId === "new-row") {
-      row[overIndex] = {
-        type: "row",
-        id: `row-${new Date().getTime()}`,
-        data: [],
-      };
-    }
+    row[overIndex] = addRow();
     row[overIndex].data.push(columnData);
     setValues(row);
+  };
+
+  const handleDragEnd = ({ over, active }: DragEndEvent) => {
+    if (!(over && over.id !== active.id)) return;
+    // console.log("handleDragEnd");
+    // console.log("over", over);
+    // console.log("active", active);
+
+    let newIndex = _.findIndex(values, (o) => o.id === over.id);
+    let oldIndex = _.findIndex(values, (o) => o.id === active.id);
+    // for row to another row column
+    if (newIndex < 0 && /\-horizontal$/.test(over.id as string)) {
+      const overId = (over.id as string).replace("-horizontal", "");
+      newIndex = _.findIndex(values, (o) => o.id === overId);
+      let rows = [...values];
+      if (oldIndex >= 0) {
+        rows[newIndex].data = [...rows[newIndex].data, ...rows[oldIndex].data];
+        rows.splice(oldIndex, 1);
+        setValues([...rows]);
+      } else {
+        oldIndex = _.findIndex(values, (r) =>
+          _.some(r.data, (d) => d.id === active.id)
+        );
+        const item = values[oldIndex].data.find((d) => d.id === active.id);
+        rows[oldIndex].data = values[oldIndex].data.filter(
+          (d) => d.id !== active.id
+        );
+        rows[newIndex].data = [...rows[newIndex].data, item as FormBuilderData];
+
+        setValues([...rows]);
+      }
+      return;
+    }
+    //sub column to parent row
+    if (newIndex < 0 && over.id + "" === "row") {
+      let rows = [...values];
+      const itemIndex = _.findIndex(values, (r) =>
+        _.some(r.data, (d) => d.id === active.id)
+      );
+      const item = values[itemIndex].data.find((d) => d.id === active.id);
+
+      rows[itemIndex].data = values[itemIndex].data.filter(
+        (d) => d.id !== active.id
+      );
+      let overIndex = rows.length;
+      rows[overIndex] = addRow();
+      rows[overIndex].data.push(item as FormBuilderData);
+      setValues([...rows]);
+      return;
+    }
+
+    // for sort row only
+    const newValues = arrayMove(values, oldIndex, newIndex);
+    setValues(newValues);
   };
 
   const handleSubmit = () => {
@@ -53,43 +104,58 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
 
   return (
     <FormBuilderProvider values={values} setValues={setValues}>
-      <DndContext onDragEnd={handleDragEnd}>
-        <div className="flex w-full h-full">
-          <section className="w-[320px] h-full border-r border-gray-300 ">
-            <ul className="p-2 grid gap-2 grid-cols-2">
-              {FORMBUILDER_COMPONENTS.map((c, i) => (
-                <Fragment key={i}>
-                  {c && c.data && c.id && (
-                    <Draggable
-                      id={(c?.id as string) || ""}
-                      data={c?.data as FormField}
+      <div className="flex w-full h-full">
+        <section className="w-[320px] h-full border-r border-gray-300 ">
+          <ul className="p-2 grid gap-2 grid-cols-2">
+            {FORMBUILDER_COMPONENTS.map((c, i) => (
+              <Fragment key={i}>
+                {c && c.data && c.id && (
+                  <li className="border border-gray-400 rounded bg-gray-50 space-x-2">
+                    <button
+                      type="button"
+                      className="flex items-center justify-start w-full p-2 gap-2"
+                      onClick={() => addItem(c.data as FormField)}
                     >
-                      <li className="flex items-center justify-start p-2 border border-gray-400 rounded bg-gray-50 space-x-2">
-                        <Icon name={c.icon} />
-                        <span>{c.name}</span>
-                      </li>
-                    </Draggable>
-                  )}
-                </Fragment>
-              ))}
-            </ul>
-          </section>
-          <section className="flex-1 px-2 py-3">
-            <Container className="space-y-2">
-              <Text tag="h2">Form Builder</Text>
-              <Text tag="p">Please drag and drop the components below</Text>
-              <div className="space-y-2">
-                {values.map((row) => (
-                  <React.Fragment key={row.id}>
-                    <Droppable id={row.id} data={row.data} />
-                  </React.Fragment>
-                ))}
-                <Droppable id="new-row" data={[] as FormBuilderColumn[]} />
-              </div>
-            </Container>
-          </section>
-        </div>
-      </DndContext>
+                      <Icon name={c.icon} />
+                      <span>{c.name}</span>
+                    </button>
+                  </li>
+                )}
+              </Fragment>
+            ))}
+          </ul>
+        </section>
+        <section className="flex-1 px-2 py-3">
+          <Container className="space-y-2">
+            <Text tag="h2">Form Builder</Text>
+            <Text tag="p">Please drag and drop the components below</Text>
+            <div className="form-builder-container">
+              <DndContext onDragEnd={handleDragEnd}>
+                <SortableContext
+                  items={values.map((r) => r.id)}
+                  strategy={verticalListSortingStrategy}
+                >
+                  <Droppable id="row" className="space-y-2">
+                    {values.length > 0 &&
+                      values.map((row) => (
+                        <SortableItem
+                          key={row.id}
+                          id={row.id}
+                          data={row.data}
+                        />
+                      ))}
+                  </Droppable>
+                </SortableContext>
+              </DndContext>
+              {values.length === 0 && (
+                <div className="flex items-center justify-center p-2 border border-gray-300 border-dashed">
+                  <Text tag="p">There is no components here</Text>
+                </div>
+              )}
+            </div>
+          </Container>
+        </section>
+      </div>
       <div className="fixed bottom-0 flex justify-end w-full p-2 bg-white border-t border-gray-300">
         <Button type="button" variant="primary" onClick={handleSubmit}>
           Save
