@@ -129,7 +129,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
           <Container className="space-y-2">
             <Text tag="h2">Form Builder</Text>
             <Text tag="p">Please drag and drop the components below</Text>
-            <div className="form-builder-container">
+            <div className="-mx-4 form-builder-container">
               <DndContext onDragEnd={handleDragEnd}>
                 <SortableContext
                   items={values.map((r) => r.id)}
@@ -148,7 +148,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
                 </SortableContext>
               </DndContext>
               {values.length === 0 && (
-                <div className="flex items-center justify-center p-2 border border-gray-300 border-dashed">
+                <div className="flex items-center justify-center p-2 mx-4 border border-gray-300 border-dashed">
                   <Text tag="p">There is no components here</Text>
                 </div>
               )}
