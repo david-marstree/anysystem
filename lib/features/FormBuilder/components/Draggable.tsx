@@ -7,9 +7,15 @@ export type DraggableProps = {
   id: string;
   children: React.ReactNode;
   className?: string;
+  isAddListener?: boolean;
 };
 
-const Draggable: React.FC<DraggableProps> = ({ id, children, className }) => {
+const Draggable: React.FC<DraggableProps> = ({
+  id,
+  children,
+  className,
+  isAddListener = true,
+}) => {
   const { setNodeRef, transform, isDragging, listeners, attributes } =
     useSortable({
       id,
@@ -23,8 +29,10 @@ const Draggable: React.FC<DraggableProps> = ({ id, children, className }) => {
       ref={setNodeRef}
       style={style}
       className={twMerge(className, isDragging && "z-50")}
-      {...listeners}
-      {...attributes}
+      {...(isAddListener === true && {
+        ...listeners,
+        ...attributes,
+      })}
     >
       {children}
     </div>

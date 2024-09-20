@@ -11,14 +11,9 @@ export type ControllerProps = {
 };
 
 const Controller: React.FC<ControllerProps> = ({ field }) => {
-  const { values, removeItem } = React.useContext(FormBuilderContext);
+  const { removeItem } = React.useContext(FormBuilderContext);
 
-  const rowIndex = values.findIndex((r) =>
-    _.some(r.data, (d) => d.id === field.id)
-  );
-  if (rowIndex < 0) return null;
-  const id =
-    values[rowIndex].data.length === 1 ? values[rowIndex].id : field.id;
+  const id = field.id;
 
   const { listeners, attributes } = useSortable({
     id: id || "form-control",

@@ -1,6 +1,8 @@
 import React from "react";
 import { FormBuilderColumn } from "../type";
 import Draggable from "./Draggable";
+import DraggableFormControl from "./DraggableFormControl";
+import { SelectOption } from "@/components";
 
 export type BuilderColumnProps = {
   id: string;
@@ -8,9 +10,11 @@ export type BuilderColumnProps = {
 };
 
 const BuilderColumn: React.FC<BuilderColumnProps> = ({ id, data }) => {
+  const { data: formField } = data;
+  console.log("id", id);
   return (
-    <Draggable id={id} className="border border-gray-50">
-      {data.name}
+    <Draggable id={id} isAddListener={false}>
+      <DraggableFormControl<SelectOption> field={{ ...formField, id }} />
     </Draggable>
   );
 };
