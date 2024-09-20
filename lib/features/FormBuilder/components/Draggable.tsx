@@ -28,13 +28,14 @@ const Draggable: React.FC<DraggableProps> = ({
     <div
       ref={setNodeRef}
       style={style}
-      className={twMerge(className, isDragging && "z-50")}
+      className={twMerge(className, isDragging && "relative")}
       {...(isAddListener === true && {
         ...listeners,
         ...attributes,
       })}
     >
       {children}
+      {isDragging && <div className="absolute inset-0 bg-blue-500"></div>}
     </div>
   );
 };

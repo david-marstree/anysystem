@@ -7,13 +7,17 @@ import { SelectOption } from "@/components";
 export type BuilderColumnProps = {
   id: string;
   data: FormBuilderColumn;
+  className?: string;
 };
 
-const BuilderColumn: React.FC<BuilderColumnProps> = ({ id, data }) => {
+const BuilderColumn: React.FC<BuilderColumnProps> = ({
+  id,
+  data,
+  className,
+}) => {
   const { data: formField } = data;
-  console.log("id", id);
   return (
-    <Draggable id={id} isAddListener={false}>
+    <Draggable id={id} isAddListener={false} className={className}>
       <DraggableFormControl<SelectOption> field={{ ...formField, id }} />
     </Draggable>
   );

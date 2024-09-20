@@ -20,6 +20,7 @@ import { FormBuilderProvider } from "./contexts/FormBuilderContext";
 //component
 import { Button, Container, Text, Icon, FormField } from "../../components/";
 import BuilderRow from "./components/BuilderRow";
+import BuilderColumn from "./components/BuilderColumn";
 
 export type FormBuilderProps = {
   value?: FormBuilderRow[];
@@ -91,9 +92,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
         (d) => d.id === active.id
       );
       if (!item) return;
-      console.log("handleDragOver");
-      console.log("over", over);
-      console.log("active", active);
+
       if (overIndex === -1) {
         return;
       }
@@ -111,9 +110,6 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
   };
 
   const handleDragEnd = ({ over, active }: DragEndEvent) => {
-    console.log("handleDragEnd");
-    console.log("over", over);
-    console.log("active", active);
     if (!over) {
       const activeIndex = _.findIndex(values, (v) => v.id === active.id);
       if (activeIndex === -1) {
@@ -201,7 +197,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
           <Container className="space-y-2">
             <Text tag="h2">Form Builder</Text>
             <Text tag="p">Please drag and drop the components below</Text>
-            <div className="-mx-4 form-builder-container">
+            <div className="form-builder-container">
               <DndContext
                 onDragEnd={handleDragEnd}
                 onDragOver={handleDragOver}
@@ -216,7 +212,20 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
                   ))}
                 </SortableContext>
                 <DragOverlay>
-                  <div className="p-10 rounded bg-gray-50"></div>
+                  {activeItem?.type === "row" && (
+                    <BuilderRow
+                      id={activeItem.id}
+                      data={activeItem}
+                      className="bg-white opacity-70"
+                    />
+                  )}
+                  {activeItem?.type === "column" && (
+                    <BuilderColumn
+                      id={activeItem.id}
+                      data={activeItem}
+                      className="bg-white opacity-70"
+                    />
+                  )}
                 </DragOverlay>
               </DndContext>
               {values.length === 0 && (

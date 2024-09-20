@@ -32,7 +32,7 @@ const Controller: React.FC<ControllerProps> = ({ field }) => {
       )}
     >
       <div className="relative inset-0">
-        <div className="absolute top-0 right-0 hidden group-hover:block">
+        <div className="absolute top-0 right-0 z-50 hidden group-hover:block transform">
           <button
             type="button"
             className="p-1 bg-gray-300 hover:bg-gray-200"
