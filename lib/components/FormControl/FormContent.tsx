@@ -4,10 +4,8 @@ import {
   SortableContext,
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
-import { Row, Column, LabelBaseProps, SelectOption, getColumns } from "..";
-import { FormControlProps } from "./FormControl";
-import DraggableFormControl from "../../features/FormBuilder/components/DraggableFormControl";
-import Droppable from "../../features/FormBuilder/components/Droppable";
+import { Row, Column, LabelBaseProps, SelectOption } from "..";
+import FormControl, { FormControlProps } from "./FormControl";
 import type { FormFieldWithStructure } from "./type";
 
 export type FormContentProps = {
@@ -17,17 +15,14 @@ export type FormContentProps = {
   setFieldValue?: (name: string, value: any) => void;
   touched?: any;
   errors?: any;
-  isBuilder?: boolean;
 };
 
 const FormContent: React.FC<FormContentProps> = ({
-  id,
   fields,
   values,
   setFieldValue,
   touched,
   errors,
-  isBuilder = false,
 }) => {
   return (
     <>
@@ -38,44 +33,21 @@ const FormContent: React.FC<FormContentProps> = ({
               items={field.map((f) => f.id || "form-control")}
               strategy={horizontalListSortingStrategy}
             >
-              {isBuilder === true ? (
-                <Droppable
-                  id={`${id}-horizontal`}
-                  className={twMerge(
-                    "grid gap-2 px-4",
-                    getColumns({ md: field.length })
-                  )}
-                >
-                  <FormContent
-                    fields={field}
-                    values={values}
-                    errors={errors}
-                    touched={touched}
-                    setFieldValue={setFieldValue}
-                    isBuilder={isBuilder}
-                  />
-                </Droppable>
-              ) : (
-                <Row
-                  className={twMerge("space-y-2 md:space-y-0")}
-                  column={{ md: field.length }}
-                >
-                  <FormContent
-                    fields={field}
-                    values={values}
-                    errors={errors}
-                    touched={touched}
-                    setFieldValue={setFieldValue}
-                    isBuilder={isBuilder}
-                  />
-                </Row>
-              )}
+              <Row
+                className={twMerge("space-y-2 md:space-y-0")}
+                column={{ md: field.length }}
+              >
+                <FormContent
+                  fields={field}
+                  values={values}
+                  errors={errors}
+                  touched={touched}
+                  setFieldValue={setFieldValue}
+                />
+              </Row>
             </SortableContext>
           ) : (
-            <Column
-              className={twMerge(isBuilder === true && "relative")}
-              id={field.id}
-            >
+            <Column id={field.id}>
               {field?.component ? (
                 field?.component(field?.componentProps)
               ) : field.componentProps.type &&
@@ -93,33 +65,29 @@ const FormContent: React.FC<FormContentProps> = ({
                   "select",
                   "autocomplete",
                 ].includes(field.componentProps.type) ? (
-                <>
-                  <DraggableFormControl<SelectOption>
-                    isBuilder={isBuilder}
-                    formControlProps={{
-                      ...(field.componentProps as FormControlProps<SelectOption>),
-                      name: field.name,
-                      value: values?.[field.name as keyof typeof values] || "",
-                      labelProps: {
-                        ...(field.componentProps?.labelProps
-                          ? field.componentProps?.labelProps
-                          : {}),
-                        isError: Boolean(
-                          touched?.[field.name as keyof typeof touched] &&
-                            errors?.[field.name as keyof typeof errors]
-                        ),
-                        errorMessage:
-                          (errors?.[
-                            field.name as keyof typeof errors
-                          ] as string) || "",
-                      } as LabelBaseProps,
-                      onChange: (v: unknown) => {
-                        setFieldValue && setFieldValue(field.name, v);
-                      },
-                    }}
-                    field={field}
-                  />
-                </>
+                <FormControl<SelectOption>
+                  {...(field.componentProps as FormControlProps<SelectOption>)}
+                  name={field.name}
+                  value={values?.[field.name as keyof typeof values] || ""}
+                  labelProps={
+                    {
+                      ...(field.componentProps?.labelProps
+                        ? field.componentProps?.labelProps
+                        : {}),
+                      isError: Boolean(
+                        touched?.[field.name as keyof typeof touched] &&
+                          errors?.[field.name as keyof typeof errors]
+                      ),
+                      errorMessage:
+                        (errors?.[
+                          field.name as keyof typeof errors
+                        ] as string) || "",
+                    } as LabelBaseProps
+                  }
+                  onChange={(v: unknown) => {
+                    setFieldValue && setFieldValue(field.name, v);
+                  }}
+                />
               ) : (
                 <></>
               )}

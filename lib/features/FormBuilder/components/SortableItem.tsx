@@ -11,7 +11,7 @@ export type SortableItemProps = {
   className?: string;
 };
 const SortableItem: React.FC<SortableItemProps> = ({ id, data, className }) => {
-  const { setNodeRef, transition, transform } = useSortable({
+  const { setNodeRef, transition, transform, isDragging } = useSortable({
     id,
   });
   const style = {
@@ -32,10 +32,13 @@ const SortableItem: React.FC<SortableItemProps> = ({ id, data, className }) => {
     : [];
 
   return (
-    <div id={id} ref={setNodeRef} className={twMerge(className)} style={style}>
-      {data && data.length > 0 && (
-        <FormContent fields={fields} isBuilder={true} id={id} />
-      )}
+    <div
+      id={id}
+      ref={setNodeRef}
+      className={twMerge(className, isDragging && "z-50, opacity-50")}
+      style={style}
+    >
+      {data && data.length > 0 && <FormContent fields={fields} id={id} />}
     </div>
   );
 };

@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import _ from "lodash";
-import { DndContext, DragEndEvent } from "@dnd-kit/core";
+import { DndContext, DragEndEvent, DragOverlay } from "@dnd-kit/core";
 import {
   SortableContext,
   arrayMove,
@@ -146,6 +146,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
                       ))}
                   </Droppable>
                 </SortableContext>
+                <DragOverlay></DragOverlay>
               </DndContext>
               {values.length === 0 && (
                 <div className="flex items-center justify-center p-2 mx-4 border border-gray-300 border-dashed">
