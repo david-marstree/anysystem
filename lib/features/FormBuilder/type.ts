@@ -7,10 +7,8 @@ export type FormBuilderColumn = {
   data: FormField;
 };
 
-export type FormBuilderData = FormBuilderColumn;
-
 export type FormBuilderRow = {
   type: "row";
   id: string;
-  data: FormBuilderData[];
+  data: FormBuilderColumn[];
 };
