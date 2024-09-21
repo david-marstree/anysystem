@@ -81,32 +81,26 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
     let overIndex = _.findIndex(values, (v) => v.id === over.id);
 
     // insert to row
-    if (activeIndex === -1) {
-      const activeRowIndex = _.findIndex(values, (row) =>
-        _.some(row.data, (d) => d.id === active.id)
-      );
+    if (activeIndex !== -1) return;
+    if (overIndex === -1) return;
+    const activeRowIndex = _.findIndex(values, (row) =>
+      _.some(row.data, (d) => d.id === active.id)
+    );
 
-      if (activeRowIndex === -1) return;
-      const item = _.find(
-        values[activeRowIndex].data,
-        (d) => d.id === active.id
-      );
-      if (!item) return;
+    if (activeRowIndex === -1) return;
+    const item = _.find(values[activeRowIndex].data, (d) => d.id === active.id);
+    if (!item) return;
 
-      if (overIndex === -1) {
-        return;
+    setValues((prev) => {
+      let newValues = [...prev];
+      newValues[activeRowIndex].data = newValues[activeRowIndex].data.filter(
+        (d) => d.id !== active.id
+      );
+      if (newValues[overIndex].data.length === 0) {
+        newValues.splice(overIndex, 1);
       }
-      setValues((prev) => {
-        let newValues = [...prev];
-        newValues[activeRowIndex].data = newValues[activeRowIndex].data.filter(
-          (d) => d.id !== active.id
-        );
-        if (newValues[overIndex].data.length === 0) {
-          newValues.splice(overIndex, 1);
-        }
-        return newValues;
-      });
-    }
+      return newValues;
+    });
   };
 
   const handleDragEnd = ({ over, active }: DragEndEvent) => {
@@ -167,7 +161,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
   };
 
   const handleSubmit = () => {
-    console.log("values", JSON.stringify(values, null, 2));
+    console.log("values", JSON.stringify(values));
   };
 
   return (
@@ -197,7 +191,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
           <Container className="space-y-2">
             <Text tag="h2">Form Builder</Text>
             <Text tag="p">Please drag and drop the components below</Text>
-            <div className="form-builder-container">
+            <div className="p-4 -m-4 border border-gray-300 border-dashed rounded form-builder-container">
               <DndContext
                 onDragEnd={handleDragEnd}
                 onDragOver={handleDragOver}
