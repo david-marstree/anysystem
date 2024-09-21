@@ -77,24 +77,25 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
   const handleDragOver = ({ over, active }: DragOverEvent) => {
     if (!over) return;
     if (active.id === over.id) return;
-    const activeIndex = _.findIndex(values, (v) => v.id === active.id);
-    let overIndex = _.findIndex(values, (v) => v.id === over.id);
-
-    // insert to row
-    if (activeIndex !== -1) return;
-    if (overIndex === -1) return;
-    const activeRowIndex = _.findIndex(values, (row) =>
-      _.some(row.data, (d) => d.id === active.id)
-    );
-
-    if (activeRowIndex === -1) return;
-    const item = _.find(values[activeRowIndex].data, (d) => d.id === active.id);
-    if (!item) return;
 
     setValues((prev) => {
+      const activeIndex = _.findIndex(prev, (v) => v.id === active.id);
+      let overIndex = _.findIndex(prev, (v) => v.id === over.id);
+
+      // insert to row
+      if (activeIndex !== -1) return prev;
+      if (overIndex === -1) return prev;
+      const activeRowIndex = _.findIndex(prev, (row) =>
+        _.some(row.data, (d) => d.id === active.id)
+      );
+
+      if (activeRowIndex === -1) return prev;
+      const item = _.find(prev[activeRowIndex].data, (d) => d.id === active.id);
+      if (!item) return prev;
+
       let newValues = [...prev];
       newValues[activeRowIndex].data = newValues[activeRowIndex].data.filter(
-        (d) => d.id !== active.id
+        (d) => d.id !== item.id
       );
       if (newValues[overIndex].data.length === 0) {
         newValues.splice(overIndex, 1);
@@ -105,39 +106,58 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
 
   const handleDragEnd = ({ over, active }: DragEndEvent) => {
     if (!over) {
-      const activeIndex = _.findIndex(values, (v) => v.id === active.id);
-      if (activeIndex === -1) {
-        setValues((prev) => {
-          let newValues = [...prev];
-          let rowData = addRow();
-          rowData.data.push(activeItem as FormBuilderColumn);
-          newValues.push(rowData);
-          return newValues;
-        });
-      }
+      // 如果元件被拖到了空白處, 就新增一個新的行把元件放進去
+      setValues((prev) => {
+        const activeIndex = _.findIndex(values, (v) => v.id === active.id);
+        if (activeIndex > 0) return prev;
+        let newValues = [...prev];
+        let rowData = addRow();
+        rowData.data.push(activeItem as FormBuilderColumn);
+        newValues.push(rowData);
+        return newValues;
+      });
       setActiveItem(null);
       return;
     }
+
     if (active.id === over.id) return;
 
-    const activeIndex = _.findIndex(values, (v) => v.id === active.id);
-    const overIndex = _.findIndex(values, (v) => v.id === over.id);
-
     setValues((prev) => {
+      const activeIndex = _.findIndex(prev, (v) => v.id === active.id);
+      const overIndex = _.findIndex(prev, (v) => v.id === over.id);
       if (activeIndex === -1 && overIndex >= 0) {
+        // 新增或拖元件到某一行
+        const activeRowIndex = _.findIndex(prev, (row) =>
+          _.some(row.data, (d) => d.id === active.id)
+        );
         let newValues = [...prev];
+        if (activeRowIndex >= 0) {
+          // 新增元件到某一行
+          newValues[activeRowIndex].data = newValues[
+            activeRowIndex
+          ].data.filter((d) => d.id !== active.id);
+        }
         newValues[overIndex].data.push(activeItem as FormBuilderColumn);
         return newValues;
       }
       if (activeIndex === -1 && overIndex === -1) {
-        const overRowIndex = _.findIndex(values, (row) =>
+        // 新增元件到某一行column 的最後一欄
+        const activeRowIndex = _.findIndex(prev, (row) =>
+          _.some(row.data, (d) => d.id === active.id)
+        );
+        const overRowIndex = _.findIndex(prev, (row) =>
           _.some(row.data, (d) => d.id === over.id)
         );
 
         let newValues = [...prev];
         if (!newValues[overRowIndex].data.some((d) => d.id === active.id)) {
+          // 如果該行中沒有active元件就新增
           newValues[overRowIndex].data.push(activeItem as FormBuilderColumn);
+          newValues[activeRowIndex].data = newValues[
+            activeRowIndex
+          ].data.filter((d) => d.id !== active.id);
         } else {
+          // 如果該行中有active元件就交換位置
           const overColumnIndex = _.findIndex(
             newValues[overRowIndex].data,
             (d) => d.id === over.id
