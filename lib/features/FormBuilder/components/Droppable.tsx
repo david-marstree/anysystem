@@ -17,7 +17,7 @@ const Droppable: React.FC<DroppableProps> = ({ id, className, children }) => {
       ref={setNodeRef}
       className={twMerge(
         className,
-        isOver && "bg-blue-50 border-2 border-blue-500"
+        isOver && "bg-blue-50 border-2 border-blue-500 dark:text-blue-500"
       )}
     >
       {children}

@@ -186,13 +186,13 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
 
   return (
     <FormBuilderProvider values={values} setValues={setValues}>
-      <div className="flex w-full h-full">
-        <section className="w-[320px] h-full border-r border-gray-300 ">
+      <div className="flex flex-col w-full h-full md:flex-row">
+        <section className="hidden md:block w-[320px] h-full border-r border-gray-300 ">
           <ul className="p-2 grid gap-2 grid-cols-2">
             {FORMBUILDER_COMPONENTS.map((c, i) => (
               <Fragment key={i}>
                 {c && c.data && c.id && (
-                  <li className="border border-gray-400 rounded bg-gray-50 space-x-2">
+                  <li className="border border-gray-400 rounded bg-gray-50 dark:bg-gray-800 space-x-2">
                     <button
                       type="button"
                       className="flex items-center justify-start w-full p-2 gap-2"
@@ -210,7 +210,12 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
         <section className="flex-1 px-2 py-3">
           <Container className="space-y-2">
             <Text tag="h2">Form Builder</Text>
-            <Text tag="p">Please drag and drop the components below</Text>
+            <Text tag="p" className="hidden md:block">
+              Please drag and drop the components below
+            </Text>
+            <Text tag="p" className="block md:hidden">
+              Please use computer device to the components drag and drop
+            </Text>
             <div className="p-4 -m-4 border border-gray-300 border-dashed rounded form-builder-container">
               <DndContext
                 onDragEnd={handleDragEnd}
@@ -230,14 +235,14 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
                     <BuilderRow
                       id={activeItem.id}
                       data={activeItem}
-                      className="bg-white opacity-70"
+                      className="bg-white opacity-70 dark:bg-gray-800"
                     />
                   )}
                   {activeItem?.type === "column" && (
                     <BuilderColumn
                       id={activeItem.id}
                       data={activeItem}
-                      className="bg-white opacity-70"
+                      className="bg-white opacity-70 dark:bg-gray-800"
                     />
                   )}
                 </DragOverlay>
@@ -251,7 +256,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
           </Container>
         </section>
       </div>
-      <div className="fixed bottom-0 flex justify-end w-full p-2 bg-white border-t border-gray-300">
+      <div className="fixed bottom-0 flex justify-end w-full p-2 bg-white border-t border-gray-300 dark:bg-gray-800">
         <Button type="button" variant="primary" onClick={handleSubmit}>
           Save
         </Button>

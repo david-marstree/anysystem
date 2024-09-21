@@ -16,7 +16,7 @@ const RowController: React.FC<RowControllerProps> = ({ row, className }) => {
     <div className={className}>
       <button
         type="button"
-        className="p-1 bg-gray-300 hover:bg-gray-200"
+        className="p-1 bg-gray-300 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
         {...listeners}
         {...attributes}
       >

@@ -1,6 +1,7 @@
 import React from "react";
 import { SideMenuLayout, Navbar, NavList } from "../../lib/";
 import type { SideMenuHandler } from "../../lib/";
+import { MENU_LIST } from "../constants/menu";
 
 export type SubLayoutProps = {
   title?: string;
@@ -14,15 +15,7 @@ const SubLayout: React.FC<SubLayoutProps> = ({ title, children }) => {
       ref={menuRef}
       header={<Navbar title={title} menuRef={menuRef} />}
       menuType="fixed"
-      menu={
-        <NavList
-          list={[
-            { label: "Home", path: "/", icon: "AiOutlineHome" },
-            { label: "About", path: "/about", icon: "AiOutlineUser" },
-            { label: "Builder", path: "/builder", icon: "AiFillBuild" },
-          ]}
-        />
-      }
+      menu={<NavList list={MENU_LIST} />}
     >
       {children}
     </SideMenuLayout>

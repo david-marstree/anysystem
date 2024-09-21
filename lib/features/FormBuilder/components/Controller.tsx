@@ -35,7 +35,7 @@ const Controller: React.FC<ControllerProps> = ({ field }) => {
         <div className="absolute top-0 right-0 z-50 hidden group-hover:block transform">
           <button
             type="button"
-            className="p-1 bg-gray-300 hover:bg-gray-200"
+            className="p-1 bg-gray-300 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
             {...listeners}
             {...attributes}
           >
@@ -43,7 +43,7 @@ const Controller: React.FC<ControllerProps> = ({ field }) => {
           </button>
           <button
             type="button"
-            className="p-1 bg-gray-300 hover:bg-gray-200"
+            className="p-1 bg-gray-300 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
             onClick={handleRemove}
           >
             <Icon name="AiOutlineDelete" />
