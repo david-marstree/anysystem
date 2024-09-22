@@ -8,9 +8,8 @@ const Sidebar: React.FC = () => {
   const { setData } = React.useContext(DndContext);
 
   const handleDragStart = (e: React.DragEvent, data: NodeType) => {
-    setData(data);
-    console.log(data);
     e.dataTransfer.effectAllowed = "move";
+    setData(data);
   };
 
   return (

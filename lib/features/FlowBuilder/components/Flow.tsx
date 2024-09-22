@@ -17,7 +17,12 @@ import "@xyflow/react/dist/style.css";
 //contexts
 import { DndContext } from "../contexts/DndContext";
 //components
+import BasicNode from "./BasicNode";
 import ConnectionLine from "./ConnectionLine";
+
+const nodeTypes = {
+  custom: BasicNode,
+};
 
 export type FlowHandlers = {
   setNodes: React.Dispatch<React.SetStateAction<Node[]>>;
@@ -89,6 +94,7 @@ const Flow: React.ForwardRefRenderFunction<FlowHandlers, FlowProps> = (
     <ReactFlow
       nodes={nodes}
       edges={edges}
+      nodeTypes={nodeTypes}
       onNodesChange={onNodesChange}
       onEdgesChange={onEdgesChange}
       connectionLineComponent={ConnectionLine}

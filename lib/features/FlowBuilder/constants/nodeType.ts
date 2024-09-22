@@ -17,4 +17,13 @@ export const NODE_TYPES = [
       label: "Output",
     },
   },
+  {
+    id: "3",
+    name: "Custom",
+    icon: "AiOutlineSetting",
+    type: "custom",
+    data: {
+      label: "Custom",
+    },
+  },
 ];
