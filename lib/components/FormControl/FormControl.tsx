@@ -41,6 +41,7 @@ export type FormControlProps<ListOption extends SelectOption> =
 const FormControl = <ListOption extends SelectOption>({
   type,
   onChange,
+  variant = "md",
   ...props
 }: FormControlProps<ListOption>): React.ReactElement => {
   const { labelProps, ...restProps } = props;
@@ -49,6 +50,7 @@ const FormControl = <ListOption extends SelectOption>({
     <Suspense fallback={null}>
       {type !== "confirm" ? (
         <Label
+          className={variant}
           type={
             type === "radio"
               ? "normal"
@@ -72,10 +74,15 @@ const FormControl = <ListOption extends SelectOption>({
           ) : type === "radio" ? (
             <RadioGroup<ListOption>
               {...(restProps as RadioGroupProps<ListOption>)}
+              variant={variant}
               onChange={onChange}
             />
           ) : type === "switch" ? (
-            <Switch {...(restProps as SwitchProps)} onChange={onChange} />
+            <Switch
+              {...(restProps as SwitchProps)}
+              onChange={onChange}
+              checked={Boolean(restProps.value)}
+            />
           ) : type === "tel" ? (
             <TelephoneInput
               {...(restProps as TelephoneInputProps)}
@@ -103,7 +110,13 @@ const FormControl = <ListOption extends SelectOption>({
           )}
         </Label>
       ) : (
-        <Checkbox {...(restProps as CheckboxProps)} onChange={onChange} />
+        <Checkbox
+          {...(restProps as CheckboxProps)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            onChange && onChange(String(e.target.checked))
+          }
+          label={labelProps.label}
+        />
       )}
     </Suspense>
   );

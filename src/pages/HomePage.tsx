@@ -37,6 +37,7 @@ const HomePage: React.FC = () => {
                     type: "text",
                     labelProps: { label: "Username" },
                     placeholder: "Username",
+                    variant: "sm",
                   },
                 },
                 {
@@ -48,6 +49,7 @@ const HomePage: React.FC = () => {
                     type: "password",
                     labelProps: { label: "Password" },
                     placeholder: "Password",
+                    variant: "sm",
                   },
                 },
               ],
@@ -60,6 +62,7 @@ const HomePage: React.FC = () => {
                   { type: "max", value: 12, message: "Invalid phone number" },
                 ],
                 componentProps: {
+                  variant: "sm",
                   type: "tel",
                   placeholder: "Phone number",
                   phonePrefix: "853",
@@ -91,6 +94,7 @@ const HomePage: React.FC = () => {
                 dataType: "string",
                 value: Math.round(new Date().getTime() / 1000) + "",
                 componentProps: {
+                  variant: "sm",
                   type: "datetime",
                   labelProps: { label: "Birth of date" },
                 },
@@ -100,6 +104,7 @@ const HomePage: React.FC = () => {
                 dataType: "string",
                 value: "M",
                 componentProps: {
+                  variant: "sm",
                   type: "radio",
                   labelProps: { label: "Gender" },
                   options: [
@@ -120,10 +125,12 @@ const HomePage: React.FC = () => {
               },
               {
                 name: "country",
-                dataType: "string",
-                value: "Macau",
+                dataType: "string[]",
+                value: ["Macau"],
                 componentProps: {
+                  variant: "sm",
                   type: "autocomplete",
+                  multiple: true,
                   labelProps: { label: "Country" },
                   options: [
                     {
@@ -145,6 +152,25 @@ const HomePage: React.FC = () => {
                       enable: true,
                     },
                   ],
+                },
+              },
+              {
+                name: "confirm",
+                dataType: "string",
+                value: false,
+                componentProps: {
+                  type: "confirm",
+                  labelProps: { label: "Checkbox" },
+                },
+              },
+              {
+                name: "Switch",
+                dataType: "string",
+                value: false,
+                componentProps: {
+                  variant: "sm",
+                  type: "switch",
+                  labelProps: { label: "Checkbox" },
                 },
               },
             ]}

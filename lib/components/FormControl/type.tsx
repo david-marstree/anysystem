@@ -49,18 +49,23 @@ export type FormField = {
 
 export type FormFieldWithStructure = (FormField | FormField[])[];
 
-export type FormControlInputProps = {
+export type FormControlInputProps = InputProps & {
   type: "password" | "text" | "number" | "email";
   labelProps: LabelBaseProps;
   onChange?: (value: string) => void;
-} & InputProps;
+  variant?: "sm" | "md";
+};
 
-export type FormFieldInputProps = Omit<FormControlInputProps, "name">;
+export type FormFieldInputProps = Omit<
+  FormControlInputProps,
+  "name" | "value" | "onChange"
+>;
 
 export type FormControlDateTimeProps = DatePickerProps & {
   type: "date" | "datetime";
   labelProps: LabelBaseProps;
   onChange?: (value: string) => void;
+  variant?: "sm" | "md";
 };
 
 export type FormFieldDateTimeProps = Omit<
@@ -72,6 +77,7 @@ export type FormControlRadioProps<ListOption extends SelectOption> = {
   type: "radio";
   labelProps: LabelBaseProps;
   onChange?: (value: string) => void;
+  variant?: "sm" | "md";
 } & RadioGroupProps<ListOption>;
 
 export type FormFieldRadioProps<ListOption extends SelectOption> = Omit<
@@ -83,22 +89,31 @@ export type FormControlSwitchProps = {
   type: "switch";
   labelProps: LabelBaseProps;
   onChange?: (value: string) => void;
+  variant?: "sm" | "md";
 } & SwitchProps;
 
-export type FormFieldSwitchProps = Omit<FormControlSwitchProps, "name">;
+export type FormFieldSwitchProps = Omit<
+  FormControlSwitchProps,
+  "name" | "value" | "onChange"
+>;
 
 export type FormControlConfirmProps = {
   type: "confirm";
   labelProps: LabelBaseProps;
   onChange?: (value: string) => void;
+  variant?: "sm" | "md";
 } & CheckboxProps;
 
-export type FormFieldConfirmProps = Omit<FormControlConfirmProps, "name">;
+export type FormFieldConfirmProps = Omit<
+  FormControlConfirmProps,
+  "name" | "label"
+>;
 
 export type FormControlTelephoneProps = {
   type: "tel";
   labelProps: LabelBaseProps;
   onChange?: (value: string) => void;
+  variant?: "sm" | "md";
 } & TelephoneInputProps;
 
 export type FormFieldTelephoneProps = Omit<FormControlTelephoneProps, "name">;
@@ -107,6 +122,7 @@ export type FormControlSelectboxProps<ListOption extends SelectOption> = {
   type: "select";
   labelProps: LabelBaseProps;
   onChange?: (value: string | string[]) => void;
+  variant?: "sm" | "md";
 } & SelectboxProps<ListOption>;
 
 export type FormFieldSelectboxProps<ListOption extends SelectOption> = Omit<
@@ -118,6 +134,7 @@ export type FormControlAutoCompleteProps<ListOption extends SelectOption> = {
   type: "autocomplete";
   labelProps: LabelBaseProps;
   onChange?: (value: string | string[]) => void;
+  variant?: "sm" | "md";
 } & AutoCompleteProps<ListOption>;
 
 export type FormFieldAutoCompleteProps<ListOption extends SelectOption> = Omit<

@@ -31,6 +31,8 @@
 
 @layer components {
   .form-group {
+    @apply bg-inherit;
+
     &.error {
       @apply border-red-500;
     }
@@ -40,9 +42,22 @@
       }
     }
 
+    &.sm {
+      input,
+      textarea {
+        @apply py-3 px-2;
+      }
+    }
+    &.md {
+      input,
+      textarea {
+        @apply py-5 px-4;
+      }
+    }
+
     input,
     textarea {
-      @apply text-gray-700 w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal py-5 px-4 border-0 rounded;
+      @apply text-gray-700 w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal border-0 rounded;
 
       &::-webkit-outer-spin-button {
         -webkit-appearance: none;
@@ -67,16 +82,39 @@
     &:has(textarea:autofill),
     &:has(textarea:not(:placeholder-shown)),
     &:has(.form-control:not(.empty)) {
-      @apply py-5 px-4;
+      &.sm {
+        @apply py-3 px-2;
+
+        input,
+        textarea {
+          @apply translate-y-0;
+        }
+
+        label {
+          @apply left-1 -translate-y-2 top-0 text-xs font-normal px-1 bg-inherit bg-white dark:bg-gray-950;
+        }
+      }
+      &.md {
+        @apply py-5 px-4;
+
+        input,
+        textarea {
+          @apply translate-y-3;
+        }
+
+        label {
+          @apply -translate-y-3 text-sm;
+        }
+      }
 
       label {
-        @apply text-black transform -translate-y-3 transition-all duration-500 opacity-100 block text-sm absolute font-semibold dark:text-white;
+        @apply text-black transform transition-all duration-500 opacity-100 block absolute font-semibold dark:text-white;
       }
 
       input,
       textarea,
       .form-control {
-        @apply transform translate-y-3 p-0 dark:bg-transparent dark:text-white ;
+        @apply transform p-0 dark:bg-transparent dark:text-white;
       }
 
       .btn-before {

@@ -22,7 +22,6 @@ import { DndContext } from "../contexts/DndContext";
 //components
 import { nodeTypes as BasicConfigureNodeType } from "./nodes/BasicConfigureNode";
 import ConnectionLine from "./ConnectionLine";
-import { parse } from "path";
 
 const nodeTypes = {
   ...BasicConfigureNodeType,

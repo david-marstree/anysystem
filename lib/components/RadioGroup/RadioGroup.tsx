@@ -27,7 +27,7 @@ type Action<ListOption extends SelectOption> =
 
 const reducer = <ListOption extends SelectOption>(
   state: State<ListOption>,
-  action: Action<ListOption>,
+  action: Action<ListOption>
 ): State<ListOption> => {
   if (action.type === "SETVALUE") {
     return {
@@ -53,6 +53,7 @@ const reducer = <ListOption extends SelectOption>(
 };
 
 export type RadioGroupProps<ListOption extends SelectOption> = {
+  variant?: "sm" | "md";
   id?: string;
   name: string;
   options: ListOption[];
@@ -65,6 +66,7 @@ export type RadioGroupProps<ListOption extends SelectOption> = {
 };
 
 const RadioGroup = <ListOption extends SelectOption>({
+  variant = "md",
   options,
   value,
   valueField = "value",
@@ -82,7 +84,7 @@ const RadioGroup = <ListOption extends SelectOption>({
   } as State<ListOption>);
 
   return (
-    <div className="radio-group w-full">
+    <div className="w-full radio-group">
       <HeadlessRadioGroup
         value={state.selected}
         onChange={(opt: ListOption) => {
@@ -100,14 +102,16 @@ const RadioGroup = <ListOption extends SelectOption>({
             value={row}
             className={({ checked }) =>
               twMerge(
-                "group relative flex cursor-pointer rounded border border-gray-400 px-5 py-4 transition focus:outline-none",
+                "group relative flex cursor-pointer rounded border border-gray-400 transition focus:outline-none",
+                variant === "sm" && "px-3 py-2 text-sm",
+                variant === "md" && "px-5 py-4 ",
                 checked &&
-                  "border-primary-600 bg-primary-100 dark:border-gray-700 dark:bg-gray-800",
+                  "border-primary-600 bg-primary-100 dark:border-gray-700 dark:bg-gray-800"
               )
             }
           >
             {({ checked }) => (
-              <div className="flex w-full items-center justify-between">
+              <div className="flex items-center justify-between w-full">
                 <div className="text-sm/6">
                   <p className="font-semibold">{row.label}</p>
                 </div>
@@ -116,13 +120,13 @@ const RadioGroup = <ListOption extends SelectOption>({
                     className={twMerge(
                       "size-6 fill-primary-600 opacity-0 transition group-hover:opacity-80",
                       checked &&
-                        "size-6 fill-primary-600 opacity-100 transition dark:fill-primary-50",
+                        "size-6 fill-primary-600 opacity-100 transition dark:fill-primary-50"
                     )}
                   />
                 ) : (
                   <CheckCircleOutlineIcon
                     className={twMerge(
-                      "size-6 text-gray-200 transition group-hover:text-primary-600",
+                      "text-gray-200 size-6 transition group-hover:text-primary-600"
                     )}
                   />
                 )}

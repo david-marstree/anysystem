@@ -11,7 +11,7 @@ export const Container: React.FC<ContainerProps> = ({
   ...props
 }) => {
   return (
-    <div className={twMerge("mx-auto w-full max-w-lg px-4 py-8", className)}>
+    <div className={twMerge("w-full max-w-lg px-4 py-8 mx-auto ", className)}>
       {props?.children}
     </div>
   );

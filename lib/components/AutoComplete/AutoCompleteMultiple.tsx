@@ -44,7 +44,7 @@ type Action<ListOption extends SelectOption> =
 
 const reducer = <ListOption extends SelectOption>(
   state: State<ListOption>,
-  action: Action<ListOption>,
+  action: Action<ListOption>
 ): State<ListOption> => {
   if (action.type === "SEARCH") {
     return {
@@ -109,7 +109,7 @@ export type AutoCompleteMultipleProps<ListOption extends SelectOption> = {
   readOnly?: boolean;
   className?: string;
   placeholder?: string;
-  onChange?: (value: string[] )=> void;
+  onChange?: (value: string[]) => void;
   onSearch?: (query: string) => void;
   valueField?: ValueField<ListOption>;
 };
@@ -125,7 +125,7 @@ const AutoCompleteMultiple = <ListOption extends SelectOption>(
     onSearch,
     placeholder,
   }: AutoCompleteMultipleProps<ListOption>,
-  innerRef: React.Ref<AutoCompleteMultipleHandler>,
+  innerRef: React.Ref<AutoCompleteMultipleHandler>
 ) => {
   const [state, dispatch] = React.useReducer(reducer<ListOption>, {
     query: "",
@@ -170,7 +170,7 @@ const AutoCompleteMultiple = <ListOption extends SelectOption>(
           <ul className="flex form-control gap-1">
             {state.selected?.map((opt: ListOption, index: number) => (
               <li key={index}>
-                <div className="flex p-1 rounded bg-indigo-50">
+                <div className="flex p-1 rounded bg-blue-50 dark:bg-blue-900">
                   <span className="text-xs whitespace-nowrap">{opt.label}</span>
                   <button
                     type="button"
@@ -238,17 +238,17 @@ const AutoCompleteMultiple = <ListOption extends SelectOption>(
                     className={twMerge(
                       "relative flex cursor-pointer justify-between px-5 py-4 text-black hover:bg-primary-100 dark:text-white",
                       (selected || focus) && "bg-primary-100 dark:bg-gray-700",
-                      opt.enable === false && "cursor-not-allowed opacity-50",
+                      opt.enable === false && "cursor-not-allowed opacity-50"
                     )}
                   >
                     <span className="pl-5">{opt.label}</span>
                     {selected ? (
                       <span
                         className={twMerge(
-                          "absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600",
+                          "absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600"
                         )}
                       >
-                        <CheckIcon className="h-5 w-5" aria-hidden="true" />
+                        <CheckIcon className="w-5 h-5" aria-hidden="true" />
                       </span>
                     ) : null}
                   </li>
@@ -267,5 +267,5 @@ export default React.forwardRef(AutoCompleteMultiple) as <
 >(
   props: AutoCompleteMultipleProps<ListOption> & {
     ref?: React.Ref<AutoCompleteMultipleHandler>;
-  },
+  }
 ) => React.ReactElement;
