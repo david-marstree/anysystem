@@ -13,7 +13,7 @@ const Sidebar: React.FC = () => {
   };
 
   return (
-    <ul className="p-2 grid gap-2 grid-cols-2">
+    <ul className="p-2 grid gap-2 grid-cols-1">
       {NODE_TYPES.map((c, i) => (
         <Fragment key={i}>
           {c && c.data && c.id && (

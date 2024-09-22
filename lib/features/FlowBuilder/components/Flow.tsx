@@ -6,22 +6,25 @@ import {
   Controls,
   useNodesState,
   useEdgesState,
+  applyNodeChanges,
   OnConnect,
   addEdge,
   Node,
   Edge,
   MarkerType,
   useReactFlow,
+  OnNodesChange,
+  NodeChange,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
 //contexts
 import { DndContext } from "../contexts/DndContext";
 //components
-import BasicNode from "./BasicNode";
+import { nodeTypes as BasicConfigureNodeType } from "./nodes/BasicConfigureNode";
 import ConnectionLine from "./ConnectionLine";
 
 const nodeTypes = {
-  custom: BasicNode,
+  ...BasicConfigureNodeType,
 };
 
 export type FlowHandlers = {
@@ -49,6 +52,26 @@ const Flow: React.ForwardRefRenderFunction<FlowHandlers, FlowProps> = (
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
   const { screenToFlowPosition } = useReactFlow();
   const { data } = React.useContext(DndContext);
+
+  const handleNodesChange: OnNodesChange = React.useCallback(
+    (changes) => {
+      setNodes((nds) => {
+        const parsedChanges = changes.reduce((res, change) => {
+          if (!change) return res;
+          const validChange =
+            change.type !== "remove" ||
+            (change.type === "remove" &&
+              nodes.find((n) => n.id === change.id)?.data.deletable);
+          if (validChange) {
+            res.push(change);
+          }
+        }, [] as any);
+
+        return applyNodeChanges(parsedChanges, nds);
+      });
+    },
+    [setNodes]
+  );
 
   const onConnect: OnConnect = React.useCallback(
     (connection) => {
