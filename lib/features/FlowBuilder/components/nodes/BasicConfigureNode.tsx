@@ -12,7 +12,7 @@ const BasicConfigureNode: React.FC<BasicNodeProps> = ({
   isConnectable = true,
 }) => {
   return (
-    <div className="p-2 border border-gray-400 rounded bg-gray-50 dark:bg-gray-800 min-w-40">
+    <div className="px-3 py-2 border border-gray-400 rounded bg-gray-50 dark:bg-gray-800 min-w-40">
       <div className="flex items-center justify-start gap-2">
         <Icon name={data.icon} />
         <Text tag="h4" className="text-sm font-semibold">

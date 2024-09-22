@@ -22,6 +22,7 @@ import { DndContext } from "../contexts/DndContext";
 //components
 import { nodeTypes as BasicConfigureNodeType } from "./nodes/BasicConfigureNode";
 import ConnectionLine from "./ConnectionLine";
+import { parse } from "path";
 
 const nodeTypes = {
   ...BasicConfigureNodeType,
@@ -48,27 +49,30 @@ const Flow: React.ForwardRefRenderFunction<FlowHandlers, FlowProps> = (
   innerRef
 ) => {
   const { nodes: initialNodes, edges: initialEdges } = values;
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+  const [nodes, setNodes] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const { screenToFlowPosition } = useReactFlow();
+  const { screenToFlowPosition, getNode } = useReactFlow();
   const { data } = React.useContext(DndContext);
 
   const handleNodesChange: OnNodesChange = React.useCallback(
     (changes) => {
-      setNodes((nds) => {
-        const parsedChanges = changes.reduce((res, change) => {
-          if (!change) return res;
-          const validChange =
-            change.type !== "remove" ||
-            (change.type === "remove" &&
-              nodes.find((n) => n.id === change.id)?.data.deletable);
-          if (validChange) {
-            res.push(change);
-          }
-        }, [] as any);
+      let parseChanges = [...changes];
 
-        return applyNodeChanges(parsedChanges, nds);
-      });
+      parseChanges = parseChanges.reduce((acc, curr) => {
+        if (curr.type === "remove") {
+          const node = getNode(curr.id);
+
+          if (node?.data?.deletable === true) {
+            return [...acc, curr];
+          }
+          return acc;
+        }
+
+        return [...acc, curr];
+      }, [] as NodeChange[]);
+      if (parseChanges.length === 0) return;
+
+      setNodes((nds) => applyNodeChanges(changes, nds));
     },
     [setNodes]
   );
@@ -118,7 +122,7 @@ const Flow: React.ForwardRefRenderFunction<FlowHandlers, FlowProps> = (
       nodes={nodes}
       edges={edges}
       nodeTypes={nodeTypes}
-      onNodesChange={onNodesChange}
+      onNodesChange={handleNodesChange}
       onEdgesChange={onEdgesChange}
       connectionLineComponent={ConnectionLine}
       onConnect={onConnect}
