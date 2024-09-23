@@ -8,7 +8,7 @@ export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
 
 const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
   { children, className, variant = "default", size = "md", ...props },
-  innerRef,
+  innerRef
 ) => {
   const getVariant = React.useMemo(() => {
     switch (variant) {
@@ -46,11 +46,11 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
         "hover:after:w-full hover:after:transform hover:after:opacity-20 hover:after:transition-all hover:after:duration-300", //hover:
         getVariant,
         getSize,
-        className,
+        className
       )}
       {...props}
     >
-      <span className="relative z-10">{children}</span>
+      <span className="relative">{children}</span>
     </button>
   );
 };
