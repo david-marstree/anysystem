@@ -26,7 +26,7 @@ const BasicConfigureNode: React.FC<BasicNodeProps> = ({
       <Handle
         type="source"
         position={Position.Right}
-        className="bg-white border-2 border-blue-500 rounded-full size-2"
+        className="flex items-center justify-center text-blue-500 bg-white border-2 border-blue-500 rounded-full size-4"
         onConnect={(params) => console.log("handle onConnect", params)}
         isConnectable={isConnectable}
       />
