@@ -176,7 +176,11 @@ const HomePage: React.FC = () => {
             ]}
             onSubmit={(values) => console.log(values)}
           >
-            <Button variant="primary" type="submit">
+            <Button
+              variant="primary"
+              type="submit"
+              onClick={() => modalRef.current?.show()}
+            >
               Button
             </Button>
           </FormComponent>
@@ -184,6 +188,7 @@ const HomePage: React.FC = () => {
           <Modal
             ref={modalRef}
             title="Modal Title"
+            onClickBackdropClose={false}
             buttons={[
               {
                 variant: "primary",

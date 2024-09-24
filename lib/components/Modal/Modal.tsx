@@ -26,6 +26,7 @@ export type ModalProps = {
   title: string;
   children: React.ReactNode;
   buttons?: ModalButton[];
+  onClickBackdropClose?: boolean;
   className?: {
     header?: string;
     footer?: string;
@@ -33,7 +34,15 @@ export type ModalProps = {
 };
 
 const Modal: React.ForwardRefRenderFunction<ModalHandler, ModalProps> = (
-  { open = false, title, buttons, children, className, size = "md" },
+  {
+    open = false,
+    title,
+    buttons,
+    children,
+    className,
+    size = "md",
+    onClickBackdropClose = true,
+  },
   innerRef
 ) => {
   const [isOpen, setIsOpen] = React.useState(open);
@@ -48,7 +57,11 @@ const Modal: React.ForwardRefRenderFunction<ModalHandler, ModalProps> = (
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-[999]" onClose={hide}>
+        <Dialog
+          as="div"
+          className="relative z-[999]"
+          onClose={onClickBackdropClose ? hide : () => {}}
+        >
           <TransitionChild
             as={Fragment}
             enter="duration-300 ease-out"
@@ -95,7 +108,7 @@ const Modal: React.ForwardRefRenderFunction<ModalHandler, ModalProps> = (
                   >
                     {title}
                   </DialogTitle>
-                  <div className="mt-2 grow text-sm text-gray-500 dark:text-gray-400">
+                  <div className="mt-2 text-sm text-gray-500 grow dark:text-gray-400">
                     {children}
                   </div>
 
