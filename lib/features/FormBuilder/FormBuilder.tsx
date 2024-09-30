@@ -18,7 +18,7 @@ import { FORMBUILDER_COMPONENTS } from "./constants/component_type";
 //context
 import { FormBuilderProvider } from "./contexts/FormBuilderContext";
 //component
-import { Button, Container, Text, Icon, FormField } from "../../components/";
+import { Button, Container, Text, FormField } from "../../components/";
 import BuilderRow from "./components/BuilderRow";
 import BuilderColumn from "./components/BuilderColumn";
 
@@ -198,7 +198,7 @@ const FormBuilder: React.FC<FormBuilderProps> = ({ value }) => {
                       className="flex items-center justify-start w-full p-2 gap-2"
                       onClick={() => addItem(c.data as FormField)}
                     >
-                      <Icon name={c.icon} />
+                      <c.icon />
                       <span>{c.name}</span>
                     </button>
                   </li>

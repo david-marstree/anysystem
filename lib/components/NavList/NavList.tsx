@@ -7,13 +7,11 @@ import {
 } from "@headlessui/react";
 import { BsChevronRight as ChevronRightIcon } from "react-icons/bs";
 import { twMerge } from "tailwind-merge";
-//components
-import Icon from "../Icon";
 
 export type NavItemObject = {
   label: string;
   path?: string;
-  icon?: string;
+  icon?: React.FC;
   title?: boolean;
   list?: NavItemObject[];
   onClick?: () => void;
@@ -27,7 +25,7 @@ const NavList: React.FC<NavListProps> = ({ list }) => {
   const location = useLocation();
 
   return (
-    <nav className="w-full bg-white px-4 py-6 dark:bg-gray-950">
+    <nav className="w-full px-4 py-6 bg-white dark:bg-gray-950">
       <ul>
         {list &&
           list.map((item, index) => (
@@ -40,11 +38,11 @@ const NavList: React.FC<NavListProps> = ({ list }) => {
                       "flex w-full items-center justify-start gap-2 rounded p-3 font-semibold hover:bg-primary-50 dark:text-white dark:hover:bg-gray-800 cursor-pointer",
                       location.pathname === item.path
                         ? "bg-primary-50 dark:bg-gray-800"
-                        : "",
+                        : ""
                     )}
                     onClick={item?.onClick}
                   >
-                    {item.icon && <Icon name={item.icon} size={20} />}
+                    {item.icon && item.icon({ size: 20 })}
                     <span>{item.label}</span>
                   </a>
                 ) : (
@@ -53,22 +51,22 @@ const NavList: React.FC<NavListProps> = ({ list }) => {
                       <>
                         <DisclosureButton
                           className={twMerge(
-                            "flex w-full items-center gap-2 rounded p-3 text-left font-semibold hover:bg-primary-50 dark:text-white dark:hover:bg-gray-700",
+                            "flex items-center w-full p-3 font-semibold text-left rounded gap-2 hover:bg-primary-50 dark:text-white dark:hover:bg-gray-700"
                           )}
                         >
-                          {item.icon && <Icon name={item.icon} size={20} />}
+                          {item.icon && item.icon({ size: 20 })}
                           <span>{item.label}</span>
                           <ChevronRightIcon
                             className={twMerge(
                               open
-                                ? "rotate-90 text-gray-500"
+                                ? "text-gray-500 rotate-90"
                                 : "text-gray-400",
-                              "ml-auto h-4 w-4 shrink-0",
+                              "w-4 h-4 ml-auto shrink-0"
                             )}
                             aria-hidden="true"
                           />
                         </DisclosureButton>
-                        <DisclosurePanel as="ul" className="mt-1 px-2">
+                        <DisclosurePanel as="ul" className="px-2 mt-1">
                           {item?.list?.map((subItem, index) => (
                             <li key={index}>
                               {/* 44px */}
@@ -78,7 +76,7 @@ const NavList: React.FC<NavListProps> = ({ list }) => {
                                 className={twMerge(
                                   "block rounded py-2 pl-9 pr-2 text-gray-700 hover:bg-primary-50 dark:text-white dark:hover:bg-gray-700",
                                   location.pathname === subItem.path &&
-                                    "bg-primary-50 dark:bg-gray-700",
+                                    "bg-primary-50 dark:bg-gray-700"
                                 )}
                                 onClick={subItem?.onClick}
                               >

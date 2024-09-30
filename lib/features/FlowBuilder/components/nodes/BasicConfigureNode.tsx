@@ -1,5 +1,6 @@
 import React from "react";
-import { Text, Icon } from "../../../../components/";
+import { AiOutlineSetting } from "react-icons/ai";
+import { Text } from "../../../../components/";
 import { Handle, Position } from "@xyflow/react";
 
 export type BasicNodeProps = {
@@ -14,7 +15,7 @@ const BasicConfigureNode: React.FC<BasicNodeProps> = ({
   return (
     <div className="px-3 py-2 border border-gray-400 rounded bg-gray-50 dark:bg-gray-800 min-w-40">
       <div className="flex items-center justify-start gap-2">
-        <Icon name={data.icon} />
+        <AiOutlineSetting />
         <Text tag="h4" className="text-sm font-semibold">
           {data.label}
         </Text>

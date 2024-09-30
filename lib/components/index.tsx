@@ -10,8 +10,6 @@ export * from "./Container/";
 export { default as Container } from "./Container/";
 export * from "./DatePicker/";
 export { default as DatePicker } from "./DatePicker/";
-export * from "./Icon/";
-export { default as Icon } from "./Icon/";
 export * from "./Input/";
 export { default as Input } from "./Input/";
 export * from "./TelephoneInput/";

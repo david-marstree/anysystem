@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import { NODE_TYPES } from "../constants/nodeType";
-import { Icon } from "../../../components";
 import { DndContext } from "../contexts/DndContext";
 import { NodeType } from "../types";
 
@@ -26,7 +25,7 @@ const Sidebar: React.FC = () => {
                   handleDragStart(e, { type: c.type, data: c.data })
                 }
               >
-                <Icon name={c.icon} />
+                {c.icon && <c.icon />}
                 <span>{c.name}</span>
               </button>
             </li>

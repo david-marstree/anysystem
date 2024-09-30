@@ -1,8 +1,22 @@
+import {
+  AiOutlineMail,
+  AiOutlinePhone,
+  AiOutlineFontSize,
+  AiOutlineSwitcher,
+  AiOutlineLock,
+  AiOutlineNumber,
+  AiOutlineLink,
+  AiOutlineCalendar,
+  AiOutlineClockCircle,
+  AiOutlineCheckSquare,
+  AiOutlineDown,
+} from "react-icons/ai";
+
 export const FORMBUILDER_COMPONENTS = [
   {
     id: "input",
     name: "Input",
-    icon: "AiOutlineFontSize",
+    icon: AiOutlineFontSize,
     data: {
       name: "input",
       dataType: "string",
@@ -17,7 +31,7 @@ export const FORMBUILDER_COMPONENTS = [
   {
     id: "email",
     name: "Email",
-    icon: "AiOutlineMail",
+    icon: AiOutlineMail,
     data: {
       name: "email",
       dataType: "string",
@@ -32,7 +46,7 @@ export const FORMBUILDER_COMPONENTS = [
   {
     id: "tel",
     name: "Phone",
-    icon: "AiOutlinePhone",
+    icon: AiOutlinePhone,
     data: {
       name: "tel",
       dataType: "string",
@@ -68,7 +82,7 @@ export const FORMBUILDER_COMPONENTS = [
   {
     id: "password",
     name: "Password",
-    icon: "AiOutlineLock",
+    icon: AiOutlineLock,
     data: {
       name: "password",
       dataType: "string",
@@ -83,7 +97,7 @@ export const FORMBUILDER_COMPONENTS = [
   {
     id: "number",
     name: "Number",
-    icon: "AiOutlineNumber",
+    icon: AiOutlineNumber,
     data: {
       name: "number",
       dataType: "number",
@@ -98,7 +112,7 @@ export const FORMBUILDER_COMPONENTS = [
   {
     id: "url",
     name: "Url",
-    icon: "AiOutlineLink",
+    icon: AiOutlineLink,
     data: {
       name: "url",
       dataType: "string",
@@ -113,7 +127,7 @@ export const FORMBUILDER_COMPONENTS = [
   {
     id: "date",
     name: "Date",
-    icon: "AiOutlineCalendar",
+    icon: AiOutlineCalendar,
     data: {
       name: "date",
       dataType: "string",
@@ -128,7 +142,7 @@ export const FORMBUILDER_COMPONENTS = [
   {
     id: "datetime",
     name: "Datetime",
-    icon: "AiOutlineClockCircle",
+    icon: AiOutlineClockCircle,
     data: {
       name: "datetime",
       dataType: "string",
@@ -143,7 +157,7 @@ export const FORMBUILDER_COMPONENTS = [
   {
     id: "radio",
     name: "Radio",
-    icon: "AiOutlineCheckSquare",
+    icon: AiOutlineCheckSquare,
     data: {
       name: "radio",
       dataType: "string",
@@ -172,7 +186,7 @@ export const FORMBUILDER_COMPONENTS = [
   {
     id: "select",
     name: "Select",
-    icon: "AiOutlineDown",
+    icon: AiOutlineDown,
     data: {
       name: "select",
       dataType: "string",
@@ -207,7 +221,7 @@ export const FORMBUILDER_COMPONENTS = [
   {
     id: "switch",
     name: "Switch",
-    icon: "AiOutlineSwitcher",
+    icon: AiOutlineSwitcher,
     data: {
       name: "switch",
       dataType: "boolean",

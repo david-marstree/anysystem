@@ -2,7 +2,8 @@ import React from "react";
 import _ from "lodash";
 import { twMerge } from "tailwind-merge";
 import { useSortable } from "@dnd-kit/sortable";
-import { FormField, Icon } from "../../../components";
+import { AiOutlineDelete, AiOutlineDrag } from "react-icons/ai";
+import { FormField } from "../../../components";
 //contexts
 import { FormBuilderContext } from "../contexts/FormBuilderContext";
 
@@ -39,14 +40,14 @@ const Controller: React.FC<ControllerProps> = ({ field }) => {
             {...listeners}
             {...attributes}
           >
-            <Icon name="AiOutlineDrag" />
+            <AiOutlineDrag />
           </button>
           <button
             type="button"
             className="p-1 bg-gray-300 hover:bg-gray-200 dark:bg-gray-700 dark:hover:bg-gray-600"
             onClick={handleRemove}
           >
-            <Icon name="AiOutlineDelete" />
+            <AiOutlineDelete />
           </button>
         </div>
       </div>
