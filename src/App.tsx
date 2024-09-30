@@ -1,5 +1,5 @@
 import React, { Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AppProvider } from "../lib/";
 import "./index.less";
 
@@ -11,40 +11,42 @@ const FlowPage = React.lazy(() => import("./pages/FlowPage"));
 function App() {
   return (
     <AppProvider appName="anysystem">
-      <Routes>
-        <Route
-          path="/"
-          element={
-            <Suspense>
-              <HomePage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/about"
-          element={
-            <Suspense>
-              <Page2 />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/builder"
-          element={
-            <Suspense>
-              <BuilderPage />
-            </Suspense>
-          }
-        />
-        <Route
-          path="/flow"
-          element={
-            <Suspense>
-              <FlowPage />
-            </Suspense>
-          }
-        />
-      </Routes>
+      <BrowserRouter>
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <Suspense>
+                <HomePage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/about"
+            element={
+              <Suspense>
+                <Page2 />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/builder"
+            element={
+              <Suspense>
+                <BuilderPage />
+              </Suspense>
+            }
+          />
+          <Route
+            path="/flow"
+            element={
+              <Suspense>
+                <FlowPage />
+              </Suspense>
+            }
+          />
+        </Routes>
+      </BrowserRouter>
     </AppProvider>
   );
 }

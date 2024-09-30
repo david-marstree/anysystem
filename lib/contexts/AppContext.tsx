@@ -1,5 +1,4 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
 
 export type AppContextType = {
   appName: string;
@@ -17,8 +16,4 @@ export type AppProviderProps = {
 export const AppProvider: React.FC<AppProviderProps> = ({
   appName,
   children,
-}) => (
-  <AppContext.Provider value={{ appName }}>
-    <BrowserRouter>{children}</BrowserRouter>
-  </AppContext.Provider>
-);
+}) => <AppContext.Provider value={{ appName }}>{children}</AppContext.Provider>;
