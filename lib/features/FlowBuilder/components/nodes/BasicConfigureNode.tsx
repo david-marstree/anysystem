@@ -35,7 +35,3 @@ const BasicConfigureNode: React.FC<BasicNodeProps> = ({
 };
 
 export default React.memo(BasicConfigureNode);
-
-export const nodeTypes = {
-  basicConfig: React.memo(BasicConfigureNode),
-};

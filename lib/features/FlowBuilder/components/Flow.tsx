@@ -20,11 +20,11 @@ import "@xyflow/react/dist/style.css";
 //contexts
 import { DndContext } from "../contexts/DndContext";
 //components
-import { nodeTypes as BasicConfigureNodeType } from "./nodes/BasicConfigureNode";
+import BasicConfigureNodeType from "./nodes/BasicConfigureNode";
 import ConnectionLine from "./ConnectionLine";
 
 const nodeTypes = {
-  ...BasicConfigureNodeType,
+  basicConfig: BasicConfigureNodeType,
 };
 
 export type FlowHandlers = {
