@@ -1,5 +1,4 @@
 import React from "react";
-import { useLocation } from "react-router-dom";
 import {
   Disclosure,
   DisclosureButton,
@@ -19,11 +18,12 @@ export type NavItemObject = {
 
 export type NavListProps = {
   list: NavItemObject[];
+  location?: {
+    pathname: string;
+  };
 };
 
-const NavList: React.FC<NavListProps> = ({ list }) => {
-  const location = useLocation();
-
+const NavList: React.FC<NavListProps> = ({ list, location }) => {
   return (
     <nav className="w-full px-4 py-6 bg-white dark:bg-gray-950">
       <ul>
@@ -36,7 +36,7 @@ const NavList: React.FC<NavListProps> = ({ list }) => {
                     href={item?.path}
                     className={twMerge(
                       "flex w-full items-center justify-start gap-2 rounded p-3 font-semibold hover:bg-primary-50 dark:text-white dark:hover:bg-gray-800 cursor-pointer",
-                      location.pathname === item.path
+                      location?.pathname === item.path
                         ? "bg-primary-50 dark:bg-gray-800"
                         : ""
                     )}
@@ -75,7 +75,7 @@ const NavList: React.FC<NavListProps> = ({ list }) => {
                                 href={subItem?.path}
                                 className={twMerge(
                                   "block rounded py-2 pl-9 pr-2 text-gray-700 hover:bg-primary-50 dark:text-white dark:hover:bg-gray-700",
-                                  location.pathname === subItem.path &&
+                                  location?.pathname === subItem.path &&
                                     "bg-primary-50 dark:bg-gray-700"
                                 )}
                                 onClick={subItem?.onClick}

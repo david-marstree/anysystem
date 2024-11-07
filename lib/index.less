@@ -3,165 +3,179 @@
 @tailwind utilities;
 
 @layer base {
-  html,
-  body {
-    @apply w-screen h-screen;
-    @apply dark:bg-gray-950 dark:text-white;
-  }
-  input:not([type="checkbox"]):not([type="radio"]) {
-    @apply dark:bg-gray-950 dark:text-white;
-  }
-  textarea {
-    @apply dark:bg-gray-950 dark:text-white;
-  }
-  #root {
-    @apply w-full h-full;
-  }
 
-  h1 {
-    @apply text-4xl font-bold mb-3;
-  }
-  h2 {
-    @apply text-3xl font-bold mb-3;
-  }
-  h3 {
-    @apply text-2xl font-semibold mb-3;
-  }
+    html,
+    body {
+        @apply w-screen h-screen;
+        @apply dark:bg-gray-950 dark:text-white;
+    }
+
+    input:not([type="checkbox"]):not([type="radio"]) {
+        @apply dark:bg-gray-950 dark:text-white;
+    }
+
+    textarea {
+        @apply dark:bg-gray-950 dark:text-white;
+    }
+
+    #root {
+        @apply w-full h-full;
+    }
+
+    h1 {
+        @apply text-4xl font-bold mb-3;
+    }
+
+    h2 {
+        @apply text-3xl font-bold mb-3;
+    }
+
+    h3 {
+        @apply text-2xl font-semibold mb-3;
+    }
 }
 
 @layer components {
-  .form-group {
-    @apply bg-inherit;
+    .form-group {
+        @apply bg-inherit;
 
-    &.error {
-      @apply border-red-500;
-    }
-    .btn-phone-prefix {
-      button {
-        @apply top-6;
-      }
-    }
+        &.error {
+            @apply border-red-500;
+        }
 
-    &.sm {
-      input,
-      textarea {
-        @apply py-3 px-2;
-      }
-    }
-    &.md {
-      input,
-      textarea {
-        @apply py-5 px-4;
-      }
-    }
+        .btn-phone-prefix {
+            button {
+                @apply top-6;
+            }
+        }
 
-    input,
-    textarea {
-      @apply text-gray-700 w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal border-0 rounded;
+        &.sm {
 
-      &::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0;
-      }
+            input,
+            textarea {
+                @apply py-3 px-2;
+            }
+        }
 
-      &[type="number"] {
-        -moz-appearance: textfield;
-      }
-    }
+        &.md {
 
-    &:has(input:focus),
-    &:has(textarea:focus),
-    &:has([data-headlessui-state="open"]) {
-      @apply border-primary-500 z-50;
-    }
-
-    &:has(input:focus),
-    &:has(input:autofill),
-    &:has(input:not(:placeholder-shown)),
-    &:has(textarea:focus),
-    &:has(textarea:autofill),
-    &:has(textarea:not(:placeholder-shown)),
-    &:has(.form-control:not(.empty)) {
-      &.sm {
-        @apply py-3 px-2;
+            input,
+            textarea {
+                @apply py-5 px-4;
+            }
+        }
 
         input,
         textarea {
-          @apply translate-y-0;
+            @apply text-gray-700 w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal border-0 rounded;
+
+            &::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+
+            &[type="number"] {
+                -moz-appearance: textfield;
+            }
         }
 
-        label {
-          @apply left-1 -translate-y-2 top-0 text-xs font-normal px-1 bg-inherit bg-white dark:bg-gray-950;
-        }
-      }
-      &.md {
-        @apply py-5 px-4;
-
-        input,
-        textarea {
-          @apply translate-y-3;
+        &:has(input:focus),
+        &:has(textarea:focus),
+        &:has([data-headlessui-state="open"]) {
+            @apply border-primary-500 z-50;
         }
 
-        label {
-          @apply -translate-y-3 text-sm;
+        &:has(input:focus),
+        &:has(input:autofill),
+        &:has(input:not(:placeholder-shown)),
+        &:has(textarea:focus),
+        &:has(textarea:autofill),
+        &:has(textarea:not(:placeholder-shown)),
+        &:has(.form-control:not(.empty)) {
+            &.sm {
+                @apply py-3 px-2;
+
+                input,
+                textarea {
+                    @apply translate-y-0;
+                }
+
+                label {
+                    @apply left-1 -translate-y-2 top-0 text-xs font-normal px-1 bg-inherit bg-white dark:bg-gray-950;
+                }
+            }
+
+            &.md {
+                @apply py-5 px-4;
+
+                input,
+                textarea {
+                    @apply translate-y-3;
+                }
+
+                label {
+                    @apply -translate-y-3 text-sm;
+                }
+            }
+
+            label {
+                @apply text-black transform transition-all duration-500 opacity-100 block absolute font-semibold dark:text-white;
+            }
+
+            input,
+            textarea,
+            .form-control {
+                @apply transform p-0 dark:bg-transparent dark:text-white;
+            }
+
+            .btn-before {
+                @apply absolute z-10;
+                bottom: theme("spacing[0.5]");
+                left: theme("spacing[0.5]");
+            }
+
+            &:has(.btn-before) {
+
+                input,
+                .form-control {
+                    @apply pl-10;
+                }
+            }
+
+            .btn-after {
+                @apply absolute;
+                right: theme("spacing[0.5]");
+            }
+
+            .btn-show-password {
+                @apply absolute right-0 w-9 h-9;
+            }
         }
-      }
-
-      label {
-        @apply text-black transform transition-all duration-500 opacity-100 block absolute font-semibold dark:text-white;
-      }
-
-      input,
-      textarea,
-      .form-control {
-        @apply transform p-0 dark:bg-transparent dark:text-white;
-      }
-
-      .btn-before {
-        @apply absolute z-10;
-        bottom: theme("spacing[0.5]");
-        left: theme("spacing[0.5]");
-      }
-
-      &:has(.btn-before) {
-        input,
-        .form-control {
-          @apply pl-10;
-        }
-      }
-
-      .btn-after {
-        @apply absolute;
-        right: theme("spacing[0.5]");
-      }
-
-      .btn-show-password {
-        @apply absolute right-0 w-9 h-9;
-      }
     }
-  }
 
-  table.table {
-    @apply w-full;
-    thead {
-      tr {
-        th {
-          @apply border border-t-gray-100 border-b-black border-x-0 font-semibold px-4 py-2 dark:bg-gray-800;
-        }
-      }
-    }
-    tbody {
-      tr {
-        td {
-          @apply border border-t-0 border-x-0 border-b-gray-100 text-center px-4 py-3;
+    table.table {
+        @apply w-full;
+
+        thead {
+            tr {
+                th {
+                    @apply border border-t-gray-100 border-b-black border-x-0 font-semibold px-4 py-2 dark:bg-gray-800;
+                }
+            }
         }
 
-        &:hover {
-          td {
-            @apply bg-primary-50 dark:bg-gray-800;
-          }
+        tbody {
+            tr {
+                td {
+                    @apply border border-t-0 border-x-0 border-b-gray-100 text-center px-4 py-3;
+                }
+
+                &:hover {
+                    td {
+                        @apply bg-primary-50 dark:bg-gray-800;
+                    }
+                }
+            }
         }
-      }
     }
-  }
 }
