@@ -50,7 +50,7 @@ const FormControl = <ListOption extends SelectOption>({
     <Suspense fallback={null}>
       {type !== "confirm" ? (
         <Label
-          className={variant}
+          variant={variant}
           type={
             type === "radio"
               ? "normal"

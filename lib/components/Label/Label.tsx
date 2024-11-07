@@ -9,6 +9,7 @@ export type LabelBaseProps = {
   isError?: boolean;
   errorMessage?: string;
   type?: "border" | "normal" | "horizontal";
+  variant?: "sm" | "md";
 };
 
 export type LabelProps = LabelBaseProps & {
@@ -22,6 +23,7 @@ const LabelBase: React.FC<LabelProps> = ({
   isError = false,
   errorMessage,
   type = "border",
+  variant = "md",
   children,
 }) => {
   return (
@@ -32,7 +34,8 @@ const LabelBase: React.FC<LabelProps> = ({
           type === "border" && "rounded border border-gray-400",
           type === "horizontal" ? "flex-row gap-2" : "form-group",
           isError && "error",
-          className
+          className,
+          variant,
         )}
       >
         {label && (
@@ -41,7 +44,7 @@ const LabelBase: React.FC<LabelProps> = ({
               type === "border" &&
                 "hidden text-gray-600 opacity-0 dark:text-white",
               type === "horizontal" && "flex items-center justify-center",
-              "mb-1 text-sm font-semibold"
+              "mb-1 text-sm font-semibold",
             )}
             htmlFor={htmlFor}
           >
