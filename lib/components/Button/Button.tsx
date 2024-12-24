@@ -4,11 +4,19 @@ import { twMerge } from "tailwind-merge";
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
   variant?: "default" | "primary";
   size?: "xs" | "sm" | "md" | "lg";
+  rounded?: boolean;
 };
 
 const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
-  { children, className, variant = "default", size = "md", ...props },
-  innerRef
+  {
+    children,
+    className,
+    variant = "default",
+    size = "md",
+    rounded = false,
+    ...props
+  },
+  innerRef,
 ) => {
   const getVariant = React.useMemo(() => {
     switch (variant) {
@@ -41,12 +49,12 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
       ref={innerRef}
       className={twMerge(
         "relative overflow-hidden rounded",
-        "after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:rounded-l after:bg-gray-400 after:opacity-0", //after:
+        rounded && "rounded-full", //rounded
         "disabled:cursor-not-allowed disabled:opacity-50", //disabled
         "hover:after:w-full hover:after:transform hover:after:opacity-20 hover:after:transition-all hover:after:duration-300", //hover:
         getVariant,
         getSize,
-        className
+        className,
       )}
       {...props}
     >
