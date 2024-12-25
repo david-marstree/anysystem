@@ -2,20 +2,13 @@ import React from "react";
 import { twMerge } from "tailwind-merge";
 
 export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: "default" | "primary";
+  variant?: "default" | "primary" | "danger";
   size?: "xs" | "sm" | "md" | "lg";
   rounded?: boolean;
 };
 
 const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
-  {
-    children,
-    className,
-    variant = "default",
-    size = "md",
-    rounded = false,
-    ...props
-  },
+  { children, className, variant = "default", size = "md", rounded, ...props },
   innerRef,
 ) => {
   const getVariant = React.useMemo(() => {
@@ -24,6 +17,8 @@ const Button: React.ForwardRefRenderFunction<HTMLButtonElement, ButtonProps> = (
         return "bg-gray-400 text-white after:bg-white";
       case "primary":
         return "bg-primary-600 text-white after:bg-white";
+      case "danger":
+        return "bg-red-600 text-white after:bg-white";
       default:
         return "bg-gray-400 text-white after:bg-white";
     }
