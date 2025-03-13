@@ -12,6 +12,8 @@ export * from "./DatePicker/";
 export { default as DatePicker } from "./DatePicker/";
 export * from "./Input/";
 export { default as Input } from "./Input/";
+export * from "./Input/Textarea";
+export { default as Textarea } from "./Input/Textarea";
 export * from "./TelephoneInput/";
 export { default as TelephoneInput } from "./TelephoneInput/";
 export * from "./Label/";

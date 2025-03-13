@@ -8,28 +8,30 @@ const Page2 = React.lazy(() => import("./pages/Page2"));
 
 function App() {
   return (
-    <AppProvider appName="anysystem">
-      <BrowserRouter>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <Suspense>
-                <HomePage />
-              </Suspense>
-            }
-          />
-          <Route
-            path="/about"
-            element={
-              <Suspense>
-                <Page2 />
-              </Suspense>
-            }
-          />
-        </Routes>
-      </BrowserRouter>
-    </AppProvider>
+    <>
+      <AppProvider appName="anysystem">
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <Suspense>
+                  <HomePage />
+                </Suspense>
+              }
+            />
+            <Route
+              path="/about"
+              element={
+                <Suspense>
+                  <Page2 />
+                </Suspense>
+              }
+            />
+          </Routes>
+        </BrowserRouter>
+      </AppProvider>
+    </>
   );
 }
 

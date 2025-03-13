@@ -26,6 +26,11 @@ const Textarea: React.ForwardRefRenderFunction<
     () => inputRef.current as HTMLTextAreaElement,
   );
 
+  const calHeight = (value: string) => {
+    let numberOfLineBreaks = (value.match(/\n/g) || []).length + 1;
+    inputRef.current!.style.height = `${numberOfLineBreaks * 1.25 + 1}em`;
+  };
+
   return (
     <div
       className={twMerge(
@@ -51,6 +56,10 @@ const Textarea: React.ForwardRefRenderFunction<
           className: twMerge(className?.input && className.input),
           readOnly: props.readOnly,
           id: name,
+          onChange: (e) => {
+            props?.onChange?.(e);
+            calHeight(e.target.value);
+          },
         }}
       />
 
