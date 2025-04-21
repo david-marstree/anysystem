@@ -17,7 +17,8 @@
     "preview": "bunx --bun vite preview",
     "deploy": "npm login && npm publish",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "deploy-storybook": "storybook build && gh-pages -d storybook-static"
   },
   "peerDependencies": {
     "@aliakbarazizi/headless-datepicker": "^2.0.2",
