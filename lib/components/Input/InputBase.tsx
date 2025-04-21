@@ -1,5 +1,6 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
+import LabelBase, {type LabelBaseProps} from "../Label";
 
 export type InputBaseProps = React.InputHTMLAttributes<HTMLInputElement> & {
   name: string;
@@ -10,13 +11,14 @@ export type InputBaseProps = React.InputHTMLAttributes<HTMLInputElement> & {
     container?: string;
     input?: string;
   };
+  labelProps?: LabelBaseProps;
 };
 
 const InputBase: React.ForwardRefRenderFunction<
   HTMLInputElement,
   InputBaseProps
 > = (
-  { name, inputProps, inputBefore, inputAfter, className, ...props },
+  { name, inputProps, inputBefore, inputAfter, className, labelProps,  ...props },
   innerRef,
 ) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
@@ -26,7 +28,7 @@ const InputBase: React.ForwardRefRenderFunction<
     () => inputRef.current as HTMLInputElement,
   );
 
-  return (
+  const render = () => (
     <div
       className={twMerge(
         "flex w-full items-center",
@@ -65,6 +67,16 @@ const InputBase: React.ForwardRefRenderFunction<
       )}
     </div>
   );
+
+  if (labelProps) {
+    return (
+      <LabelBase {...labelProps}>
+        {render()}
+      </LabelBase>
+    );
+  }
+
+  return render();
 };
 
 export default React.forwardRef(InputBase);

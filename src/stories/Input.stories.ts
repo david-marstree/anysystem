@@ -16,6 +16,13 @@ const meta = {
   tags: ["autodocs"],
   // More on argTypes: https://storybook.js.org/docs/api/argtypes
   argTypes: {
+    labelProps: {
+      control: { type: "object" },
+      description: "傳遞給外層 LabelBase 的 props，包含 label、isError、errorMessage、type、variant 等。若設定，會自動包裹 Input。",
+      table: {
+        type: { summary: "LabelBaseProps" },
+      },
+    },
     name: {
       control: { type: "text" },
       description: "Name of the input",
@@ -23,7 +30,7 @@ const meta = {
     type: {
       control: { type: "radio" },
       description: "Type of the input",
-      options: ["text", "number", "email", "tel"],
+      options: ["text", "number", "email"],
       table: {
         defaultValue: { summary: "text" },
       },
@@ -36,39 +43,6 @@ const meta = {
       control: { type: "text" },
       description: "Placeholder of the input",
     },
-    phonePrefixOptions: {
-      if: { arg: "type", eq: "tel" },
-      control: { type: "object" },
-      description: "Phone prefix options",
-      table: {
-        type: { summary: "SelectOption[]" },
-        defaultValue: {
-          summary:
-            '[{id: 1, value: "+84", label: "Vietnam (+84)", enable: true}]',
-        },
-      },
-      defaultValue: [
-        { id: 1, value: "+84", label: "Vietnam (+84)", enable: true },
-      ] as SelectOption[],
-    },
-    phonePrefix: {
-      if: { arg: "type", eq: "tel" },
-      control: { type: "text" },
-      description: "Phone prefix",
-      table: {
-        type: { summary: "string" },
-      },
-      defaultValue: "+86",
-    },
-  },
-  // Use `fn` to spy on the onClick arg, which will appear in the actions panel once invoked: https://storybook.js.org/docs/essentials/actions#action-args
-  args: {
-    onChange: fn(),
-    phonePrefixOptions: [
-      { id: 1, value: "+84", label: "Vietnam (+84)", enable: true },
-      { id: 2, value: "+86", label: "China (+86)", enable: true },
-    ],
-    phonePrefix: "+86",
   },
 } satisfies Meta<typeof Input>;
 
@@ -77,23 +51,32 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 // More on writing stories with args: https://storybook.js.org/docs/writing-stories/args
+
+export const WithLabel: Story = {
+  args: {
+    type: "text",
+    name: "username",
+    value: "",
+    labelProps: {
+      label: "使用者名稱",
+      isError: false,
+      type: "border",
+      variant: "md",
+    },
+    placeholder: "請輸入帳號",
+  },
+};
 export const Email: Story = {
   args: {
     name: "email",
     type: "email",
     value: "test@gmail.com",
-  },
-};
-
-export const Tel: Story = {
-  args: {
-    name: "tel",
-    type: "tel",
-    value: "+86-6666666",
-    phonePrefixOptions: [
-      { id: 1, value: "+84", label: "Vietnam (+84)", enable: true },
-      { id: 2, value: "+86", label: "China (+86)", enable: true },
-    ],
+    labelProps: {
+      label: "使用者名稱",
+      isError: false,
+      type: "border",
+      variant: "md",
+    },
   },
 };
 
@@ -102,5 +85,11 @@ export const Default: Story = {
     name: "text",
     type: "text",
     value: "test",
+    labelProps: {
+      label: "使用者名稱",
+      isError: false,
+      type: "border",
+      variant: "md",
+    },
   },
 };
