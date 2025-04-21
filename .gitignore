@@ -28,3 +28,4 @@ lerna.json
 dist
 
 *storybook.log
+storybook-static

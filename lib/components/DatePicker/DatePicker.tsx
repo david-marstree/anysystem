@@ -3,6 +3,8 @@ import moment from "moment";
 import { twMerge } from "tailwind-merge";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import { Datepicker } from "@aliakbarazizi/headless-datepicker";
+import { LabelBaseProps } from "../Label";
+import LabelBase from "../Label/Label";
 
 export type DatePickerProps = {
   name: string;
@@ -10,6 +12,7 @@ export type DatePickerProps = {
   onChange: (value: string) => void;
   showTime?: boolean;
   readOnly?: boolean;
+  labelProps?: LabelBaseProps;
 };
 
 const DatePicker: React.FC<DatePickerProps> = ({
@@ -18,8 +21,10 @@ const DatePicker: React.FC<DatePickerProps> = ({
   showTime,
   onChange,
   readOnly,
+  labelProps,
 }) => {
-  return (
+
+  const render = () => (
     <>
       <input
         className={twMerge(
@@ -209,6 +214,14 @@ const DatePicker: React.FC<DatePickerProps> = ({
         </Datepicker>
       </div>
     </>
+  );
+
+  return labelProps ? (
+    <LabelBase {...labelProps}>
+      {render()}
+    </LabelBase>
+  ) : (
+    render()
   );
 };
 

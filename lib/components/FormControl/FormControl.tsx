@@ -42,9 +42,9 @@ const FormControl = <ListOption extends SelectOption>({
   type,
   onChange,
   variant = "md",
+  labelProps,
   ...props
 }: FormControlProps<ListOption>): React.ReactElement => {
-  const { labelProps, ...restProps } = props;
 
   return (
     <Suspense fallback={null}>
@@ -62,40 +62,40 @@ const FormControl = <ListOption extends SelectOption>({
         >
           {type === "password" ? (
             <PasswordInput
-              {...(restProps as PasswordInputProps)}
+              {...(props as PasswordInputProps)}
               onChange={(e) => onChange && onChange(e.target.value as string)}
             />
           ) : type === "date" || type === "datetime" ? (
             <DatePicker
-              {...(restProps as DatePickerProps)}
+              {...(props as DatePickerProps)}
               onChange={(date) => onChange && onChange(date + "")}
               showTime={type === "datetime"}
             />
           ) : type === "radio" ? (
             <RadioGroup<ListOption>
-              {...(restProps as RadioGroupProps<ListOption>)}
+              {...(props as RadioGroupProps<ListOption>)}
               variant={variant}
               onChange={onChange}
             />
           ) : type === "switch" ? (
             <Switch
-              {...(restProps as SwitchProps)}
+              {...(props as SwitchProps)}
               onChange={onChange}
-              checked={Boolean(restProps.value)}
+              checked={Boolean(props.value)}
             />
           ) : type === "tel" ? (
             <TelephoneInput
-              {...(restProps as TelephoneInputProps)}
+              {...(props as TelephoneInputProps)}
               onChange={onChange}
             />
           ) : type === "select" ? (
             <Selectbox<ListOption>
-              {...(restProps as SelectboxProps<ListOption>)}
+              {...(props as SelectboxProps<ListOption>)}
               onChange={(e: string | string[]) => onChange && onChange(e)}
             />
           ) : type === "autocomplete" ? (
             <AutoComplete<ListOption>
-              {...(restProps as AutoCompleteProps<ListOption>)}
+              {...(props as AutoCompleteProps<ListOption>)}
               onChange={onChange}
             />
           ) : (
@@ -105,13 +105,13 @@ const FormControl = <ListOption extends SelectOption>({
                 onChange &&
                 onChange(typeof e === "string" ? e : (e.target.value as string))
               }
-              {...(restProps as InputProps)}
+              {...(props as InputProps)}
             />
           )}
         </Label>
       ) : (
         <Checkbox
-          {...(restProps as CheckboxProps)}
+          {...(props as CheckboxProps)}
           onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
             onChange && onChange(String(e.target.checked))
           }

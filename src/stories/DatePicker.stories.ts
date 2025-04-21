@@ -39,6 +39,12 @@ export const Basic: Story = {
     value: Math.round(new Date("2022-01-01").getTime() / 1000).toString(),
     showTime: false,
     readOnly: false,
+    labelProps: {
+      label: "生日",
+      isError: false,
+      type: "border",
+      variant: "md",
+    },
   },
 };
 
