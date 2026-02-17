@@ -9,13 +9,13 @@ export type CheckboxBaseProps = React.InputHTMLAttributes<HTMLInputElement> & {
   intermediate?: boolean;
 };
 
-export const CheckboxBase: React.FC<CheckboxBaseProps> = ({
+export const CheckboxBase = ({
   className,
   isError,
   inputProps,
   intermediate = false,
   ...props
-}) => {
+}: CheckboxBaseProps) => {
   const inputRef = React.useRef<HTMLInputElement>(null);
   return (
     <div className="relative w-5 h-5 overflow-hidden rounded">

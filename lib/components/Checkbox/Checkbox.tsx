@@ -11,7 +11,7 @@ export type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
   inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 };
 
-export const Checkbox: React.FC<CheckboxProps> = ({
+export const Checkbox = ({
   className,
   name,
   label,
@@ -19,7 +19,7 @@ export const Checkbox: React.FC<CheckboxProps> = ({
   isError,
   inputProps,
   ...props
-}) => {
+}: CheckboxProps) => {
   return (
     <label
       className={twMerge(

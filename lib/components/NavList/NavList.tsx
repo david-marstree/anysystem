@@ -10,7 +10,7 @@ import { twMerge } from "tailwind-merge";
 export type NavItemObject = {
   label: string;
   path?: string;
-  icon?: React.FC;
+  icon?: React.ComponentType<{ size?: number }>;
   title?: boolean;
   list?: NavItemObject[];
   onClick?: () => void;
@@ -23,7 +23,7 @@ export type NavListProps = {
   };
 };
 
-const NavList: React.FC<NavListProps> = ({ list, location }) => {
+const NavList = ({ list, location }: NavListProps) => {
   return (
     <nav className="w-full px-4 py-6 bg-white dark:bg-gray-950">
       <ul>
@@ -42,7 +42,7 @@ const NavList: React.FC<NavListProps> = ({ list, location }) => {
                     )}
                     onClick={item?.onClick}
                   >
-                    {item.icon && item.icon({ size: 20 })}
+                    {item.icon && <item.icon size={20} />}
                     <span>{item.label}</span>
                   </a>
                 ) : (
@@ -54,7 +54,7 @@ const NavList: React.FC<NavListProps> = ({ list, location }) => {
                             "flex items-center w-full p-3 font-semibold text-left rounded gap-2 hover:bg-primary-50 dark:text-white dark:hover:bg-gray-700"
                           )}
                         >
-                          {item.icon && item.icon({ size: 20 })}
+                          {item.icon && <item.icon size={20} />}
                           <span>{item.label}</span>
                           <ChevronRightIcon
                             className={twMerge(

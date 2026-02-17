@@ -35,7 +35,7 @@ export type FormField = {
   dataType: "string" | "number" | "boolean" | "string[]";
   value: string | number | boolean | string[];
   validation?: Validation[];
-  component?: React.FC<any>;
+  component?: (props: any) => React.ReactElement;
   componentProps:
     | FormFieldInputProps
     | FormFieldDateTimeProps

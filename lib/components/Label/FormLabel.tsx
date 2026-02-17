@@ -9,12 +9,12 @@ export type FormLabelProps = {
   htmlFor?: string;
 };
 
-export const FormLabel: React.FC<FormLabelProps> = ({
+export const FormLabel = ({
   label,
   className,
   htmlFor = "",
   children,
-}) => {
+}: FormLabelProps) => {
   const [, meta] = useField(htmlFor);
   return (
     <Label

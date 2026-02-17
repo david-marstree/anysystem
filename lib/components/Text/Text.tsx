@@ -7,7 +7,7 @@ export type TextProps = {
   children: React.ReactNode;
 };
 
-const Text: React.FC<TextProps> = ({ tag, className, children }) => {
+const Text = ({ tag, className, children }: TextProps) => {
   return React.createElement(
     tag,
     { className: twMerge("flex flex-row gap-1", className) },

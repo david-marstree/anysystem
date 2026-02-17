@@ -1,4 +1,3 @@
-import React from "react";
 import moment from "moment";
 import { twMerge } from "tailwind-merge";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
@@ -15,14 +14,14 @@ export type DatePickerProps = {
   labelProps?: LabelBaseProps;
 };
 
-const DatePicker: React.FC<DatePickerProps> = ({
+const DatePicker = ({
   name,
   value,
   showTime,
   onChange,
   readOnly,
   labelProps,
-}) => {
+}: DatePickerProps) => {
 
   const render = () => (
     <>

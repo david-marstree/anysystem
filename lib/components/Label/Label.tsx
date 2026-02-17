@@ -16,7 +16,7 @@ export type LabelProps = LabelBaseProps & {
   children: React.ReactNode;
 };
 
-const LabelBase: React.FC<LabelProps> = ({
+const LabelBase = ({
   label,
   className,
   htmlFor,
@@ -25,7 +25,7 @@ const LabelBase: React.FC<LabelProps> = ({
   type = "border",
   variant = "md",
   children,
-}) => {
+}: LabelProps) => {
   return (
     <div className="flex flex-col">
       <div

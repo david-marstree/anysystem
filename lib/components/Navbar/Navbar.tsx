@@ -8,7 +8,7 @@ export type NavbarProps = {
   children?: React.ReactNode;
 };
 
-const Navbar: React.FC<NavbarProps> = ({ title, menuRef, children }) => {
+const Navbar = ({ title, menuRef, children }: NavbarProps) => {
   return (
     <header className="sticky top-0 z-10 flex h-[56px] w-full bg-white shadow dark:bg-gray-900 dark:text-white">
       <div className="relative flex items-center justify-between flex-auto w-full h-full">

@@ -147,7 +147,7 @@ export const getColumns = (
   return columnClassName.join(" ");
 };
 
-const Row: React.FC<RowProps> = ({ column, className, children }) => {
+const Row = ({ column, className, children }: RowProps) => {
   const columnClassName = getColumns(column, children);
   return (
     <div

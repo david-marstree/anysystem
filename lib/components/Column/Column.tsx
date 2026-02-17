@@ -133,13 +133,13 @@ const getColumnClassName = (span?: ResponsiveColumn): string => {
   }
   return columnClassName.join(" ");
 };
-const Column: React.FC<ColumnProps> = ({
+const Column = ({
   id,
   span = { sm: 1, md: 1 },
   className,
   children,
   ...props
-}) => {
+}: ColumnProps) => {
   const columnClassName = getColumnClassName(span);
   return (
     <div

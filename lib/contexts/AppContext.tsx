@@ -13,7 +13,7 @@ export type AppProviderProps = {
   children: React.ReactNode;
 };
 
-export const AppProvider: React.FC<AppProviderProps> = ({
+export const AppProvider = ({
   appName,
   children,
-}) => <AppContext.Provider value={{ appName }}>{children}</AppContext.Provider>;
+}: AppProviderProps) => <AppContext.Provider value={{ appName }}>{children}</AppContext.Provider>;

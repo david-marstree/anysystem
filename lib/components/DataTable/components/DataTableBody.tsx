@@ -2,7 +2,7 @@ import React from "react";
 import DataTableRow from "./DataTableRow";
 import { DataTableContext } from "../contexts/DataTableContext";
 
-const DataTableBody: React.FC = () => {
+const DataTableBody = () => {
   const { state } = React.useContext(DataTableContext);
 
   return (

@@ -25,7 +25,7 @@ import { twMerge } from "tailwind-merge";
 import { getValue } from "./helper";
 
 export type ValueCallback<ListOption extends SelectOption> = (
-  option: ListOption
+  option: ListOption,
 ) => string;
 
 export type ValueField<ListOption extends SelectOption> =
@@ -61,7 +61,7 @@ type State<ListOption extends SelectOption> = {
 
 const reducer = <ListOption extends SelectOption>(
   state: State<ListOption>,
-  action: Action<ListOption>
+  action: Action<ListOption>,
 ): State<ListOption> => {
   if (action.type === "SETVALUE") {
     return {
@@ -112,7 +112,7 @@ const SelectboxBase = <ListOption extends SelectOption>(
     placeholder = "Select a option",
     valueField = "value",
   }: SelectboxBaseProps<ListOption>,
-  innerRef: React.Ref<SelectboxBaseHandler>
+  innerRef: React.Ref<SelectboxBaseHandler>,
 ) => {
   const [state, dispatch] = React.useReducer(reducer<ListOption>, {
     list: options,
@@ -159,7 +159,7 @@ const SelectboxBase = <ListOption extends SelectOption>(
     <div
       className={twMerge(
         "form-control relative inline-block text-left",
-        !state.value && "text-gray-300" //empty
+        !state.value && "text-gray-300", //empty
       )}
     >
       {/* mobile select START*/}
@@ -220,7 +220,7 @@ const SelectboxBase = <ListOption extends SelectOption>(
           leaveTo="scale-95 transform opacity-0"
         >
           <ListboxOptions
-            className="absolute !z-[999] mt-2 inline-block w-full origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            className="absolute !z-[999] mt-2 inline-block w-full origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none min-w-[150px]"
             ref={refs.setFloating}
             style={floatingStyles}
             {...getFloatingProps({
@@ -238,7 +238,7 @@ const SelectboxBase = <ListOption extends SelectOption>(
                   className={twMerge(
                     "relative flex cursor-pointer select-none justify-between px-5 py-4 text-black hover:bg-primary-100",
                     opt.enable === false && "cursor-not-allowed opacity-50",
-                    state.selected?.id === opt.id && "bg-primary-100"
+                    state.selected?.id === opt.id && "bg-primary-100",
                   )}
                   value={opt}
                   disabled={opt.enable === false}
@@ -248,7 +248,7 @@ const SelectboxBase = <ListOption extends SelectOption>(
                     {state.selected?.id === opt.id ? (
                       <span
                         className={twMerge(
-                          "absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600"
+                          "absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600",
                         )}
                       >
                         <CheckIcon className="w-5 h-5" aria-hidden="true" />
@@ -281,5 +281,5 @@ export default React.forwardRef(SelectboxBase) as <
 >(
   props: SelectboxBaseProps<ListOption> & {
     ref?: React.Ref<SelectboxBaseHandler>;
-  }
+  },
 ) => React.ReactElement;

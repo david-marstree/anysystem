@@ -4,7 +4,7 @@ import { CheckboxBase } from "../../Checkbox";
 //components
 import DataTableHeadCell from "./DataTableHeadCell";
 
-const DataTableHead: React.FC = () => {
+const DataTableHead = () => {
   const { fields, selectable, state, dispatch } =
     React.useContext(DataTableContext);
 

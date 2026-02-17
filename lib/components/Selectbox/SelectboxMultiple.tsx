@@ -44,7 +44,7 @@ type Action<ListOption extends SelectOption> =
 
 const reducer = <ListOption extends SelectOption>(
   state: State<ListOption>,
-  action: Action<ListOption>
+  action: Action<ListOption>,
 ) => {
   if (action.type === "SETVALUE") {
     return {
@@ -63,7 +63,7 @@ const reducer = <ListOption extends SelectOption>(
       ...state,
       selected: action.selected,
       value: action.selected.map((opt: ListOption) =>
-        getValue<ListOption>(opt, state.valueField)
+        getValue<ListOption>(opt, state.valueField),
       ),
     };
   }
@@ -97,7 +97,7 @@ const SelectboxMultiple = <ListOption extends SelectOption>(
     valueField = "value",
     value = [],
   }: SelectboxMultipleProps<ListOption>,
-  innerRef: React.Ref<SelectboxMultipleHandler>
+  innerRef: React.Ref<SelectboxMultipleHandler>,
 ) => {
   const [state, dispatch] = React.useReducer(reducer<ListOption>, {
     list: options,
@@ -142,7 +142,7 @@ const SelectboxMultiple = <ListOption extends SelectOption>(
     <div
       className={twMerge(
         "form-control relative inline-block text-left",
-        !state.value && "text-gray-300" //empty
+        !state.value && "text-gray-300", //empty
       )}
     >
       {/* mobile select START*/}
@@ -153,7 +153,7 @@ const SelectboxMultiple = <ListOption extends SelectOption>(
         onChange={(e) => {
           const v = Array.from(
             e.target.selectedOptions,
-            (option) => option.value
+            (option) => option.value,
           );
           dispatch({ type: "SETVALUE", value: v });
           if (onChange) onChange(v);
@@ -212,7 +212,7 @@ const SelectboxMultiple = <ListOption extends SelectOption>(
           leaveTo="scale-95 transform opacity-0"
         >
           <ListboxOptions
-            className="absolute !z-[999] mt-2 inline-block w-full origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+            className="absolute !z-[999] mt-2 inline-block w-full origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none min-w-[150px]"
             ref={refs.setFloating}
             style={floatingStyles}
             {...getFloatingProps({
@@ -231,7 +231,7 @@ const SelectboxMultiple = <ListOption extends SelectOption>(
                     "relative flex cursor-pointer select-none justify-between px-5 py-4 text-black hover:bg-primary-100",
                     option.enable === false && "cursor-not-allowed opacity-50",
                     state.value?.includes(getValue(option, valueField)) &&
-                      "bg-primary-100"
+                      "bg-primary-100",
                   )}
                   value={option}
                   disabled={option.enable === false}
@@ -241,7 +241,7 @@ const SelectboxMultiple = <ListOption extends SelectOption>(
                     {state.value?.includes(getValue(option, valueField)) ? (
                       <span
                         className={twMerge(
-                          "absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600"
+                          "absolute inset-y-0 left-0 flex items-center pl-3 text-primary-600",
                         )}
                       >
                         <CheckIcon className="w-5 h-5" aria-hidden="true" />
@@ -273,5 +273,5 @@ export default React.forwardRef(SelectboxMultiple) as <
 >(
   props: SelectboxMultipleProps<ListOption> & {
     ref?: React.Ref<SelectboxMultipleHandler>;
-  }
+  },
 ) => React.ReactElement;

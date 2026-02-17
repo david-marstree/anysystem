@@ -1,9 +1,7 @@
-import React from "react";
-
 export type ComponentObject = {};
 export type ComponentProps = {};
 
-const Component: React.FC<ComponentProps> = () => {
+const Component = () => {
   return <></>;
 };
 export default Component;

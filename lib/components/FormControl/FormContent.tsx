@@ -17,13 +17,13 @@ export type FormContentProps = {
   errors?: any;
 };
 
-const FormContent: React.FC<FormContentProps> = ({
+const FormContent = ({
   fields,
   values,
   setFieldValue,
   touched,
   errors,
-}) => {
+}: FormContentProps) => {
   return (
     <>
       {fields.map((field, i) => (

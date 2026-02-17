@@ -1,4 +1,3 @@
-import React from "react";
 import { twMerge } from "tailwind-merge";
 import { Switch as HeadlessSwitch } from "@headlessui/react";
 
@@ -10,12 +9,12 @@ export type SwitchProps = {
   onChange: (v: boolean) => void;
 };
 
-const Switch: React.FC<SwitchProps> = ({
+const Switch = ({
   checked = false,
   onChange,
   name,
   value,
-}) => {
+}: SwitchProps) => {
   return (
     <HeadlessSwitch
       checked={checked}
