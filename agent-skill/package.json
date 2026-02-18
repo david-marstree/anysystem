@@ -1,5 +1,5 @@
 {
-  "name": "@marstree/anysystem-design-skill",
+  "name": "@anysystem-design-skill",
   "version": "0.0.1",
   "description": "LLM Agent Skill for AnySystem Design React component library - enables AI assistants to help developers effectively",
   "main": "skill-definition.json",
