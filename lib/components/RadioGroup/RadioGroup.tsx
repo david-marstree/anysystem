@@ -86,7 +86,7 @@ const RadioGroup = <ListOption extends SelectOption>({
   return (
     <div className="w-full radio-group">
       <HeadlessRadioGroup
-        value={state.selected}
+        value={state.selected ?? undefined}
         onChange={(opt: ListOption) => {
           dispatch({
             type: "SETSELECT",

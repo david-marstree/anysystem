@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import NavList from "../../lib/components/NavList/NavList";
 import type { NavItemObject } from "../../lib/components/NavList/NavList";
 import { FaHome, FaUser } from "react-icons/fa";

@@ -18,7 +18,8 @@
     "deploy": "npm login && npm publish",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "deploy-storybook": "storybook build && gh-pages -d storybook-static"
+    "deploy-storybook": "storybook build && gh-pages -d storybook-static",
+    "deploy-skill": "cd agent-skill && npm login && npm publish"
   },
   "peerDependencies": {
     "@aliakbarazizi/headless-datepicker": "^2.0.2",
@@ -38,14 +39,12 @@
     "yup": "^1.4.0"
   },
   "devDependencies": {
-    "@chromatic-com/storybook": "^1.9.0",
-    "@storybook/addon-essentials": "^8.6.4",
-    "@storybook/addon-interactions": "^8.6.4",
-    "@storybook/addon-links": "^8.6.4",
-    "@storybook/addon-onboarding": "^8.6.4",
+    "@chromatic-com/storybook": "^5.0.1",
+    "@storybook/addon-links": "^10.2.9",
+    "@storybook/addon-onboarding": "^10.2.9",
     "@storybook/blocks": "^8.6.4",
-    "@storybook/react": "^8.6.4",
-    "@storybook/react-vite": "^8.6.4",
+    "@storybook/react": "^10.2.9",
+    "@storybook/react-vite": "^10.2.9",
     "@storybook/test": "^8.6.4",
     "@types/lodash": "^4.17.16",
     "@types/react": "^19.2.14",
@@ -57,7 +56,7 @@
     "eslint": "^8.57.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.19",
-    "eslint-plugin-storybook": "^0.8.0",
+    "eslint-plugin-storybook": "^10.2.9",
     "glob": "^10.4.5",
     "less": "^4.2.2",
     "node": "^20.18.3",
@@ -67,11 +66,12 @@
     "postcss-nesting": "^12.1.5",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
-    "storybook": "^8.6.4",
+    "storybook": "^10.2.9",
     "tailwindcss": "^3.4.17",
     "typescript": "^5.8.2",
     "vite": "^5.4.14",
     "vite-plugin-dts": "^3.9.1",
-    "vite-plugin-lib-inject-css": "^2.2.1"
+    "vite-plugin-lib-inject-css": "^2.2.1",
+    "@storybook/addon-docs": "^10.2.9"
   }
 }

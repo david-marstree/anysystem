@@ -1,4 +1,4 @@
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import moment from "moment";
 import type { SelectOption } from "../../lib/";
 import FormControl from "../../lib/components/FormControl/FormControl";

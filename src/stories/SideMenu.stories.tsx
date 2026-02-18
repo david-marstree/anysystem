@@ -1,5 +1,5 @@
 import React from "react";
-import type { Meta, StoryObj } from "@storybook/react";
+import type { Meta, StoryObj } from "@storybook/react-vite";
 import { AiOutlineHome, AiOutlineUser } from "react-icons/ai";
 import SideMenu, { SideMenuHandler } from "../../lib/layouts/SideMenu/SideMenu";
 import NavList from "../../lib/components/NavList";

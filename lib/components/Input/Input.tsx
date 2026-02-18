@@ -13,4 +13,4 @@ const Input = (
 
 export default React.forwardRef(Input) as (
   props: InputProps & { ref?: React.Ref<HTMLInputElement> },
-) => JSX.Element;
+) => React.ReactElement;
