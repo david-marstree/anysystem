@@ -28,7 +28,7 @@ const PasswordInput: React.ForwardRefRenderFunction<
       <a
         className={twMerge(
           "mr-2 flex h-9 w-10 cursor-pointer items-center justify-center rounded-full text-gray-600",
-          "hover:bg-gray-100 hover:duration-200",
+          "hover:bg-gray-100 dark:hover:bg-gray-700 hover:duration-200",
           "btn-show-password",
         )}
         onClick={() => setShowPassword(!showPassword)}

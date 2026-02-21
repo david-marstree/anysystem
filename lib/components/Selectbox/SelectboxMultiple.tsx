@@ -212,7 +212,7 @@ const SelectboxMultiple = <ListOption extends SelectOption>(
           leaveTo="scale-95 transform opacity-0"
         >
           <ListboxOptions
-            className="absolute !z-[999] mt-2 inline-block w-full origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none min-w-[150px]"
+            className="absolute !z-[999] mt-2 inline-block w-full origin-top-right divide-y divide-gray-100 dark:divide-gray-700 rounded-md bg-white dark:bg-gray-950 shadow-lg ring-1 ring-black ring-opacity-5 dark:ring-gray-700 focus:outline-none min-w-[150px]"
             ref={refs.setFloating}
             style={floatingStyles}
             {...getFloatingProps({
@@ -228,10 +228,10 @@ const SelectboxMultiple = <ListOption extends SelectOption>(
                 <ListboxOption
                   key={option.id}
                   className={twMerge(
-                    "relative flex cursor-pointer select-none justify-between px-5 py-4 text-black hover:bg-primary-100",
+                    "relative flex cursor-pointer select-none justify-between px-5 py-4 text-black dark:text-white hover:bg-primary-100 dark:hover:bg-primary-900",
                     option.enable === false && "cursor-not-allowed opacity-50",
                     state.value?.includes(getValue(option, valueField)) &&
-                      "bg-primary-100",
+                      "bg-primary-100 dark:bg-primary-900",
                   )}
                   value={option}
                   disabled={option.enable === false}

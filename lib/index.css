@@ -10,7 +10,19 @@
   input:not([type="checkbox"]):not([type="radio"]) {
     @apply dark:bg-gray-950 dark:text-white;
   }
+  input:not([type="checkbox"]):not([type="radio"]):focus {
+    @apply dark:bg-gray-950 dark:text-white;
+  }
+  input:not([type="checkbox"]):not([type="radio"]):-webkit-autofill,
+  input:not([type="checkbox"]):not([type="radio"]):-webkit-autofill:hover,
+  input:not([type="checkbox"]):not([type="radio"]):-webkit-autofill:focus {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #030712 inset;
+  }
   textarea {
+    @apply dark:bg-gray-950 dark:text-white;
+  }
+  textarea:focus {
     @apply dark:bg-gray-950 dark:text-white;
   }
   #root {
@@ -160,7 +172,7 @@
   .form-group:has(textarea:autofill) .form-control,
   .form-group:has(textarea:not(:placeholder-shown)) .form-control,
   .form-group:has(.form-control:not(.empty)) .form-control {
-    @apply transform p-0 dark:bg-transparent dark:text-white;
+    @apply transform p-0 dark:text-white;
   }
   .form-group:has(input:focus) .btn-before,
   .form-group:has(input:autofill) .btn-before,

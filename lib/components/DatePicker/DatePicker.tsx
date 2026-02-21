@@ -71,13 +71,13 @@ const DatePicker = ({
                   </div>
                   <div className="flex gap-2">
                     <Datepicker.Button
-                      className="p-3 bg-gray-300 rounded-md hover:bg-gray-400 dark:bg-gray-700"
+                      className="p-3 bg-gray-300 rounded-md hover:bg-gray-400 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
                       action="prev"
                     >
                       <AiOutlineArrowLeft size={20} />
                     </Datepicker.Button>
                     <Datepicker.Button
-                      className="p-3 bg-gray-300 rounded-md hover:bg-gray-400 dark:bg-gray-700"
+                      className="p-3 bg-gray-300 rounded-md hover:bg-gray-400 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600"
                       action="next"
                     >
                       <AiOutlineArrowRight size={20} />
@@ -105,17 +105,17 @@ const DatePicker = ({
                           it.isHeader || it.disabled || readOnly === true
                         }
                         className={twMerge(
-                          "rounded-md p-2 dark:hover:bg-gray-700",
+                          "rounded-md p-2 text-gray-900 dark:text-gray-100 dark:hover:bg-gray-700",
                           it.isToday &&
                             "border border-gray-800 dark:border-gray-600",
                           it.isSelected && "bg-primary-600 text-white",
                           !it.isHeader &&
                             !it.isSelected &&
-                            "hover:bg-primary-50",
+                            "hover:bg-primary-50 dark:hover:bg-gray-700",
                           !it.isHeader &&
                             moment(new Date(it.value)).format("YYYY-M") !==
                               year + "-" + month &&
-                            "text-gray-300"
+                            "text-gray-400 dark:text-gray-500"
                         )}
                         {...(it.type === "day" &&
                           showTime === false && { action: "close" })}

@@ -11,10 +11,25 @@
 
   input:not([type="checkbox"]):not([type="radio"]) {
     @apply dark:bg-gray-950 dark:text-white;
+
+    &:focus {
+      @apply dark:bg-gray-950 dark:text-white;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      -webkit-text-fill-color: white;
+      -webkit-box-shadow: 0 0 0px 1000px #030712 inset;
+    }
   }
 
   textarea {
     @apply dark:bg-gray-950 dark:text-white;
+
+    &:focus {
+      @apply dark:bg-gray-950 dark:text-white;
+    }
   }
 
   #root {
@@ -64,7 +79,7 @@
 
     input,
     textarea {
-      @apply text-gray-700 w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal border-0 rounded;
+      @apply text-gray-700 w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal border-0 rounded dark:bg-gray-950 dark:text-white;
 
       &::-webkit-outer-spin-button {
         -webkit-appearance: none;
@@ -111,7 +126,7 @@
         }
 
         label {
-          @apply -translate-y-3 text-sm;
+          @apply -translate-y-3 text-sm bg-inherit bg-white dark:bg-gray-950;
         }
       }
 
@@ -122,7 +137,7 @@
       input,
       textarea,
       .form-control {
-        @apply transform p-0 dark:bg-transparent dark:text-white;
+        @apply transform p-0 dark:bg-gray-950 dark:text-white;
       }
 
       .btn-before {

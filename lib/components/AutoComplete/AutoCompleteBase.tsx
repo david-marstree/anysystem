@@ -149,7 +149,7 @@ const AutoCompleteBase = <ListOption extends SelectOption>(
           <button
             type="button"
             className={twMerge(
-              "size-5 text-gray-400 hover:text-gray-500 rounded-full hover:bg-gray-200 items-center flex justify-center",
+              "size-5 text-gray-400 hover:text-gray-500 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 items-center flex justify-center",
               !state.value ? "hidden" : "",
               closeButton ? "" : "!hidden"
             )}
@@ -192,8 +192,8 @@ const AutoCompleteBase = <ListOption extends SelectOption>(
                 {({ selected, focus }) => (
                   <li
                     className={twMerge(
-                      "relative flex cursor-pointer justify-between px-5 py-4 text-black hover:bg-primary-100 dark:text-white",
-                      (selected || focus) && "bg-primary-100 dark:bg-gray-700",
+                      "relative flex cursor-pointer justify-between px-5 py-4 text-black hover:bg-primary-100 dark:text-white dark:hover:bg-primary-900",
+                      (selected || focus) && "bg-primary-100 dark:bg-primary-900",
                       opt.enable === false && "cursor-not-allowed opacity-50"
                     )}
                   >

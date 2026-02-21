@@ -84,7 +84,7 @@ const FieldSelectbox = <DataType extends object>() => {
       >
         <ListboxOptions
           anchor="bottom"
-          className="z-[999] mt-2 inline-block w-48 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
+          className="z-[999] mt-2 inline-block w-48 origin-top-right divide-y divide-gray-100 dark:divide-gray-700 rounded-md bg-white dark:bg-gray-950 shadow-lg ring-1 ring-black ring-opacity-5 dark:ring-gray-700 focus:outline-none"
           ref={refs.setFloating}
           style={floatingStyles}
           {...getFloatingProps({
@@ -100,7 +100,7 @@ const FieldSelectbox = <DataType extends object>() => {
               <ListboxOption
                 key={opt.key}
                 className={twMerge(
-                  "relative flex justify-between px-3 py-2 text-black cursor-pointer select-none hover:bg-primary-100"
+                  "relative flex justify-between px-3 py-2 text-black dark:text-white cursor-pointer select-none hover:bg-primary-100 dark:hover:bg-primary-900"
                 )}
                 value={opt}
               >

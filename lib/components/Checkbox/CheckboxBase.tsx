@@ -37,14 +37,14 @@ export const CheckboxBase = ({
       />
       {intermediate === true && (
         <span
-          className="absolute left-1/2 top-1/2 flex h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center overflow-hidden rounded font-bold text-primary-600 dark:fill-primary-600 bg-white cursor-pointer"
+          className="absolute left-1/2 top-1/2 flex h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center overflow-hidden rounded font-bold text-primary-600 dark:fill-primary-600 bg-white dark:bg-gray-900 cursor-pointer"
           onClick={() => inputRef.current?.click()}
         >
           <AiFillMinusCircle className="w-full h-full rounded" />
         </span>
       )}
       <span
-        className="absolute left-1/2 top-1/2 hidden h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center overflow-hidden rounded font-bold text-primary-600 peer-checked:flex dark:fill-primary-600 bg-white cursor-pointer"
+        className="absolute left-1/2 top-1/2 hidden h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2 transform items-center justify-center overflow-hidden rounded font-bold text-primary-600 peer-checked:flex dark:fill-primary-600 bg-white dark:bg-gray-900 cursor-pointer"
         onClick={() => inputRef.current?.click()}
       >
         <AiFillCheckSquare className="w-full h-full rounded" />

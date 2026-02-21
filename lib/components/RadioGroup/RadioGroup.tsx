@@ -102,7 +102,7 @@ const RadioGroup = <ListOption extends SelectOption>({
             value={row}
             className={({ checked }) =>
               twMerge(
-                "group relative flex cursor-pointer rounded border border-gray-400 transition focus:outline-none",
+                "group relative flex cursor-pointer rounded border border-gray-400 dark:border-gray-600 transition focus:outline-none",
                 variant === "sm" && "px-3 py-2 text-sm",
                 variant === "md" && "px-5 py-4 ",
                 checked &&
