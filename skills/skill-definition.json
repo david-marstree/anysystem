@@ -483,25 +483,15 @@
     }
   },
   "patterns": {
+    "formcontrol_guide": {
+      "title": "FormControl Complete Guide",
+      "description": "⭐ Comprehensive guide for FormControl - unified form control API covering 12 input types",
+      "file": "skills/examples/formcontrol-guide.md"
+    },
     "form_validation": {
       "title": "Form with Validation",
       "description": "Formik + Yup + FormControl pattern",
-      "file": "examples/form-validation.md"
-    },
-    "sidebar_layout": {
-      "title": "Sidebar Layout",
-      "description": "SideMenuLayout + Navbar + NavList",
-      "file": "examples/sidebar-layout.md"
-    },
-    "data_table": {
-      "title": "Data Table",
-      "description": "DataTable with selection and columns",
-      "file": "examples/data-table.md"
-    },
-    "modal_dialog": {
-      "title": "Modal Dialog",
-      "description": "Modal with imperative API",
-      "file": "examples/modal-dialog.md"
+      "file": "skills/examples/form-validation.md"
     }
   },
   "setup": {
