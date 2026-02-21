@@ -112,7 +112,7 @@ const RadioGroup = <ListOption extends SelectOption>({
           >
             {({ checked }) => (
               <div className="flex items-center justify-between w-full">
-                <div className="text-sm/6">
+                <div className="text-sm/6 dark:text-white">
                   <p className="font-semibold">{row.label}</p>
                 </div>
                 {checked ? (

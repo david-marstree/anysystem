@@ -201,12 +201,12 @@ const SelectboxBase = <ListOption extends SelectOption>(
         ref={refs.setReference}
         {...getReferenceProps()}
       >
-        <ListboxButton className="relative z-10 inline-flex w-full justify-between !p-0 focus:outline-none">
+        <ListboxButton className="relative z-10 inline-flex w-full justify-between !p-0 focus:outline-none dark:text-white">
           <span>
             {state.value ? <>{state.selected?.label || ""}</> : placeholder}
           </span>
           <ChevronUpDownIcon
-            className="w-5 h-5 text-gray-400"
+            className="w-5 h-5 text-gray-400 dark:text-gray-400"
             aria-hidden="true"
           />
         </ListboxButton>

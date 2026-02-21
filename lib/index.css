@@ -57,15 +57,18 @@
     @apply py-5 px-4;
   }
   .form-group input,
+  .form-group select,
   .form-group textarea {
-    @apply text-gray-700 w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal border-0 rounded;
+    @apply text-gray-700 w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal border-0 rounded dark:bg-gray-950 dark:text-white;
   }
   .form-group input::-webkit-outer-spin-button,
+  .form-group select::-webkit-outer-spin-button,
   .form-group textarea::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
   }
   .form-group input[type="number"],
+  .form-group select[type="number"],
   .form-group textarea[type="number"] {
     -moz-appearance: textfield;
   }
@@ -96,7 +99,14 @@
   .form-group:has(textarea:focus).sm textarea,
   .form-group:has(textarea:autofill).sm textarea,
   .form-group:has(textarea:not(:placeholder-shown)).sm textarea,
-  .form-group:has(.form-control:not(.empty)).sm textarea {
+  .form-group:has(.form-control:not(.empty)).sm textarea,
+  .form-group:has(input:focus).sm .form-control,
+  .form-group:has(input:autofill).sm .form-control,
+  .form-group:has(input:not(:placeholder-shown)).sm .form-control,
+  .form-group:has(textarea:focus).sm .form-control,
+  .form-group:has(textarea:autofill).sm .form-control,
+  .form-group:has(textarea:not(:placeholder-shown)).sm .form-control,
+  .form-group:has(.form-control:not(.empty)).sm .form-control {
     @apply translate-y-0;
   }
   .form-group:has(input:focus).sm label,
@@ -130,7 +140,14 @@
   .form-group:has(textarea:focus).md textarea,
   .form-group:has(textarea:autofill).md textarea,
   .form-group:has(textarea:not(:placeholder-shown)).md textarea,
-  .form-group:has(.form-control:not(.empty)).md textarea {
+  .form-group:has(.form-control:not(.empty)).md textarea,
+  .form-group:has(input:focus).md .form-control,
+  .form-group:has(input:autofill).md .form-control,
+  .form-group:has(input:not(:placeholder-shown)).md .form-control,
+  .form-group:has(textarea:focus).md .form-control,
+  .form-group:has(textarea:autofill).md .form-control,
+  .form-group:has(textarea:not(:placeholder-shown)).md .form-control,
+  .form-group:has(.form-control:not(.empty)).md .form-control {
     @apply translate-y-3;
   }
   .form-group:has(input:focus).md label,
@@ -140,7 +157,7 @@
   .form-group:has(textarea:autofill).md label,
   .form-group:has(textarea:not(:placeholder-shown)).md label,
   .form-group:has(.form-control:not(.empty)).md label {
-    @apply -translate-y-3 text-sm;
+    @apply -translate-y-3 text-sm bg-inherit bg-white dark:bg-gray-950;
   }
   .form-group:has(input:focus) label,
   .form-group:has(input:autofill) label,
@@ -172,7 +189,7 @@
   .form-group:has(textarea:autofill) .form-control,
   .form-group:has(textarea:not(:placeholder-shown)) .form-control,
   .form-group:has(.form-control:not(.empty)) .form-control {
-    @apply transform p-0 dark:text-white;
+    @apply transform p-0 dark:bg-gray-950 dark:text-white;
   }
   .form-group:has(input:focus) .btn-before,
   .form-group:has(input:autofill) .btn-before,

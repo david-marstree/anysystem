@@ -24,9 +24,9 @@ export const CheckboxBase = ({
         type="checkbox"
         className={twMerge(
           "relative ",
-          "peer block h-full w-full cursor-pointer appearance-none rounded border-2 border-gray-400 focus:outline-4 focus:outline-blue-500 bg-transparent",
-          "checked:border-primary-600",
-          intermediate && "border-primary-600",
+          "peer block h-full w-full cursor-pointer appearance-none rounded border-2 border-gray-400 dark:border-gray-600 focus:outline-4 focus:outline-blue-500 bg-transparent",
+          "checked:border-primary-600 dark:checked:border-primary-600",
+          intermediate && "border-primary-600 dark:border-primary-600",
           isError && "border-red-500",
           className
         )}

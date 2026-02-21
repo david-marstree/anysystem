@@ -1,4 +1,4 @@
-import "../src/index.css";
+import "../src/index.less";
 import type { Preview } from "@storybook/react-vite";
 import { withThemeByClassName } from "@storybook/addon-themes";
 
