@@ -9,29 +9,6 @@
     @apply dark:bg-gray-950 dark:text-white;
   }
 
-  input:not([type="checkbox"]):not([type="radio"]) {
-    @apply dark:bg-gray-950 dark:text-white;
-
-    &:focus {
-      @apply dark:bg-gray-950 dark:text-white;
-    }
-
-    &:-webkit-autofill,
-    &:-webkit-autofill:hover,
-    &:-webkit-autofill:focus {
-      -webkit-text-fill-color: white;
-      -webkit-box-shadow: 0 0 0px 1000px #030712 inset;
-    }
-  }
-
-  textarea {
-    @apply dark:bg-gray-950 dark:text-white;
-
-    &:focus {
-      @apply dark:bg-gray-950 dark:text-white;
-    }
-  }
-
   #root {
     @apply w-full h-full;
   }
@@ -50,6 +27,24 @@
 }
 
 @layer components {
+  // Standalone input/textarea dark mode (not inside .form-group)
+  // Using :where() to keep specificity low but still in components layer,
+  // which beats base layer from external projects
+  input:not([type="checkbox"]):not([type="radio"]):is(.dark *),
+  textarea:is(.dark *) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(3 7 18 / var(--tw-bg-opacity, 1));
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  }
+
+  input:not([type="checkbox"]):not([type="radio"]):is(.dark *):-webkit-autofill,
+  input:not([type="checkbox"]):not([type="radio"]):is(.dark *):-webkit-autofill:hover,
+  input:not([type="checkbox"]):not([type="radio"]):is(.dark *):-webkit-autofill:focus {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #030712 inset;
+  }
+
   .form-group {
     @apply bg-inherit dark:bg-gray-950;
 
@@ -80,7 +75,19 @@
     input,
     select,
     textarea {
-      @apply text-gray-700 w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal border-0 rounded dark:bg-gray-950 dark:text-white;
+      @apply text-gray-700 w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal border-0 rounded;
+      @apply dark:bg-gray-950 dark:text-white;
+
+      &:focus {
+        @apply dark:bg-gray-950 dark:text-white;
+      }
+
+      &:-webkit-autofill,
+      &:-webkit-autofill:hover,
+      &:-webkit-autofill:focus {
+        -webkit-text-fill-color: white;
+        -webkit-box-shadow: 0 0 0px 1000px #030712 inset;
+      }
 
       &::-webkit-outer-spin-button {
         -webkit-appearance: none;

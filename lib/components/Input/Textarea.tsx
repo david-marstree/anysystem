@@ -53,7 +53,10 @@ const Textarea: React.ForwardRefRenderFunction<
           ...(inputProps && inputProps),
           ...props,
           value: inputProps?.value || props?.value || "",
-          className: twMerge(className?.input && className.input),
+          className: twMerge(
+            "dark:bg-gray-950 dark:text-white",
+            className?.input && className.input,
+          ),
           readOnly: props.readOnly,
           id: name,
           onChange: (e) => {

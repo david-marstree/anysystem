@@ -52,6 +52,7 @@ const DatePicker = ({
             value={new Date(+value * 1000).getTime() / 1000 || ""}
             format={showTime === true ? "yyyy-MM-dd HH:mm" : "yyyy-MM-dd"}
             id={name}
+            className="dark:bg-gray-950 dark:text-white"
           />
           <Datepicker.Picker
             id="Picker-Date"

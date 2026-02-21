@@ -24,6 +24,7 @@ const PasswordInput: React.ForwardRefRenderFunction<
         ref={inputRef}
         type={showPassword ? "text" : "password"}
         {...props}
+        className={twMerge("dark:bg-gray-950 dark:text-white", props.className)}
       />
       <a
         className={twMerge(

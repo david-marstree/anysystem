@@ -192,6 +192,7 @@ const AutoCompleteMultiple = <ListOption extends SelectOption>(
             dispatch({ type: "SEARCH", query: event.target.value });
             onSearch && onSearch(event.target.value);
           }}
+          className="dark:bg-gray-950 dark:text-white"
           onKeyDown={(e) => {
             if (
               e.key === "Backspace" &&

@@ -144,6 +144,7 @@ const AutoCompleteBase = <ListOption extends SelectOption>(
           }}
           autoComplete="off"
           displayValue={(opt: SelectOption | null) => opt?.label || ""}
+          className="dark:bg-gray-950 dark:text-white"
         />
         <div className="absolute inset-y-0 right-0 flex items-center pr-2">
           <button

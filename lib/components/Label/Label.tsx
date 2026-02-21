@@ -42,7 +42,7 @@ const LabelBase = ({
           <label
             className={twMerge(
               type === "border" &&
-                "hidden text-gray-600 opacity-0 dark:text-white",
+                "hidden text-gray-600 opacity-0 dark:text-white dark:bg-gray-950",
               type === "horizontal" && "flex items-center justify-center",
               "mb-1 text-sm font-semibold",
             )}
