@@ -11,5 +11,5 @@ export type RowProps = {
     children: React.ReactNode;
 };
 export declare const getColumns: (column?: ResponsiveColumn, data?: React.ReactNode) => string;
-declare const Row: React.FC<RowProps>;
+declare const Row: ({ column, className, children }: RowProps) => import("react/jsx-runtime").JSX.Element;
 export default Row;

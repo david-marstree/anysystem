@@ -6,5 +6,5 @@ export type ColumnProps = React.HtmlHTMLAttributes<HTMLDivElement> & {
     span?: ResponsiveColumn;
     children: React.ReactNode;
 };
-declare const Column: React.FC<ColumnProps>;
+declare const Column: ({ id, span, className, children, ...props }: ColumnProps) => import("react/jsx-runtime").JSX.Element;
 export default Column;

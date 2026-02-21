@@ -4,5 +4,5 @@ import { InputBaseProps } from './InputBase';
 export type InputProps = InputBaseProps;
 declare const _default: (props: InputProps & {
     ref?: React.Ref<HTMLInputElement>;
-}) => JSX.Element;
+}) => React.ReactElement;
 export default _default;

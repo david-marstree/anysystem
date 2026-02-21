@@ -33,7 +33,7 @@ export type FormField = {
     dataType: "string" | "number" | "boolean" | "string[]";
     value: string | number | boolean | string[];
     validation?: Validation[];
-    component?: React.FC<any>;
+    component?: (props: any) => React.ReactElement;
     componentProps: FormFieldInputProps | FormFieldDateTimeProps | FormFieldRadioProps<SelectOption> | FormFieldSwitchProps | FormFieldConfirmProps | FormFieldTelephoneProps | FormFieldSelectboxProps<SelectOption> | FormFieldAutoCompleteProps<SelectOption>;
 };
 export type FormFieldWithStructure = (FormField | FormField[])[];

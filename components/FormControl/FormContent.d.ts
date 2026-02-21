@@ -1,4 +1,3 @@
-import { default as React } from '../../../node_modules/react';
 import { FormFieldWithStructure } from './type';
 
 export type FormContentProps = {
@@ -9,5 +8,5 @@ export type FormContentProps = {
     touched?: any;
     errors?: any;
 };
-declare const FormContent: React.FC<FormContentProps>;
+declare const FormContent: ({ fields, values, setFieldValue, touched, errors, }: FormContentProps) => import("react/jsx-runtime").JSX.Element;
 export default FormContent;

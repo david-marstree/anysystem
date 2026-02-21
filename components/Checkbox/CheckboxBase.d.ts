@@ -6,4 +6,4 @@ export type CheckboxBaseProps = React.InputHTMLAttributes<HTMLInputElement> & {
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
     intermediate?: boolean;
 };
-export declare const CheckboxBase: React.FC<CheckboxBaseProps>;
+export declare const CheckboxBase: ({ className, isError, inputProps, intermediate, ...props }: CheckboxBaseProps) => import("react/jsx-runtime").JSX.Element;

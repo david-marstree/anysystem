@@ -3,7 +3,9 @@ import { default as React } from '../../../node_modules/react';
 export type NavItemObject = {
     label: string;
     path?: string;
-    icon?: React.FC;
+    icon?: React.ComponentType<{
+        size?: number;
+    }>;
     title?: boolean;
     list?: NavItemObject[];
     onClick?: () => void;
@@ -14,5 +16,5 @@ export type NavListProps = {
         pathname: string;
     };
 };
-declare const NavList: React.FC<NavListProps>;
+declare const NavList: ({ list, location }: NavListProps) => import("react/jsx-runtime").JSX.Element;
 export default NavList;

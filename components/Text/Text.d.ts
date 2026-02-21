@@ -5,5 +5,7 @@ export type TextProps = {
     className?: string;
     children: React.ReactNode;
 };
-declare const Text: React.FC<TextProps>;
+declare const Text: ({ tag, className, children }: TextProps) => React.DetailedReactHTMLElement<{
+    className: string;
+}, HTMLElement>;
 export default Text;

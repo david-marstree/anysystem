@@ -1,5 +1,3 @@
-import { default as React } from '../../../node_modules/react';
-
 export type SwitchProps = {
     variant?: "sm" | "md";
     name: string;
@@ -7,5 +5,5 @@ export type SwitchProps = {
     checked?: boolean;
     onChange: (v: boolean) => void;
 };
-declare const Switch: React.FC<SwitchProps>;
+declare const Switch: ({ checked, onChange, name, value, }: SwitchProps) => import("react/jsx-runtime").JSX.Element;
 export default Switch;

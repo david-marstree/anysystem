@@ -1,4 +1,2 @@
-import { default as React } from '../../../../node_modules/react';
-
-declare const DataTableHead: React.FC;
+declare const DataTableHead: () => import("react/jsx-runtime").JSX.Element;
 export default DataTableHead;

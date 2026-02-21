@@ -8,4 +8,4 @@ export type CheckboxProps = React.InputHTMLAttributes<HTMLInputElement> & {
     isError?: boolean;
     inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
 };
-export declare const Checkbox: React.FC<CheckboxProps>;
+export declare const Checkbox: ({ className, name, label, hidden, isError, inputProps, ...props }: CheckboxProps) => import("react/jsx-runtime").JSX.Element;

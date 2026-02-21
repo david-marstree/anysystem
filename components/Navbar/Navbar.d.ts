@@ -6,5 +6,5 @@ export type NavbarProps = {
     menuRef?: React.RefObject<SideMenuHandler>;
     children?: React.ReactNode;
 };
-declare const Navbar: React.FC<NavbarProps>;
+declare const Navbar: ({ title, menuRef, children }: NavbarProps) => import("react/jsx-runtime").JSX.Element;
 export default Navbar;

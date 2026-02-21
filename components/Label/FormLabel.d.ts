@@ -6,4 +6,4 @@ export type FormLabelProps = {
     className?: string;
     htmlFor?: string;
 };
-export declare const FormLabel: React.FC<FormLabelProps>;
+export declare const FormLabel: ({ label, className, htmlFor, children, }: FormLabelProps) => import("react/jsx-runtime").JSX.Element;

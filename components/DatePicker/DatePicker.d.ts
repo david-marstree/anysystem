@@ -1,4 +1,3 @@
-import { default as React } from '../../../node_modules/react';
 import { LabelBaseProps } from '../Label';
 
 export type DatePickerProps = {
@@ -9,5 +8,5 @@ export type DatePickerProps = {
     readOnly?: boolean;
     labelProps?: LabelBaseProps;
 };
-declare const DatePicker: React.FC<DatePickerProps>;
+declare const DatePicker: ({ name, value, showTime, onChange, readOnly, labelProps, }: DatePickerProps) => import("react/jsx-runtime").JSX.Element;
 export default DatePicker;

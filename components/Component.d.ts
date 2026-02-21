@@ -1,6 +1,4 @@
-import { default as React } from '../../node_modules/react';
-
 export type ComponentObject = {};
 export type ComponentProps = {};
-declare const Component: React.FC<ComponentProps>;
+declare const Component: () => import("react/jsx-runtime").JSX.Element;
 export default Component;

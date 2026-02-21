@@ -12,5 +12,5 @@ export type LabelBaseProps = {
 export type LabelProps = LabelBaseProps & {
     children: React.ReactNode;
 };
-declare const LabelBase: React.FC<LabelProps>;
+declare const LabelBase: ({ label, className, htmlFor, isError, errorMessage, type, variant, children, }: LabelProps) => import("react/jsx-runtime").JSX.Element;
 export default LabelBase;

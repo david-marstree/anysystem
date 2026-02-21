@@ -8,4 +8,4 @@ export type AppProviderProps = {
     appName: string;
     children: React.ReactNode;
 };
-export declare const AppProvider: React.FC<AppProviderProps>;
+export declare const AppProvider: ({ appName, children, }: AppProviderProps) => import("react/jsx-runtime").JSX.Element;
