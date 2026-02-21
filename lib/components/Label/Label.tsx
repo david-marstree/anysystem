@@ -31,7 +31,7 @@ const LabelBase = ({
       <div
         className={twMerge(
           "relative flex w-full flex-col ",
-          type === "border" && "rounded border border-gray-400",
+          type === "border" && "rounded border border-gray-400 dark:border-gray-600 dark:bg-gray-950",
           type === "horizontal" ? "flex-row gap-2" : "form-group",
           isError && "error",
           className,

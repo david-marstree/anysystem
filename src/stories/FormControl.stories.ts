@@ -61,6 +61,16 @@ export const Text: Story = {
   },
 };
 
+export const TextSm: Story = {
+  args: {
+    type: "text",
+    value: "測試文字",
+    variant: "sm",
+    labelProps: { label: "文字輸入 (sm)", variant: "sm" },
+    placeholder: "請輸入內容...",
+  },
+};
+
 export const Select: Story = {
   args: {
     type: "select",
