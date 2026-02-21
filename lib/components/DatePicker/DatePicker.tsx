@@ -22,17 +22,16 @@ const DatePicker = ({
   readOnly,
   labelProps,
 }: DatePickerProps) => {
-
   const render = () => (
-    <>
+    <div className="contents">
       <input
         className={twMerge(
           "w-full bg-white dark:bg-gray-800",
-          showTime === true ? "!hidden" : "md:hidden"
+          showTime === true ? "!hidden" : "md:hidden",
         )}
         type={showTime === true ? "datetime-local" : "date"}
         value={moment(new Date(+value * 1000)).format(
-          showTime === true ? "YYYY-MM-DD HH:mm" : "YYYY-MM-DD"
+          showTime === true ? "YYYY-MM-DD HH:mm" : "YYYY-MM-DD",
         )}
         onChange={(e) =>
           onChange(Math.round(new Date(e.target.value).getTime() / 1000) + "")
@@ -60,7 +59,10 @@ const DatePicker = ({
             className="xs:max-w-[320px] z-50 rounded-md border border-gray-300 bg-white p-2 shadow-2xl dark:border-gray-700 dark:bg-gray-900 md:p-4"
           >
             {({ year, monthName, month, hour, minute }) => (
-              <div className="flex w-[320px] flex-col gap-2">
+              <div
+                className="flex w-[320px] flex-col gap-2"
+                key={`${year}-${month}`}
+              >
                 <div className="flex justify-between w-full">
                   <div className="flex text-2xl font-bold text-black gap-1 dark:text-white">
                     <Datepicker.Button action="toggleMonth">
@@ -93,7 +95,7 @@ const DatePicker = ({
                       type === "day" && "grid-cols-7",
                       type === "month" && "grid-cols-3",
                       type === "year" && "max-h-[300px] grid-cols-5",
-                      type === "hour" && "grid-cols-2"
+                      type === "hour" && "grid-cols-2",
                     )
                   }
                 >
@@ -116,7 +118,7 @@ const DatePicker = ({
                           !it.isHeader &&
                             moment(new Date(it.value)).format("YYYY-M") !==
                               year + "-" + month &&
-                            "text-gray-400 dark:text-gray-500"
+                            "text-gray-400 dark:text-gray-500",
                         )}
                         {...(it.type === "day" &&
                           showTime === false && { action: "close" })}
@@ -126,12 +128,12 @@ const DatePicker = ({
                           ? { action: "showDay" }
                           : undefined)}
                       >
-                        {it.type === "day" && (
-                          <>{it.isHeader ? it.text.substring(0, 3) : it.text}</>
-                        )}
-                        {it.type === "month" && <>{it.text.substring(0, 3)}</>}
-                        {it.type === "year" && <>{it.text}</>}
-                        {it.type === "hour" && <>{it.text}</>}
+                        {it.type === "day" && it.isHeader
+                          ? it.text.substring(0, 3)
+                          : it.text}
+                        {it.type === "month" && it.text.substring(0, 3)}
+                        {it.type === "year" && it.text}
+                        {it.type === "hour" && it.text}
                       </Datepicker.Item>
                     ))
                   }
@@ -141,7 +143,7 @@ const DatePicker = ({
                   className={twMerge(
                     "relative w-full p-2 text-white rounded bg-primary-600",
                     "after:absolute after:right-0 after:top-0 after:h-full after:w-0 after:rounded-l after:bg-gray-400 after:opacity-0 dark:after:bg-gray-600", //after:
-                    "hover:after:w-full hover:after:transform hover:after:opacity-20 hover:after:transition-all hover:after:duration-300" //hover:
+                    "hover:after:w-full hover:after:transform hover:after:opacity-20 hover:after:transition-all hover:after:duration-300", //hover:
                   )}
                   action="todayHour"
                 >
@@ -152,7 +154,7 @@ const DatePicker = ({
                   action="toggleHourPicker"
                   className={twMerge(
                     "rounded-md p-1 text-2xl hover:bg-primary-100 dark:hover:bg-gray-700",
-                    showTime === true ? "" : "hidden"
+                    showTime === true ? "" : "hidden",
                   )}
                 >
                   {("0" + hour).slice(-2) + ":" + ("0" + minute).slice(-2)}
@@ -176,7 +178,7 @@ const DatePicker = ({
                             "flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium ",
                             item.isSelected
                               ? "bg-primary-600 text-white dark:bg-gray-700"
-                              : "hover:bg-primary-50 dark:hover:bg-gray-700"
+                              : "hover:bg-primary-50 dark:hover:bg-gray-700",
                           )}
                         >
                           {("0" + item.text).slice(-2)}
@@ -199,7 +201,7 @@ const DatePicker = ({
                             "flex h-8 w-8 items-center justify-center rounded-full text-sm font-medium ",
                             item.isSelected
                               ? "bg-primary-600 text-white dark:bg-gray-700"
-                              : "hover:bg-primary-50 dark:hover:bg-gray-700"
+                              : "hover:bg-primary-50 dark:hover:bg-gray-700",
                           )}
                         >
                           {("0" + item.text).slice(-2)}
@@ -213,13 +215,11 @@ const DatePicker = ({
           </Datepicker.Picker>
         </Datepicker>
       </div>
-    </>
+    </div>
   );
 
   return labelProps ? (
-    <LabelBase {...labelProps}>
-      {render()}
-    </LabelBase>
+    <LabelBase {...labelProps}>{render()}</LabelBase>
   ) : (
     render()
   );
