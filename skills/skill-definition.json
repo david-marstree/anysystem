@@ -1,0 +1,554 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "anysystem-design",
+  "version": "0.0.48",
+  "type": "component-library-helper",
+  "description": "AI assistant skill for AnySystem Design React component library - helps developers with component usage, examples, and best practices",
+  "repository": "https://github.com/david-marstree/anysystem-design",
+  "homepage": "https://david-marstree.github.io/anysystem",
+  "keywords": [
+    "react",
+    "components",
+    "typescript",
+    "tailwind",
+    "formik",
+    "ui-library",
+    "design-system"
+  ],
+  "capabilities": [
+    "component-lookup",
+    "code-generation",
+    "example-provision",
+    "troubleshooting",
+    "best-practices",
+    "formik-integration",
+    "typescript-support"
+  ],
+  "components": {
+    "Button": {
+      "category": "forms",
+      "description": "Customizable button with variants, sizes, and hover effects",
+      "import": "import { Button } from 'anysystem-design';",
+      "props": {
+        "variant": {
+          "type": "\"default\" | \"primary\" | \"danger\"",
+          "default": "\"default\"",
+          "description": "Button color variant"
+        },
+        "size": {
+          "type": "\"xs\" | \"sm\" | \"md\" | \"lg\"",
+          "default": "\"md\"",
+          "description": "Button size"
+        },
+        "rounded": {
+          "type": "boolean",
+          "default": "false",
+          "description": "Use fully rounded corners"
+        },
+        "disabled": {
+          "type": "boolean",
+          "default": "false",
+          "description": "Disable the button"
+        }
+      },
+      "example": "<Button variant=\"primary\" size=\"lg\">Submit</Button>",
+      "documentation": "docs/components/Button.md"
+    },
+    "Input": {
+      "category": "forms",
+      "description": "Text input with decorative elements and label support",
+      "import": "import { Input, FormInput } from 'anysystem-design';",
+      "props": {
+        "name": {
+          "type": "string",
+          "required": true,
+          "description": "Input name and ID"
+        },
+        "inputBefore": {
+          "type": "ReactNode",
+          "description": "Element before input"
+        },
+        "inputAfter": {
+          "type": "ReactNode",
+          "description": "Element after input"
+        },
+        "labelProps": {
+          "type": "LabelBaseProps",
+          "description": "Label configuration"
+        }
+      },
+      "variants": ["FormInput", "Textarea", "InputTel"],
+      "example": "<Input name=\"username\" inputBefore={<FaUser />} />",
+      "documentation": "docs/components/Input.md"
+    },
+    "PasswordInput": {
+      "category": "forms",
+      "description": "Password input with visibility toggle",
+      "import": "import { PasswordInput, FormPasswordInput } from 'anysystem-design';",
+      "props": {
+        "name": {
+          "type": "string",
+          "required": true
+        }
+      },
+      "variants": ["FormPasswordInput"],
+      "example": "<PasswordInput name=\"password\" />",
+      "documentation": "docs/components/PasswordInput.md"
+    },
+    "TelephoneInput": {
+      "category": "forms",
+      "description": "Phone input with country code selector",
+      "import": "import { TelephoneInput } from 'anysystem-design';",
+      "props": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "value": {
+          "type": "string",
+          "description": "Format: +1-5551234567"
+        },
+        "phonePrefixOptions": {
+          "type": "SelectOption[]",
+          "required": true
+        },
+        "phonePrefix": {
+          "type": "string",
+          "description": "Default prefix"
+        }
+      },
+      "example": "<TelephoneInput name=\"phone\" value={phone} onChange={setPhone} phonePrefixOptions={prefixes} phonePrefix=\"+1\" />",
+      "documentation": "docs/components/TelephoneInput.md"
+    },
+    "Checkbox": {
+      "category": "forms",
+      "description": "Checkbox with Formik support",
+      "import": "import { Checkbox, FormCheckbox } from 'anysystem-design';",
+      "props": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "checked": {
+          "type": "boolean"
+        },
+        "onChange": {
+          "type": "(checked: boolean) => void"
+        }
+      },
+      "variants": ["FormCheckbox"],
+      "example": "<Checkbox name=\"terms\">I agree</Checkbox>",
+      "documentation": "docs/components/Checkbox.md"
+    },
+    "Switch": {
+      "category": "forms",
+      "description": "Toggle switch for boolean values",
+      "import": "import { Switch } from 'anysystem-design';",
+      "props": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "value": {
+          "type": "string",
+          "required": true
+        },
+        "checked": {
+          "type": "boolean"
+        },
+        "onChange": {
+          "type": "(checked: boolean) => void",
+          "required": true
+        }
+      },
+      "example": "<Switch name=\"notifications\" value=\"enabled\" checked={enabled} onChange={setEnabled} />",
+      "documentation": "docs/components/Switch.md"
+    },
+    "FormControl": {
+      "category": "forms",
+      "description": "Form field wrapper with label, validation, and error display",
+      "import": "import { FormControl } from 'anysystem-design';",
+      "props": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "label": {
+          "type": "string"
+        },
+        "required": {
+          "type": "boolean",
+          "default": "false"
+        },
+        "description": {
+          "type": "string"
+        },
+        "error": {
+          "type": "string"
+        }
+      },
+      "example": "<FormControl name=\"email\" label=\"Email\" required error={errors.email}><Input name=\"email\" /></FormControl>",
+      "documentation": "docs/components/FormControl.md",
+      "important": "Wraps any input component for consistent layout"
+    },
+    "Label": {
+      "category": "forms",
+      "description": "Label component with error display and multiple layout types",
+      "import": "import { Label } from 'anysystem-design';",
+      "props": {
+        "label": {
+          "type": "ReactNode",
+          "required": true
+        },
+        "type": {
+          "type": "\"border\" | \"normal\" | \"horizontal\"",
+          "default": "\"border\""
+        },
+        "isError": {
+          "type": "boolean"
+        },
+        "errorMessage": {
+          "type": "string"
+        }
+      },
+      "example": "<Label label=\"Username\" htmlFor=\"username\" type=\"normal\"><input id=\"username\" /></Label>",
+      "documentation": "docs/components/Label.md"
+    },
+    "Selectbox": {
+      "category": "selection",
+      "description": "Single and multiple selection dropdown",
+      "import": "import { Selectbox, SelectboxMultiple, FormSelectbox } from 'anysystem-design';",
+      "props": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "options": {
+          "type": "SelectOption[]",
+          "required": true
+        },
+        "value": {
+          "type": "string | number"
+        },
+        "onChange": {
+          "type": "(value: string | number) => void"
+        },
+        "placeholder": {
+          "type": "string"
+        }
+      },
+      "variants": ["SelectboxMultiple", "FormSelectbox"],
+      "example": "<Selectbox name=\"country\" options={countries} placeholder=\"Select...\" />",
+      "documentation": "docs/components/Selectbox.md"
+    },
+    "AutoComplete": {
+      "category": "selection",
+      "description": "Searchable autocomplete with single and multiple selection",
+      "import": "import { AutoComplete, AutoCompleteMultiple } from 'anysystem-design';",
+      "props": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "options": {
+          "type": "SelectOption[]",
+          "required": true
+        },
+        "value": {
+          "type": "string | number"
+        },
+        "onChange": {
+          "type": "(value: string) => void"
+        },
+        "multiple": {
+          "type": "boolean"
+        },
+        "onSearch": {
+          "type": "(query: string) => void"
+        }
+      },
+      "variants": ["AutoCompleteMultiple"],
+      "example": "<AutoComplete name=\"city\" value={city} onChange={setCity} options={cities} placeholder=\"Search...\" />",
+      "documentation": "docs/components/AutoComplete.md"
+    },
+    "RadioGroup": {
+      "category": "selection",
+      "description": "Radio button group with visual feedback",
+      "import": "import { RadioGroup } from 'anysystem-design';",
+      "props": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "options": {
+          "type": "SelectOption[]",
+          "required": true
+        },
+        "value": {
+          "type": "string",
+          "required": true
+        },
+        "onChange": {
+          "type": "(value: string) => void",
+          "required": true
+        },
+        "variant": {
+          "type": "\"sm\" | \"md\"",
+          "default": "\"md\""
+        }
+      },
+      "example": "<RadioGroup name=\"plan\" value={plan} onChange={setPlan} options={planOptions} />",
+      "documentation": "docs/components/RadioGroup.md"
+    },
+    "DatePicker": {
+      "category": "selection",
+      "description": "Date and time picker with calendar interface",
+      "import": "import { DatePicker } from 'anysystem-design';",
+      "props": {
+        "name": {
+          "type": "string",
+          "required": true
+        },
+        "value": {
+          "type": "string",
+          "required": true,
+          "description": "Unix timestamp in seconds as string"
+        },
+        "onChange": {
+          "type": "(value: string) => void",
+          "required": true
+        },
+        "showTime": {
+          "type": "boolean",
+          "default": "false"
+        }
+      },
+      "example": "<DatePicker name=\"date\" value={timestamp} onChange={setTimestamp} showTime />",
+      "documentation": "docs/components/DatePicker.md",
+      "important": "Uses Unix timestamps (seconds) as strings, not Date objects"
+    },
+    "Container": {
+      "category": "layout",
+      "description": "Responsive container wrapper with max-width",
+      "import": "import { Container } from 'anysystem-design';",
+      "props": {
+        "maxWidth": {
+          "type": "\"sm\" | \"md\" | \"lg\" | \"xl\" | \"2xl\" | \"full\"",
+          "default": "\"xl\""
+        },
+        "padding": {
+          "type": "boolean",
+          "default": "true"
+        }
+      },
+      "example": "<Container maxWidth=\"lg\"><Content /></Container>",
+      "documentation": "docs/components/Container.md"
+    },
+    "Row": {
+      "category": "layout",
+      "description": "Horizontal flex layout",
+      "import": "import { Row } from 'anysystem-design';",
+      "example": "<Row className=\"gap-4\"><div>Item 1</div><div>Item 2</div></Row>",
+      "documentation": "docs/components/Row.md"
+    },
+    "Column": {
+      "category": "layout",
+      "description": "Vertical flex layout",
+      "import": "import { Column } from 'anysystem-design';",
+      "example": "<Column className=\"gap-4\"><div>Row 1</div><div>Row 2</div></Column>",
+      "documentation": "docs/components/Column.md"
+    },
+    "Navbar": {
+      "category": "navigation",
+      "description": "Top navigation bar with menu toggle",
+      "import": "import { Navbar } from 'anysystem-design';",
+      "props": {
+        "title": {
+          "type": "string"
+        },
+        "menuRef": {
+          "type": "React.RefObject<SideMenuHandler>"
+        },
+        "children": {
+          "type": "ReactNode"
+        }
+      },
+      "example": "<Navbar title=\"My App\" menuRef={menuRef}><UserMenu /></Navbar>",
+      "documentation": "docs/components/Navbar.md"
+    },
+    "NavList": {
+      "category": "navigation",
+      "description": "Hierarchical navigation list with icons",
+      "import": "import { NavList } from 'anysystem-design';",
+      "props": {
+        "list": {
+          "type": "NavItemObject[]",
+          "required": true
+        },
+        "location": {
+          "type": "{ pathname: string }"
+        }
+      },
+      "example": "<NavList list={menuItems} location={location} />",
+      "documentation": "docs/components/NavList.md"
+    },
+    "DataTable": {
+      "category": "data",
+      "description": "Feature-rich data table with selection and column chooser",
+      "import": "import { DataTable } from 'anysystem-design';",
+      "props": {
+        "data": {
+          "type": "T[]",
+          "required": true
+        },
+        "fields": {
+          "type": "DataTableField<T>[]",
+          "required": true
+        },
+        "selectable": {
+          "type": "boolean"
+        },
+        "chooseFieldable": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "example": "<DataTable name=\"users\" data={users} fields={fields} selectable chooseFieldable />",
+      "documentation": "docs/components/DataTable.md"
+    },
+    "Text": {
+      "category": "data",
+      "description": "Typography component for semantic HTML text",
+      "import": "import { Text } from 'anysystem-design';",
+      "props": {
+        "tag": {
+          "type": "\"h1\" | \"h2\" | \"h3\" | \"h4\" | \"h5\" | \"h6\" | \"p\" | \"span\"",
+          "required": true
+        }
+      },
+      "example": "<Text tag=\"h1\">Heading</Text>",
+      "documentation": "docs/components/Text.md"
+    },
+    "Modal": {
+      "category": "interactive",
+      "description": "Modal dialog with animations and buttons",
+      "import": "import { Modal } from 'anysystem-design';",
+      "props": {
+        "title": {
+          "type": "string",
+          "required": true
+        },
+        "size": {
+          "type": "\"md\" | \"lg\" | \"xl\" | \"full\"",
+          "default": "\"md\""
+        },
+        "buttons": {
+          "type": "ModalButton[]"
+        },
+        "onClickBackdropClose": {
+          "type": "boolean",
+          "default": "true"
+        }
+      },
+      "example": "<Modal ref={modalRef} title=\"Title\" buttons={[{label: 'OK', onClick: hide}]}>Content</Modal>",
+      "documentation": "docs/components/Modal.md",
+      "important": "Uses imperative API via ref (ref.current.show/hide)"
+    },
+    "SideMenuLayout": {
+      "category": "layouts",
+      "description": "Responsive sidebar layout with menu toggle",
+      "import": "import { SideMenuLayout } from 'anysystem-design';",
+      "props": {
+        "header": {
+          "type": "ReactNode"
+        },
+        "menu": {
+          "type": "ReactNode"
+        },
+        "menuRef": {
+          "type": "React.RefObject<SideMenuHandler>"
+        }
+      },
+      "example": "<SideMenuLayout menuRef={menuRef} header={<Navbar />} menu={<NavList />}><Outlet /></SideMenuLayout>",
+      "documentation": "docs/layouts/SideMenuLayout.md"
+    },
+    "EmptyLayout": {
+      "category": "layouts",
+      "description": "Minimal wrapper (React.Fragment) for custom layouts",
+      "import": "import { EmptyLayout } from 'anysystem-design';",
+      "example": "<EmptyLayout><CustomLayout /></EmptyLayout>",
+      "documentation": "docs/layouts/EmptyLayout.md"
+    }
+  },
+  "patterns": {
+    "form_validation": {
+      "title": "Form with Validation",
+      "description": "Formik + Yup + FormControl pattern",
+      "file": "examples/form-validation.md"
+    },
+    "sidebar_layout": {
+      "title": "Sidebar Layout",
+      "description": "SideMenuLayout + Navbar + NavList",
+      "file": "examples/sidebar-layout.md"
+    },
+    "data_table": {
+      "title": "Data Table",
+      "description": "DataTable with selection and columns",
+      "file": "examples/data-table.md"
+    },
+    "modal_dialog": {
+      "title": "Modal Dialog",
+      "description": "Modal with imperative API",
+      "file": "examples/modal-dialog.md"
+    }
+  },
+  "setup": {
+    "installation": "npm install anysystem-design",
+    "peer_dependencies": [
+      "react",
+      "react-dom",
+      "tailwind-merge",
+      "formik",
+      "yup",
+      "moment",
+      "react-icons",
+      "react-router-dom",
+      "@headlessui/react",
+      "@floating-ui/react",
+      "@aliakbarazizi/headless-datepicker",
+      "@dnd-kit/core",
+      "@dnd-kit/sortable",
+      "@dnd-kit/utilities",
+      "@xyflow/react"
+    ],
+    "required_wrapper": {
+      "component": "AppProvider",
+      "example": "<AppProvider appName=\"My App\"><App /></AppProvider>"
+    },
+    "tailwind_config": {
+      "content": [
+        "./src/**/*.{js,ts,jsx,tsx}",
+        "./node_modules/anysystem-design/**/*.{js,ts,jsx,tsx}"
+      ]
+    }
+  },
+  "important_notes": [
+    "All components require AppProvider wrapper",
+    "Use Form* variants (FormInput, FormCheckbox) with Formik",
+    "DatePicker uses Unix timestamps (seconds) as strings",
+    "Modal has imperative API via ref",
+    "Components use Tailwind CSS and tailwind-merge",
+    "Full TypeScript support with type definitions",
+    "Most components support dark mode automatically"
+  ],
+  "documentation_paths": {
+    "overview": "docs/README.md",
+    "getting_started": "docs/GETTING_STARTED.md",
+    "component_catalog": "docs/COMPONENT_CATALOG.md",
+    "index": "docs/INDEX.md",
+    "components": "docs/components/",
+    "layouts": "docs/layouts/"
+  }
+}

@@ -8,7 +8,7 @@ delete colors.coolGray;
 delete colors.blueGray;
 
 export default {
-  darkMode: "class",
+  darkMode: "media",
   content: [
     "./index.html",
     "./lib/**/*.{js,ts,jsx,tsx,yml,yaml}",

@@ -1,6 +1,7 @@
 import React from "react";
 import { twMerge } from "tailwind-merge";
 import { FiAlertCircle } from "react-icons/fi";
+import "./Label.less";
 
 export type LabelBaseProps = {
   label: React.ReactNode;
@@ -30,10 +31,10 @@ const LabelBase = ({
     <div className="flex flex-col">
       <div
         className={twMerge(
-          "relative flex w-full flex-col ",
+          "relative flex w-full flex-col",
           type === "border" && "rounded border border-gray-400 dark:border-gray-600 dark:bg-gray-950",
-          type === "horizontal" ? "flex-row gap-2" : "form-group",
-          isError && "error",
+          type === "horizontal" ? "flex-row gap-2" : "form-group bg-inherit dark:bg-gray-950",
+          isError && "error border-red-500",
           className,
           variant,
         )}

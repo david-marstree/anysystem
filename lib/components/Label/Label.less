@@ -1,0 +1,131 @@
+// Label component styles
+// Styles for the .form-group class used by Label component
+
+@tailwind utilities;
+
+.form-group {
+  @apply bg-inherit dark:bg-gray-950;
+
+  &.error {
+    @apply border-red-500;
+  }
+
+  .btn-phone-prefix button {
+    @apply top-6;
+  }
+
+  &.sm {
+    input,
+    textarea {
+      @apply py-3 px-2;
+    }
+  }
+
+  &.md {
+    input,
+    textarea {
+      @apply py-5 px-4;
+    }
+  }
+
+  input,
+  select,
+  textarea {
+    @apply w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal border-0 rounded dark:bg-gray-950 dark:text-white text-gray-700;
+
+    &:focus {
+      @apply dark:bg-gray-950 dark:text-white;
+    }
+
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus {
+      -webkit-text-fill-color: white;
+      -webkit-box-shadow: 0 0 0px 1000px #030712 inset;
+    }
+
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+    &[type="number"] {
+      -moz-appearance: textfield;
+    }
+  }
+
+  &:has(input:focus),
+  &:has(textarea:focus),
+  &:has([data-headlessui-state="open"]) {
+    @apply border-primary-500 z-50;
+  }
+
+  &:has(input:focus),
+  &:has(input:autofill),
+  &:has(input:not(:placeholder-shown)),
+  &:has(textarea:focus),
+  &:has(textarea:autofill),
+  &:has(textarea:not(:placeholder-shown)),
+  &:has(.form-control:not(.empty)) {
+    &.sm {
+      @apply py-3 px-2;
+
+      input,
+      textarea,
+      .form-control {
+        @apply translate-y-0 dark:bg-gray-950 dark:text-white;
+      }
+
+      label {
+        @apply left-1 -translate-y-2 top-0 text-xs font-normal px-1 bg-inherit bg-white dark:bg-gray-950;
+      }
+    }
+
+    &.md {
+      @apply py-5 px-4;
+
+      input,
+      textarea,
+      .form-control {
+        @apply translate-y-3 dark:bg-gray-950 dark:text-white;
+      }
+
+      label {
+        @apply -translate-y-3 text-sm bg-inherit bg-white dark:bg-gray-950;
+      }
+    }
+
+    label {
+      @apply text-black transform transition-all duration-500 opacity-100 block absolute font-semibold dark:text-white;
+    }
+
+    input,
+    textarea,
+    .form-control {
+      @apply transform p-0 dark:bg-gray-950 dark:text-white;
+    }
+
+    .btn-before {
+      @apply absolute z-10;
+      bottom: theme("spacing[0.5]");
+      left: theme("spacing[0.5]");
+    }
+
+    &:has(.btn-before) {
+      input,
+      .form-control {
+        @apply pl-10;
+      }
+    }
+
+    .btn-after {
+      @apply absolute;
+      right: theme("spacing[0.5]");
+    }
+
+    .btn-show-password {
+      @apply absolute right-0 w-9 h-9;
+    }
+  }
+}
+

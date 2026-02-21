@@ -12,6 +12,8 @@ import DataTableBody from "./components/DataTableBody";
 import FieldSelectbox from "./components/FieldSelectbox";
 //hooks
 import { useLocalStorage } from "../../hooks/useLocalStorage";
+//styles
+import "./DataTable.less";
 
 const reducer = <DataType extends object>(
   state: State<DataType>,

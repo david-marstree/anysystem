@@ -1,0 +1,30 @@
+// DataTable component styles
+// Styles for the table element used by DataTable
+
+@tailwind utilities;
+
+table.table {
+  @apply w-full;
+
+  thead {
+    tr {
+      th {
+        @apply border border-t-gray-100 border-b-black border-x-0 font-semibold px-4 py-2 dark:bg-gray-800;
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      td {
+        @apply border border-t-0 border-x-0 border-b-gray-100 text-center px-4 py-3;
+      }
+
+      &:hover {
+        td {
+          @apply bg-primary-50 dark:bg-gray-800;
+        }
+      }
+    }
+  }
+}

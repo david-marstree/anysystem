@@ -1,5 +1,5 @@
 //Style
-import "./index.css";
+import "./index.less";
 //Components
 export * from "./components/index";
 // export { default as Component } from "./components/index";
