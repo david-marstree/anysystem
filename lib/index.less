@@ -39,8 +39,12 @@
   }
 
   input:not([type="checkbox"]):not([type="radio"]):is(.dark *):-webkit-autofill,
-  input:not([type="checkbox"]):not([type="radio"]):is(.dark *):-webkit-autofill:hover,
-  input:not([type="checkbox"]):not([type="radio"]):is(.dark *):-webkit-autofill:focus {
+  input:not([type="checkbox"]):not([type="radio"]):is(
+      .dark *
+    ):-webkit-autofill:hover,
+  input:not([type="checkbox"]):not([type="radio"]):is(
+      .dark *
+    ):-webkit-autofill:focus {
     -webkit-text-fill-color: white;
     -webkit-box-shadow: 0 0 0px 1000px #030712 inset;
   }

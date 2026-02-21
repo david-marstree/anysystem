@@ -7,24 +7,6 @@
     @apply w-screen h-screen;
     @apply dark:bg-gray-950 dark:text-white;
   }
-  input:not([type="checkbox"]):not([type="radio"]) {
-    @apply dark:bg-gray-950 dark:text-white;
-  }
-  input:not([type="checkbox"]):not([type="radio"]):focus {
-    @apply dark:bg-gray-950 dark:text-white;
-  }
-  input:not([type="checkbox"]):not([type="radio"]):-webkit-autofill,
-  input:not([type="checkbox"]):not([type="radio"]):-webkit-autofill:hover,
-  input:not([type="checkbox"]):not([type="radio"]):-webkit-autofill:focus {
-    -webkit-text-fill-color: white;
-    -webkit-box-shadow: 0 0 0px 1000px #030712 inset;
-  }
-  textarea {
-    @apply dark:bg-gray-950 dark:text-white;
-  }
-  textarea:focus {
-    @apply dark:bg-gray-950 dark:text-white;
-  }
   #root {
     @apply w-full h-full;
   }
@@ -39,8 +21,25 @@
   }
 }
 @layer components {
+  input:not([type="checkbox"]):not([type="radio"]):is(.dark *),
+  textarea:is(.dark *) {
+    --tw-bg-opacity: 1;
+    background-color: rgb(3 7 18 / var(--tw-bg-opacity, 1));
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+  }
+  input:not([type="checkbox"]):not([type="radio"]):is(.dark *):-webkit-autofill,
+  input:not([type="checkbox"]):not([type="radio"]):is(
+      .dark *
+    ):-webkit-autofill:hover,
+  input:not([type="checkbox"]):not([type="radio"]):is(
+      .dark *
+    ):-webkit-autofill:focus {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #030712 inset;
+  }
   .form-group {
-    @apply bg-inherit;
+    @apply bg-inherit dark:bg-gray-950;
   }
   .form-group.error {
     @apply border-red-500;
@@ -59,7 +58,25 @@
   .form-group input,
   .form-group select,
   .form-group textarea {
-    @apply text-gray-700 w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal border-0 rounded dark:bg-gray-950 dark:text-white;
+    @apply text-gray-700 w-full focus:outline-none placeholder-gray-400 focus:placeholder-transparent font-normal border-0 rounded;
+    @apply dark:bg-gray-950 dark:text-white;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    @apply dark:bg-gray-950 dark:text-white;
+  }
+  .form-group input:-webkit-autofill,
+  .form-group select:-webkit-autofill,
+  .form-group textarea:-webkit-autofill,
+  .form-group input:-webkit-autofill:hover,
+  .form-group select:-webkit-autofill:hover,
+  .form-group textarea:-webkit-autofill:hover,
+  .form-group input:-webkit-autofill:focus,
+  .form-group select:-webkit-autofill:focus,
+  .form-group textarea:-webkit-autofill:focus {
+    -webkit-text-fill-color: white;
+    -webkit-box-shadow: 0 0 0px 1000px #030712 inset;
   }
   .form-group input::-webkit-outer-spin-button,
   .form-group select::-webkit-outer-spin-button,
@@ -107,7 +124,7 @@
   .form-group:has(textarea:autofill).sm .form-control,
   .form-group:has(textarea:not(:placeholder-shown)).sm .form-control,
   .form-group:has(.form-control:not(.empty)).sm .form-control {
-    @apply translate-y-0;
+    @apply translate-y-0 dark:bg-gray-950 dark:text-white;
   }
   .form-group:has(input:focus).sm label,
   .form-group:has(input:autofill).sm label,
@@ -148,7 +165,7 @@
   .form-group:has(textarea:autofill).md .form-control,
   .form-group:has(textarea:not(:placeholder-shown)).md .form-control,
   .form-group:has(.form-control:not(.empty)).md .form-control {
-    @apply translate-y-3;
+    @apply translate-y-3 dark:bg-gray-950 dark:text-white;
   }
   .form-group:has(input:focus).md label,
   .form-group:has(input:autofill).md label,
